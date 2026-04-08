@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c \"import zstandard, dotenv, requests; print\\('zstandard', zstandard.__version__\\); print\\('deps OK'\\)\")",
+      "Bash(pip install:*)",
+      "Bash(python src/pipeline/step1_parse.py --dry-run)",
+      "Bash(taskkill //PID 29640 //F)",
+      "Bash(python -c ':*)"
+    ]
+  }
+}
