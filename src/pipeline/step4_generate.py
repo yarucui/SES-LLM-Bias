@@ -47,14 +47,12 @@ logging.basicConfig(
 log = logging.getLogger("step4_generate")
 
 load_dotenv(PROJECT_ROOT / ".env")
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-if not GEMINI_API_KEY:
-    log.error("GEMINI_API_KEY missing from .env")
+OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
+if not OPENROUTER_API_KEY:
+    log.error("OPENROUTER_API_KEY missing from .env")
     sys.exit(1)
 
-import google.generativeai as genai  # noqa: E402
-genai.configure(api_key=GEMINI_API_KEY)
-GEMINI = genai.GenerativeModel(config.GEMINI_MODEL)
+from _llm import LLMError, openrouter_chat  # noqa: E402
 
 # ---------------------------------------------------------------------------
 # Prompt
@@ -93,10 +91,16 @@ def call_gemini(archetype: dict) -> tuple[str | None, str | None]:
                             "domain_seed", "ambiguity_score", "status")}
     prompt = GEN_PROMPT.format(archetype_json=json.dumps(payload, indent=2))
     try:
-        resp = GEMINI.generate_content(prompt)
-    except Exception as e:
+        text = openrouter_chat(
+            config.GEMINI_MODEL,
+            prompt,
+            temperature=0.7,
+            max_tokens=400,
+            timeout=60.0,
+        )
+    except LLMError as e:
         return None, f"gemini_call: {e}"
-    text = (resp.text or "").strip()
+    text = (text or "").strip()
     if not text:
         return None, "empty_response"
     # Strip any accidental code fences

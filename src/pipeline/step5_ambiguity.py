@@ -53,17 +53,11 @@ log = logging.getLogger("step5_ambiguity")
 
 load_dotenv(PROJECT_ROOT / ".env")
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
-GEMINI_API_KEY     = os.getenv("GEMINI_API_KEY")
 if not OPENROUTER_API_KEY:
     log.error("OPENROUTER_API_KEY missing from .env")
     sys.exit(1)
-if not GEMINI_API_KEY:
-    log.error("GEMINI_API_KEY missing from .env")
-    sys.exit(1)
 
-import google.generativeai as genai  # noqa: E402
-genai.configure(api_key=GEMINI_API_KEY)
-GEMINI = genai.GenerativeModel(config.GEMINI_MODEL)
+from _llm import LLMError, openrouter_chat  # noqa: E402
 
 OPENROUTER_HEADERS = {
     "Authorization": f"Bearer {OPENROUTER_API_KEY}",
@@ -180,11 +174,17 @@ def adjust_scenario(scenario_text: str, p_A: float) -> str | None:
         direction=direction,
     )
     try:
-        resp = GEMINI.generate_content(prompt)
-    except Exception as e:
+        text = openrouter_chat(
+            config.GEMINI_MODEL,
+            prompt,
+            temperature=0.0,
+            max_tokens=400,
+            timeout=60.0,
+        )
+    except LLMError as e:
         log.warning("Gemini adjust failed: %s", e)
         return None
-    text = (resp.text or "").strip()
+    text = (text or "").strip()
     if text.startswith("```"):
         text = text.strip("`")
         if text.lower().startswith("text"):

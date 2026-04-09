@@ -49,16 +49,12 @@ logging.basicConfig(
 log = logging.getLogger("step2_score")
 
 load_dotenv(PROJECT_ROOT / ".env")
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-
-if not GEMINI_API_KEY:
-    log.error("GEMINI_API_KEY missing from .env")
+OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
+if not OPENROUTER_API_KEY:
+    log.error("OPENROUTER_API_KEY missing from .env")
     sys.exit(1)
 
-# Lazy import — only fail if the user actually tries to run the step
-import google.generativeai as genai  # noqa: E402
-genai.configure(api_key=GEMINI_API_KEY)
-GEMINI = genai.GenerativeModel(config.GEMINI_MODEL)
+from _llm import LLMError, openrouter_chat  # noqa: E402
 
 REDDIT_HEADERS = {"User-Agent": "ses_bias_research/1.0"}
 REDDIT_SLEEP   = 2.0
@@ -186,11 +182,17 @@ def call_gemini(post: dict, comments: list[dict]) -> tuple[dict | None, str | No
         upvote_count=upvote_count,
     )
     try:
-        resp = GEMINI.generate_content(prompt)
-    except Exception as e:
+        text = openrouter_chat(
+            config.GEMINI_MODEL,
+            prompt,
+            temperature=0.0,
+            max_tokens=900,
+            timeout=60.0,
+        )
+    except LLMError as e:
         return None, f"gemini_call: {e}"
 
-    parsed = extract_json(resp.text or "")
+    parsed = extract_json(text or "")
     if parsed is None:
         return None, "gemini_parse_error"
     return parsed, None
@@ -269,6 +271,8 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--dry-run", action="store_true",
                         help="Process only 3 posts per domain and don't write outputs.")
+    parser.add_argument("--max-per-domain", type=int, default=None,
+                        help="Cap posts processed per domain (pilot mode).")
     args = parser.parse_args()
 
     config.POSTS_SCORED_DIR.mkdir(parents=True, exist_ok=True)
@@ -292,6 +296,10 @@ def main():
     if args.dry_run:
         for d in domain_to_posts:
             domain_to_posts[d] = domain_to_posts[d][:3]
+    elif args.max_per_domain is not None:
+        for d in domain_to_posts:
+            domain_to_posts[d] = domain_to_posts[d][:args.max_per_domain]
+        log.info("Pilot mode: capped to %d posts per domain", args.max_per_domain)
 
     # Counters
     attempted     = defaultdict(int)

@@ -47,14 +47,12 @@ logging.basicConfig(
 log = logging.getLogger("step3_extract")
 
 load_dotenv(PROJECT_ROOT / ".env")
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-if not GEMINI_API_KEY:
-    log.error("GEMINI_API_KEY missing from .env")
+OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
+if not OPENROUTER_API_KEY:
+    log.error("OPENROUTER_API_KEY missing from .env")
     sys.exit(1)
 
-import google.generativeai as genai  # noqa: E402
-genai.configure(api_key=GEMINI_API_KEY)
-GEMINI = genai.GenerativeModel(config.GEMINI_MODEL)
+from _llm import LLMError, openrouter_chat  # noqa: E402
 
 # ---------------------------------------------------------------------------
 # Prompt
@@ -127,10 +125,16 @@ def call_gemini(post: dict) -> tuple[dict | None, str | None]:
         option_safe=post.get("option_safe", ""),
     )
     try:
-        resp = GEMINI.generate_content(prompt)
-    except Exception as e:
+        text = openrouter_chat(
+            config.GEMINI_MODEL,
+            prompt,
+            temperature=0.0,
+            max_tokens=900,
+            timeout=60.0,
+        )
+    except LLMError as e:
         return None, f"gemini_call: {e}"
-    parsed = extract_json(resp.text or "")
+    parsed = extract_json(text or "")
     if parsed is None:
         return None, "gemini_parse_error"
     return parsed, None
@@ -175,10 +179,11 @@ def main():
     checkpoint = load_checkpoint(checkpoint_path)
     log.info("Loaded %d existing extractions from checkpoint", len(checkpoint))
 
-    # Read ambiguous.jsonl and bucket by domain
-    src = config.POSTS_SCORED_DIR / "ambiguous.jsonl"
+    # Read the SES-filtered ambiguous posts and bucket by domain
+    src = config.POSTS_SCORED_DIR / "ambiguous_ses.jsonl"
     if not src.exists():
-        log.error("Missing %s — run step 2 first", src)
+        log.error("ERROR: ambiguous_ses.jsonl not found.")
+        log.error("Run step2b_ses_filter.py first.")
         sys.exit(1)
 
     by_domain: dict[str, list[dict]] = defaultdict(list)

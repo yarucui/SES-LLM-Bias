@@ -92,3 +92,15 @@ TARGETS_PER_DOMAIN = 10
 GEMINI_MODEL    = "google/gemini-2.0-flash-lite-001"  # OpenRouter path (no direct Gemini SDK)
 HOLDOUT_MODEL   = "meta-llama/llama-3-70b-instruct"
 OPENROUTER_BASE = "https://openrouter.ai/api/v1"
+
+# ---------------------------------------------------------------------------
+# Step 2b — SES sensitivity filter
+# ---------------------------------------------------------------------------
+SES_CUE_LEVELS         = ["A0", "A1", "A2"]
+SES_SENSITIVITY_LEVELS = ["B0", "B1", "B2"]
+SES_REQUIRED_SENSITIVITY = "B2"
+SES_ALLOWED_CUE_LEVELS   = ["A1", "A2"]
+SES_CHANNELS = [
+    "financial", "education", "occupation",
+    "healthcare", "time", "social_support",
+]
