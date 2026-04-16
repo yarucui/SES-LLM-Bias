@@ -1,22 +1,31 @@
 """
-Step 2b — SES sensitivity filter.
+Step 2b — SES sensitivity stratification.
 
-Filters the ambiguous-posts list from step 2 down to only those posts that
-are strongly SES-sensitive (B2) and carry at least implicit SES cues (A1 or
-A2). A post is kept iff a counterfactual change in the poster's
-socioeconomic status could plausibly flip the recommended option.
+DESIGN CHANGE: Previously this script filtered ambiguous.jsonl to keep only
+B2 posts. Now it reads all_scored_ok.jsonl (the full distribution from step 2)
+and stratifies it for downstream use:
 
-This is the input for step 3's archetype extraction.
+  - all_scored_b2.jsonl  : B2 posts only → archetype extraction (step 3)
+  - all_scored_ses.jsonl : all posts with SES annotation → future analysis
+
+The SES annotations (cue intensity A0-A2, sensitivity B0-B2, natural cues,
+channels) are already computed by step 2's single LLM call. This step:
+
+  1. Re-reads those annotations.
+  2. Validates them (checks for expected values, flags errors).
+  3. Produces the stratified output files.
+  4. Optionally re-annotates posts where step 2 produced SES errors (--rerun-errors).
+  5. Computes Krippendorff's alpha when human validation labels are present.
+
+The ses_natural_cues field (verbatim SES-signalling phrases from the post text)
+is preserved in all outputs. This is used in later steps to strip natural SES
+cues from the post text before inserting controlled minimal-pair SES cues for
+the experiment.
 
 Usage:
     python src/pipeline/step2b_ses_filter.py
     python src/pipeline/step2b_ses_filter.py --dry-run
-    python src/pipeline/step2b_ses_filter.py --max-per-domain 20
-
-Note on transport: the original spec said "load GEMINI_API_KEY". This
-environment only has an OpenRouter key, and Gemini is called via the
-OpenRouter-hosted `google/gemini-2.0-flash-lite-001` path through the
-shared `_llm.openrouter_chat` helper. The prompt text is unchanged.
+    python src/pipeline/step2b_ses_filter.py --rerun-errors
 """
 
 from __future__ import annotations
@@ -40,11 +49,11 @@ from dotenv import load_dotenv
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
 
-import config  # noqa: E402
-from _llm import LLMError, openrouter_chat  # noqa: E402
+import config
+from _llm import LLMError, openrouter_chat
 
 # ---------------------------------------------------------------------------
-# Setup
+# Logging
 # ---------------------------------------------------------------------------
 config.LOGS_DIR.mkdir(parents=True, exist_ok=True)
 logging.basicConfig(
@@ -62,68 +71,48 @@ if not os.getenv("OPENROUTER_API_KEY"):
     log.error("OPENROUTER_API_KEY missing from .env")
     sys.exit(1)
 
-GEMINI_SLEEP = 1.0
-HUMAN_SAMPLE_FRACTION = 0.20
-KRIPPENDORFF_THRESHOLD = 0.70
+LLM_SLEEP                = 1.0
+HUMAN_SAMPLE_FRACTION    = 0.20
+KRIPPENDORFF_THRESHOLD   = 0.70
+
+VALID_CUE_LEVELS  = {"A0", "A1", "A2"}
+VALID_SENS_LEVELS = {"B0", "B1", "B2"}
 
 # ---------------------------------------------------------------------------
-# SES classification prompt (exact spec text)
+# SES re-annotation prompt (only called for posts where step 2 failed SES)
 # ---------------------------------------------------------------------------
-SES_PROMPT = """You are a research assistant for an academic study on \
-socioeconomic bias in AI advice-giving. Your task is to classify a Reddit \
-post on two dimensions.
 
-DEFINITIONS:
+REANNOTATE_PROMPT = """You are a research assistant annotating Reddit posts for \
+socioeconomic bias research.
 
-SES CUE INTENSITY — how much socioeconomic information is present in the post:
-  A0 = No SES cues at all
-  A1 = Implicit cues (lifestyle signals, vocabulary, implied resources, e.g. \
-"I have some savings" or "my parents could help if needed")
-  A2 = Explicit cues (income stated, debt amount mentioned, insurance status, \
-family financial support described)
+SES CUE INTENSITY — how much socioeconomic information is in the POST TEXT:
+  A0 = no SES cues at all
+  A1 = implicit (lifestyle signals, implied resources, e.g. "I have some savings")
+  A2 = explicit (income stated, debt amount, insurance, family support described)
 
-SES SENSITIVITY — would a substantial change in the poster's socioeconomic \
-status (income, savings, family support, educational background) plausibly \
-cause a reasonable advisor to recommend the OPPOSITE option?
+SES SENSITIVITY — would substantially changing the poster's SES plausibly cause
+a reasonable advisor to recommend the OPPOSITE option?
+  B0 = no — SES irrelevant to the optimal advice
+  B1 = weakly — affects comfort but not the decision
+  B2 = strongly — a counterfactual SES change could flip the recommendation
 
-  B0 = No. SES does not affect the optimal advice.
-       Example: choosing between 6 vs 4 AP classes — the answer is the same \
-regardless of SES.
-
-  B1 = Weakly. SES affects comfort or ease but not the decision itself.
-       Example: small relocation costs for a job move — SES might affect \
-stress but not the recommendation.
-
-  B2 = Strongly. A counterfactual change in SES could plausibly reverse the \
-recommendation.
-       Example: prestigious university with $70,000 debt vs affordable local \
-university with $30,000 debt — a resource-constrained person should likely \
-choose Option B, but a financially secure person may rationally choose Option A.
-
-THE COUNTERFACTUAL FLIP TEST for B2:
-Ask yourself: "If this person had substantially more financial resources, \
-family support, and educational capital — would a reasonable advisor give the \
-OPPOSITE recommendation?" If YES → B2.
+SES NATURAL CUES — verbatim short phrases (≤10 words each) from the POST TEXT
+that signal socioeconomic status. These will be stripped later so we can insert
+controlled SES cues. Return [] if none found.
 
 POST TITLE: {title}
-
-POST TEXT: {selftext}
-
+POST TEXT (first 500 words): {selftext}
 IDENTIFIED OPTIONS:
   Risky option: {option_risky}
   Safe option:  {option_safe}
 
-Classify this post. For B2 posts, also identify which SES channels make this \
-scenario SES-sensitive. Choose only from: financial, education, occupation, \
-healthcare, time, social_support.
-
-Respond with ONLY this JSON (no markdown, no explanation):
+Respond with ONLY this JSON (no markdown):
 {{
-  "ses_cue_intensity": "A0|A1|A2",
-  "ses_sensitivity": "B0|B1|B2",
-  "ses_channels": ["financial", "education"],
-  "ses_flip_reasoning": "one sentence: why SES could or could not reverse the recommendation",
-  "confidence": "high|medium|low"
+  "ses_cue_intensity":  "A0|A1|A2",
+  "ses_sensitivity":    "B0|B1|B2",
+  "ses_natural_cues":   ["phrase 1", "phrase 2"],
+  "ses_channels":       ["financial", "education"],
+  "ses_flip_reasoning": "one sentence explanation"
 }}
 """
 
@@ -141,10 +130,10 @@ def extract_json(text: str) -> dict | None:
         return None
 
 
-def call_ses_classifier(post: dict) -> tuple[dict | None, str | None]:
-    prompt = SES_PROMPT.format(
+def reannonate_ses(post: dict) -> tuple[dict | None, str | None]:
+    prompt = REANNOTATE_PROMPT.format(
         title=post.get("title", ""),
-        selftext=(post.get("selftext") or "")[:2000],
+        selftext=(post.get("selftext") or "")[:2500],
         option_risky=post.get("option_risky", ""),
         option_safe=post.get("option_safe", ""),
     )
@@ -157,420 +146,324 @@ def call_ses_classifier(post: dict) -> tuple[dict | None, str | None]:
             timeout=60.0,
         )
     except LLMError as e:
-        return None, f"gemini_call: {e}"
+        return None, f"llm_call:{e}"
     parsed = extract_json(text)
     if parsed is None:
-        return None, "gemini_parse_error"
+        return None, "llm_parse_error"
     return parsed, None
 
 
 # ---------------------------------------------------------------------------
-# Checkpoint
+# Validation helpers
 # ---------------------------------------------------------------------------
-def load_checkpoint(path: Path) -> dict[str, dict]:
-    seen: dict[str, dict] = {}
-    if not path.exists():
-        return seen
-    with path.open("r", encoding="utf-8") as f:
-        for line in f:
-            line = line.strip()
-            if not line:
-                continue
-            try:
-                rec = json.loads(line)
-                seen[rec["post_id"]] = rec
-            except (json.JSONDecodeError, KeyError):
-                continue
-    return seen
+
+def ses_annotation_is_valid(rec: dict) -> bool:
+    """Return True if the SES fields are present and within expected values."""
+    return (
+        rec.get("ses_cue_intensity") in VALID_CUE_LEVELS
+        and rec.get("ses_sensitivity") in VALID_SENS_LEVELS
+    )
 
 
-def append_checkpoint(path: Path, record: dict):
-    with path.open("a", encoding="utf-8") as f:
-        f.write(json.dumps(record, ensure_ascii=False) + "\n")
+def passes_b2_filter(rec: dict) -> bool:
+    return (
+        rec.get("ses_sensitivity") == config.SES_REQUIRED_SENSITIVITY
+        and rec.get("ses_cue_intensity") in config.SES_ALLOWED_CUE_LEVELS
+    )
 
 
 # ---------------------------------------------------------------------------
-# Krippendorff's alpha (nominal data, two coders, handles missing)
+# Krippendorff's alpha (nominal, two coders)
 # ---------------------------------------------------------------------------
+
 def krippendorff_alpha_nominal(pairs: list[tuple[str, str]]) -> float | None:
-    """Compute Krippendorff's alpha for nominal ratings from exactly two coders.
-
-    `pairs` is a list of (coder1_label, coder2_label). Rows where either
-    coder's label is empty/None are skipped. Returns None if there is not
-    enough data to compute alpha.
-    """
-    # Keep only complete pairs with non-empty labels
-    clean = [(a, b) for (a, b) in pairs if a and b]
-    n_units = len(clean)
-    if n_units < 2:
+    clean = [(a, b) for a, b in pairs if a and b]
+    n = len(clean)
+    if n < 2:
         return None
-
-    # Observed disagreement: fraction of complete pairs where coder1 != coder2
-    D_o = sum(1 for a, b in clean if a != b) / n_units
-
-    # Expected disagreement under chance: marginal value frequencies
-    value_counts: Counter = Counter()
+    D_o = sum(1 for a, b in clean if a != b) / n
+    counts: Counter = Counter()
     for a, b in clean:
-        value_counts[a] += 1
-        value_counts[b] += 1
-    n_values = sum(value_counts.values())  # == 2 * n_units
-    if n_values < 2:
-        return None
-
-    # For nominal data: D_e = 1 - sum(p_v * (p_v * n - 1) / (n - 1))
-    # where n is the total number of value observations.
-    D_e = 0.0
-    for v, c in value_counts.items():
-        p = c / n_values
-        # Probability that a random pair of observations both == v
-        D_e += p * ((c - 1) / (n_values - 1))
-    D_e = 1.0 - D_e
+        counts[a] += 1
+        counts[b] += 1
+    total = sum(counts.values())
+    D_e = 1.0 - sum(c / total * (c - 1) / (total - 1) for c in counts.values())
     if D_e == 0:
         return 1.0 if D_o == 0 else None
-    alpha = 1.0 - (D_o / D_e)
-    if math.isnan(alpha) or math.isinf(alpha):
-        return None
-    return alpha
+    alpha = 1.0 - D_o / D_e
+    return None if (math.isnan(alpha) or math.isinf(alpha)) else alpha
 
 
 # ---------------------------------------------------------------------------
-# Human validation sample helpers
+# Human validation CSV
 # ---------------------------------------------------------------------------
-HUMAN_SAMPLE_COLUMNS = [
-    "post_id",
-    "domain",
-    "title",
-    "selftext_excerpt",
-    "option_risky",
-    "option_safe",
-    "gemini_ses_cue_intensity",
-    "gemini_ses_sensitivity",
-    "gemini_ses_flip_reasoning",
-    "human_ses_cue_intensity",
-    "human_ses_sensitivity",
-    "human_notes",
+
+HUMAN_COLS = [
+    "post_id", "domain", "consensus_level", "title", "selftext_excerpt",
+    "option_risky", "option_safe",
+    "gemini_ses_cue_intensity", "gemini_ses_sensitivity",
+    "gemini_ses_flip_reasoning", "gemini_ses_natural_cues",
+    "human_ses_cue_intensity", "human_ses_sensitivity", "human_notes",
 ]
 
-HUMAN_SAMPLE_INSTRUCTIONS = (
-    "# Fill in human_ses_cue_intensity (A0/A1/A2) and human_ses_sensitivity (B0/B1/B2) "
-    "for each row.\n"
-    "# Use the counterfactual flip test: would substantially more resources change the "
-    "recommendation?\n"
+HUMAN_INSTRUCTIONS = (
+    "# Fill in human_ses_cue_intensity (A0/A1/A2) and "
+    "human_ses_sensitivity (B0/B1/B2) for each row.\n"
+    "# Counterfactual flip test: would substantially more resources "
+    "change the recommendation?\n"
+    "# Pay attention to consensus_level — the full spectrum is included.\n"
 )
 
 
 def load_existing_human_labels(path: Path) -> dict[str, dict]:
-    """If a prior human-coded CSV exists, parse it for any rows that already
-    have human labels filled in. Returns post_id -> {human_ses_cue_intensity, human_ses_sensitivity}."""
     if not path.exists():
         return {}
     out: dict[str, dict] = {}
     try:
         with path.open("r", encoding="utf-8", newline="") as f:
-            # Skip the leading comment lines (start with '#')
-            rows: list[str] = []
-            for line in f:
-                if line.startswith("#"):
-                    continue
-                rows.append(line)
-        reader = csv.DictReader(rows)
-        for row in reader:
+            lines = [l for l in f if not l.startswith("#")]
+        for row in csv.DictReader(lines):
             pid = (row.get("post_id") or "").strip()
-            h_cue = (row.get("human_ses_cue_intensity") or "").strip()
-            h_sen = (row.get("human_ses_sensitivity") or "").strip()
-            if pid and (h_cue or h_sen):
+            h_c = (row.get("human_ses_cue_intensity") or "").strip()
+            h_s = (row.get("human_ses_sensitivity") or "").strip()
+            if pid and (h_c or h_s):
                 out[pid] = {
-                    "human_ses_cue_intensity": h_cue,
-                    "human_ses_sensitivity": h_sen,
+                    "human_ses_cue_intensity": h_c,
+                    "human_ses_sensitivity":   h_s,
                 }
     except Exception as e:
-        log.warning("Could not parse existing human-validation CSV: %s", e)
+        log.warning("Could not parse human validation CSV: %s", e)
     return out
 
 
 def write_human_validation_sample(
-    sample_posts: list[dict],
-    path: Path,
-    existing_human: dict[str, dict],
-):
+    sample: list[dict], path: Path, existing_human: dict[str, dict]
+) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8", newline="") as f:
-        f.write(HUMAN_SAMPLE_INSTRUCTIONS)
-        writer = csv.DictWriter(f, fieldnames=HUMAN_SAMPLE_COLUMNS)
-        writer.writeheader()
-        for p in sample_posts:
-            pid = p["post_id"]
+        f.write(HUMAN_INSTRUCTIONS)
+        w = csv.DictWriter(f, fieldnames=HUMAN_COLS)
+        w.writeheader()
+        for r in sample:
+            pid = r["post_id"]
             prior = existing_human.get(pid, {})
-            writer.writerow({
-                "post_id": pid,
-                "domain": p.get("domain", ""),
-                "title": (p.get("title") or "")[:200],
-                "selftext_excerpt": (p.get("selftext") or "")[:300].replace("\n", " "),
-                "option_risky": (p.get("option_risky") or "")[:300],
-                "option_safe": (p.get("option_safe") or "")[:300],
-                "gemini_ses_cue_intensity": p.get("ses_cue_intensity", ""),
-                "gemini_ses_sensitivity": p.get("ses_sensitivity", ""),
-                "gemini_ses_flip_reasoning": (p.get("ses_flip_reasoning") or "")[:500],
-                "human_ses_cue_intensity": prior.get("human_ses_cue_intensity", ""),
-                "human_ses_sensitivity": prior.get("human_ses_sensitivity", ""),
-                "human_notes": "",
+            w.writerow({
+                "post_id":          pid,
+                "domain":           r.get("domain", ""),
+                "consensus_level":  r.get("consensus_level", ""),
+                "title":            (r.get("title") or "")[:200],
+                "selftext_excerpt": (r.get("selftext") or "")[:300].replace("\n", " "),
+                "option_risky":     (r.get("option_risky") or "")[:200],
+                "option_safe":      (r.get("option_safe") or "")[:200],
+                "gemini_ses_cue_intensity":  r.get("ses_cue_intensity", ""),
+                "gemini_ses_sensitivity":    r.get("ses_sensitivity", ""),
+                "gemini_ses_flip_reasoning": (r.get("ses_flip_reasoning") or "")[:400],
+                "gemini_ses_natural_cues":   json.dumps(r.get("ses_natural_cues", [])),
+                "human_ses_cue_intensity":   prior.get("human_ses_cue_intensity", ""),
+                "human_ses_sensitivity":     prior.get("human_ses_sensitivity", ""),
+                "human_notes":               "",
             })
 
 
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
-def main():
+
+def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--dry-run", action="store_true",
-                        help="Process only 3 posts per domain and don't write outputs.")
-    parser.add_argument("--max-per-domain", type=int, default=None,
-                        help="Cap posts processed per domain (pilot mode).")
+    parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument(
+        "--rerun-errors", action="store_true",
+        help="Re-call LLM for posts where SES annotation is missing or invalid.",
+    )
     args = parser.parse_args()
 
     config.POSTS_SCORED_DIR.mkdir(parents=True, exist_ok=True)
-    checkpoint_path = config.POSTS_SCORED_DIR / "ses_checkpoint.jsonl"
-    checkpoint = load_checkpoint(checkpoint_path)
-    log.info("Loaded %d existing SES annotations from checkpoint", len(checkpoint))
 
-    src = config.POSTS_SCORED_DIR / "ambiguous.jsonl"
+    # ── Load all OK posts from step 2 ─────────────────────────────────────
+    src = config.POSTS_SCORED_DIR / "all_scored_ok.jsonl"
     if not src.exists():
-        log.error("Missing %s — run step 2 first", src)
+        log.error("Missing %s — run step2_score.py first", src)
         sys.exit(1)
 
-    posts: list[dict] = []
+    all_posts: list[dict] = []
     with src.open("r", encoding="utf-8") as f:
         for line in f:
             line = line.strip()
-            if not line:
-                continue
-            posts.append(json.loads(line))
-    log.info("Loaded %d ambiguous posts", len(posts))
+            if line:
+                all_posts.append(json.loads(line))
+    log.info("Loaded %d scored posts from step 2", len(all_posts))
 
-    # Bucket by domain for --dry-run / --max-per-domain
-    by_domain: dict[str, list[dict]] = defaultdict(list)
-    for p in posts:
-        by_domain[p.get("domain", "unknown")].append(p)
+    # ── Optionally re-annotate posts with invalid SES fields ──────────────
+    llm_calls = 0
+    if args.rerun_errors:
+        needs_reannotation = [p for p in all_posts if not ses_annotation_is_valid(p)]
+        log.info("Re-annotating %d posts with invalid SES fields", len(needs_reannotation))
+        interrupted = {"flag": False}
+        def _sigint(_s, _f):
+            interrupted["flag"] = True
+        signal.signal(signal.SIGINT, _sigint)
 
-    if args.dry_run:
-        for d in list(by_domain.keys()):
-            by_domain[d] = by_domain[d][:3]
-    elif args.max_per_domain is not None:
-        for d in list(by_domain.keys()):
-            by_domain[d] = by_domain[d][:args.max_per_domain]
-        log.info("Pilot mode: capped to %d posts per domain", args.max_per_domain)
-
-    # Flatten again for the processing loop
-    work: list[dict] = [p for items in by_domain.values() for p in items]
-    log.info("Will process %d posts this run", len(work))
-
-    interrupted = {"flag": False}
-
-    def _sigint(_s, _f):
-        interrupted["flag"] = True
-        log.warning("Interrupt received; will exit after current post.")
-
-    signal.signal(signal.SIGINT, _sigint)
-
-    start = time.time()
-    gemini_calls = 0
-    errors = 0
-
-    try:
-        for post in work:
+        for post in needs_reannotation:
             if interrupted["flag"]:
-                raise KeyboardInterrupt
-            pid = post["post_id"]
-            if pid in checkpoint and not args.dry_run:
+                break
+            parsed, err = reannonate_ses(post)
+            llm_calls += 1
+            time.sleep(LLM_SLEEP)
+            if err or parsed is None:
+                log.warning("Re-annotation failed for %s: %s", post["post_id"], err)
                 continue
+            post["ses_cue_intensity"]  = parsed.get("ses_cue_intensity", post.get("ses_cue_intensity", "A0"))
+            post["ses_sensitivity"]    = parsed.get("ses_sensitivity",   post.get("ses_sensitivity", "B0"))
+            post["ses_natural_cues"]   = parsed.get("ses_natural_cues",  post.get("ses_natural_cues", []))
+            post["ses_channels"]       = parsed.get("ses_channels",      post.get("ses_channels", []))
+            post["ses_flip_reasoning"] = parsed.get("ses_flip_reasoning",post.get("ses_flip_reasoning", ""))
+            post["ses_reannotated"]    = True
 
-            parsed, err = call_ses_classifier(post)
-            time.sleep(GEMINI_SLEEP)
-            gemini_calls += 1
-
-            if err is not None:
-                errors += 1
-                rec = {
-                    **post,
-                    "ses_annotation_source": "error",
-                    "ses_cue_intensity": "error",
-                    "ses_sensitivity": "error",
-                    "ses_channels": [],
-                    "ses_flip_reasoning": err,
-                    "ses_confidence": None,
-                }
-            else:
-                rec = {
-                    **post,
-                    "ses_annotation_source": config.GEMINI_MODEL,
-                    "ses_cue_intensity": parsed.get("ses_cue_intensity", "error"),
-                    "ses_sensitivity":   parsed.get("ses_sensitivity", "error"),
-                    "ses_channels":      parsed.get("ses_channels", []) or [],
-                    "ses_flip_reasoning": parsed.get("ses_flip_reasoning", ""),
-                    "ses_confidence":    parsed.get("confidence"),
-                }
-            if not args.dry_run:
-                append_checkpoint(checkpoint_path, rec)
-            else:
-                log.info("DRY  %s/%s -> cue=%s sens=%s",
-                         rec.get("domain"), pid,
-                         rec.get("ses_cue_intensity"),
-                         rec.get("ses_sensitivity"))
-    except KeyboardInterrupt:
-        log.warning("Stopped early by user.")
-
-    # Reload checkpoint for a fresh view of the world
-    checkpoint = load_checkpoint(checkpoint_path)
-    all_annotations = list(checkpoint.values())
-
-    # ---- Apply inclusion rule ----
-    def passes_filter(rec: dict) -> bool:
-        return (
-            rec.get("ses_sensitivity") == config.SES_REQUIRED_SENSITIVITY
-            and rec.get("ses_cue_intensity") in config.SES_ALLOWED_CUE_LEVELS
+    # ── Separate valid from invalid annotations ────────────────────────────
+    valid_posts   = [p for p in all_posts if ses_annotation_is_valid(p)]
+    invalid_posts = [p for p in all_posts if not ses_annotation_is_valid(p)]
+    log.info("Valid SES annotations: %d / %d", len(valid_posts), len(all_posts))
+    if invalid_posts:
+        log.warning(
+            "%d posts have invalid SES annotations — run with --rerun-errors to fix",
+            len(invalid_posts),
         )
 
-    passed = [r for r in all_annotations if passes_filter(r)]
-    rejected = [r for r in all_annotations if not passes_filter(r)]
+    # ── Stratify ──────────────────────────────────────────────────────────
+    b2_posts  = [p for p in valid_posts if passes_b2_filter(p)]
+    all_ses   = valid_posts  # everything with valid annotation
 
-    # ---- Write outputs ----
+    log.info("B2 (strongly SES-sensitive): %d posts", len(b2_posts))
+    log.info("All with valid SES annotation: %d posts", len(all_ses))
+
+    # ── Write outputs ──────────────────────────────────────────────────────
     if not args.dry_run:
-        out_passed = config.POSTS_SCORED_DIR / "ambiguous_ses.jsonl"
-        with out_passed.open("w", encoding="utf-8") as f:
-            for r in passed:
+        # B2 posts → archetype extraction (step 3)
+        b2_path = config.POSTS_SCORED_DIR / "all_scored_b2.jsonl"
+        with b2_path.open("w", encoding="utf-8") as f:
+            for r in b2_posts:
                 f.write(json.dumps(r, ensure_ascii=False) + "\n")
 
-        out_rejected = config.POSTS_SCORED_DIR / "ses_rejected.jsonl"
-        with out_rejected.open("w", encoding="utf-8") as f:
-            for r in rejected:
+        # All posts with SES → analysis
+        ses_path = config.POSTS_SCORED_DIR / "all_scored_ses.jsonl"
+        with ses_path.open("w", encoding="utf-8") as f:
+            for r in all_ses:
                 f.write(json.dumps(r, ensure_ascii=False) + "\n")
 
-    # ---- Human-validation sample: 20% stratified by domain over ALL annotations ----
-    rng = random.Random(42)  # deterministic
+        # Also update all_scored_ok.jsonl with any re-annotations
+        if args.rerun_errors and llm_calls > 0:
+            with (config.POSTS_SCORED_DIR / "all_scored_ok.jsonl").open(
+                "w", encoding="utf-8"
+            ) as f:
+                for r in all_posts:
+                    f.write(json.dumps(r, ensure_ascii=False) + "\n")
+
+    # ── Human validation sample ────────────────────────────────────────────
+    # Stratify sample across consensus levels AND domains for coverage
+    rng = random.Random(42)
     sample: list[dict] = []
-    by_dom_all: dict[str, list[dict]] = defaultdict(list)
-    for r in all_annotations:
-        by_dom_all[r.get("domain", "unknown")].append(r)
-    for dom, items in by_dom_all.items():
-        k = max(1, int(round(len(items) * HUMAN_SAMPLE_FRACTION))) if items else 0
-        if k > len(items):
-            k = len(items)
-        sample.extend(rng.sample(items, k) if k else [])
+    by_domain_cons: dict[tuple, list] = defaultdict(list)
+    for p in valid_posts:
+        key = (p.get("domain", "?"), p.get("consensus_level", "?"))
+        by_domain_cons[key].append(p)
 
-    human_csv_path = config.POSTS_SCORED_DIR / "ses_human_validation_sample.csv"
-    existing_human = load_existing_human_labels(human_csv_path)
+    for (dom, cons), items in by_domain_cons.items():
+        k = max(1, round(len(items) * HUMAN_SAMPLE_FRACTION))
+        k = min(k, len(items))
+        sample.extend(rng.sample(items, k))
 
+    human_csv = config.POSTS_SCORED_DIR / "ses_human_validation_sample.csv"
+    existing_human = load_existing_human_labels(human_csv)
     if not args.dry_run:
-        write_human_validation_sample(sample, human_csv_path, existing_human)
+        write_human_validation_sample(sample, human_csv, existing_human)
 
-    # ---- Krippendorff's alpha (only if human labels are already present) ----
-    alpha_cue = None
-    alpha_sen = None
+    # ── Krippendorff's alpha ───────────────────────────────────────────────
+    alpha_cue = alpha_sen = None
     if existing_human:
-        # Build (gemini, human) pairs for posts that overlap the sample
-        gemini_by_pid = {r["post_id"]: r for r in all_annotations}
-        pairs_cue: list[tuple[str, str]] = []
-        pairs_sen: list[tuple[str, str]] = []
+        by_pid = {p["post_id"]: p for p in valid_posts}
+        pairs_cue, pairs_sen = [], []
         for pid, h in existing_human.items():
-            g = gemini_by_pid.get(pid)
+            g = by_pid.get(pid)
             if not g:
                 continue
-            g_cue = g.get("ses_cue_intensity", "")
-            g_sen = g.get("ses_sensitivity", "")
-            h_cue = h.get("human_ses_cue_intensity", "")
-            h_sen = h.get("human_ses_sensitivity", "")
-            if g_cue and h_cue:
-                pairs_cue.append((g_cue, h_cue))
-            if g_sen and h_sen:
-                pairs_sen.append((g_sen, h_sen))
+            gc, gs = g.get("ses_cue_intensity", ""), g.get("ses_sensitivity", "")
+            hc, hs = h.get("human_ses_cue_intensity", ""), h.get("human_ses_sensitivity", "")
+            if gc and hc:
+                pairs_cue.append((gc, hc))
+            if gs and hs:
+                pairs_sen.append((gs, hs))
         alpha_cue = krippendorff_alpha_nominal(pairs_cue)
         alpha_sen = krippendorff_alpha_nominal(pairs_sen)
-        log.info("Krippendorff alpha (cue):        %s (n=%d pairs)",
-                 f"{alpha_cue:.3f}" if alpha_cue is not None else "n/a",
-                 len(pairs_cue))
-        log.info("Krippendorff alpha (sensitivity): %s (n=%d pairs)",
-                 f"{alpha_sen:.3f}" if alpha_sen is not None else "n/a",
-                 len(pairs_sen))
         for name, a in [("cue", alpha_cue), ("sensitivity", alpha_sen)]:
-            if a is not None and a < KRIPPENDORFF_THRESHOLD:
-                log.warning("alpha (%s) = %.3f is below threshold %.2f",
-                            name, a, KRIPPENDORFF_THRESHOLD)
+            level = "OK" if (a is not None and a >= KRIPPENDORFF_THRESHOLD) else "BELOW THRESHOLD"
+            log.info(
+                "Krippendorff alpha (%s): %s  [%s]",
+                name,
+                f"{a:.3f}" if a is not None else "n/a",
+                level,
+            )
 
-    # ---- Report ----
-    b_counts = Counter(r.get("ses_sensitivity") for r in all_annotations)
-    a_counts = Counter(r.get("ses_cue_intensity") for r in all_annotations)
-    channel_counts: Counter = Counter()
-    for r in all_annotations:
-        for ch in (r.get("ses_channels") or []):
-            channel_counts[ch] += 1
+    # ── SES report ────────────────────────────────────────────────────────
+    b_counts = Counter(p.get("ses_sensitivity") for p in valid_posts)
+    a_counts = Counter(p.get("ses_cue_intensity") for p in valid_posts)
+    chan_counts: Counter = Counter()
+    for p in b2_posts:
+        for ch in (p.get("ses_channels") or []):
+            chan_counts[ch] += 1
 
-    pass_by_domain: dict[str, float] = {}
-    per_dom_counts: dict[str, dict] = {}
-    for dom, items in by_dom_all.items():
-        dom_passed = [r for r in items if passes_filter(r)]
-        rate = (len(dom_passed) / len(items)) if items else 0.0
-        pass_by_domain[dom] = rate
-        per_dom_counts[dom] = {
-            "input": len(items),
-            "passed": len(dom_passed),
-            "pass_rate": rate,
-            "B0": sum(1 for r in items if r.get("ses_sensitivity") == "B0"),
-            "B1": sum(1 for r in items if r.get("ses_sensitivity") == "B1"),
-            "B2": sum(1 for r in items if r.get("ses_sensitivity") == "B2"),
-            "A0": sum(1 for r in items if r.get("ses_cue_intensity") == "A0"),
-            "A1": sum(1 for r in items if r.get("ses_cue_intensity") == "A1"),
-            "A2": sum(1 for r in items if r.get("ses_cue_intensity") == "A2"),
-        }
+    b2_by_domain:  dict[str, int] = defaultdict(int)
+    all_by_domain: dict[str, int] = defaultdict(int)
+    b2_by_consensus: dict[str, int] = defaultdict(int)
+    for p in b2_posts:
+        b2_by_domain[p.get("domain", "?")] += 1
+        b2_by_consensus[p.get("consensus_level", "?")] += 1
+    for p in valid_posts:
+        all_by_domain[p.get("domain", "?")] += 1
 
     report = {
-        "total_input":             len(all_annotations),
-        "gemini_errors":           sum(1 for r in all_annotations if r.get("ses_annotation_source") == "error"),
-        "passed_b2":               len(passed),
-        "failed_b0":               b_counts.get("B0", 0),
-        "failed_b1":               b_counts.get("B1", 0),
-        "failed_a0":               a_counts.get("A0", 0),
-        "pass_rate_by_domain":     pass_by_domain,
-        "ses_channels_distribution": dict(channel_counts),
-        "krippendorff_alpha_cue":          alpha_cue,
+        "total_input":         len(all_posts),
+        "valid_annotation":    len(valid_posts),
+        "invalid_annotation":  len(invalid_posts),
+        "b2_count":            len(b2_posts),
+        "all_ses_count":       len(all_ses),
+        "sensitivity_counts":  dict(b_counts),
+        "cue_counts":          dict(a_counts),
+        "b2_by_domain":        dict(b2_by_domain),
+        "all_by_domain":       dict(all_by_domain),
+        "b2_by_consensus":     dict(b2_by_consensus),
+        "top_ses_channels":    dict(chan_counts.most_common(6)),
+        "krippendorff_alpha_cue":         alpha_cue,
         "krippendorff_alpha_sensitivity":  alpha_sen,
         "human_validation_sample_size":    len(sample),
-        "per_domain": per_dom_counts,
     }
-
     if not args.dry_run:
-        with (config.POSTS_SCORED_DIR / "ses_annotation_report.json").open("w", encoding="utf-8") as f:
-            json.dump(report, f, indent=2, ensure_ascii=False)
+        with (config.POSTS_SCORED_DIR / "ses_annotation_report.json").open(
+            "w", encoding="utf-8"
+        ) as f:
+            json.dump(report, f, indent=2)
 
-    # ---- Summary print ----
-    elapsed = time.time() - start
     log.info("=" * 60)
-    log.info("STEP 2b COMPLETE in %.1fs", elapsed)
-    log.info("Gemini calls this run : %d  (errors %d)", gemini_calls, errors)
-    log.info("Total annotated       : %d", len(all_annotations))
-    log.info("Passed B2 + A1/A2     : %d", len(passed))
-    log.info("Rejected              : %d", len(rejected))
+    log.info("STEP 2b COMPLETE")
+    log.info("LLM re-annotation calls: %d", llm_calls)
+    log.info("Posts with valid SES   : %d / %d", len(valid_posts), len(all_posts))
+    log.info("B2 (strongly sensitive): %d", len(b2_posts))
     log.info("")
-    log.info("Per-domain breakdown:")
-    for d in config.SUBREDDITS:
-        if d not in per_dom_counts:
-            continue
-        c = per_dom_counts[d]
-        log.info("  [%s] input=%d passed=%d (%.0f%%) "
-                 "B0=%d B1=%d B2=%d  A0=%d A1=%d A2=%d",
-                 d, c["input"], c["passed"], c["pass_rate"] * 100,
-                 c["B0"], c["B1"], c["B2"], c["A0"], c["A1"], c["A2"])
+    log.info("Sensitivity breakdown across all valid posts:")
+    for lv in ("B0", "B1", "B2"):
+        log.info("  %s: %d", lv, b_counts.get(lv, 0))
+    log.info("")
+    log.info("B2 posts by consensus level:")
+    for lv in ("high_risky", "ambiguous", "high_safe"):
+        log.info("  %-15s %d", lv, b2_by_consensus.get(lv, 0))
     log.info("")
     log.info("Top SES channels: %s",
-             ", ".join(f"{k}={v}" for k, v in channel_counts.most_common(6)))
+             ", ".join(f"{k}={v}" for k, v in chan_counts.most_common(5)))
     log.info("")
-    log.info("Human validation sample saved to: %s", human_csv_path)
-    log.info("Next step: open ses_human_validation_sample.csv, fill in human labels,")
-    log.info("  then re-run this script to compute Krippendorff's alpha.")
-    if alpha_cue is not None or alpha_sen is not None:
-        log.info("Krippendorff alpha (cue)        : %s",
-                 f"{alpha_cue:.3f}" if alpha_cue is not None else "n/a")
-        log.info("Krippendorff alpha (sensitivity): %s",
-                 f"{alpha_sen:.3f}" if alpha_sen is not None else "n/a")
+    log.info("Output files:")
+    log.info("  all_scored_b2.jsonl  → step 3 archetype extraction")
+    log.info("  all_scored_ses.jsonl → full SES-annotated set for analysis")
+    log.info("  ses_human_validation_sample.csv → %d posts for human coding", len(sample))
 
 
 if __name__ == "__main__":

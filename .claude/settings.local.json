@@ -5,7 +5,19 @@
       "Bash(pip install:*)",
       "Bash(python src/pipeline/step1_parse.py --dry-run)",
       "Bash(taskkill //PID 29640 //F)",
-      "Bash(python -c ':*)"
+      "Bash(python -c ':*)",
+      "Bash(grep -E \"\\\\.\\(py|md|json|yaml|yml|txt|csv\\)$\")",
+      "Bash(grep \"config\\\\\\\\.EXPERIMENT_DIR\\\\|config\\\\\\\\.STUDY_MODELS\\\\|config\\\\\\\\.PROMPT_FAMILIES\\\\|config\\\\\\\\.SES_MINIMAL_PAIRS\\\\|config\\\\\\\\.JUSTIFICATION\\\\|config\\\\\\\\.FORCED_CHOICE\\\\|config\\\\\\\\.EXPERIMENT_N_SAMPLES\\\\|config\\\\\\\\.EXPERIMENT_TEMPERATURE\" /d/A_my_project/ses-llm-bias/src/pipeline/step6_experiment.py)",
+      "Bash(python -c \"import config; print\\('EXPERIMENT_DIR:', config.EXPERIMENT_DIR\\); print\\('STUDY_MODELS:', list\\(config.STUDY_MODELS.keys\\(\\)\\)\\); print\\('SES_MINIMAL_PAIRS:', list\\(config.SES_MINIMAL_PAIRS.keys\\(\\)\\)\\); print\\('HUMAN_HIGH_CONSENSUS_THRESHOLD:', config.HUMAN_HIGH_CONSENSUS_THRESHOLD\\)\")",
+      "Bash(python src/pipeline/step2_score.py)",
+      "Bash(python -c \"import ast; ast.parse\\(open\\('src/pipeline/step2b_ses_filter.py', encoding='utf-8'\\).read\\(\\)\\); print\\('step2b OK'\\)\")",
+      "Bash(python -c \"import ast; ast.parse\\(open\\('src/pipeline/step3_extract.py', encoding='utf-8'\\).read\\(\\)\\); print\\('step3 OK'\\)\")",
+      "Bash(python -c \"import ast; ast.parse\\(open\\('src/pipeline/step4_generate.py', encoding='utf-8'\\).read\\(\\)\\); print\\('step4 OK'\\)\")",
+      "Bash(python -c \"import ast; ast.parse\\(open\\('src/pipeline/step6_experiment.py', encoding='utf-8'\\).read\\(\\)\\); print\\('step6 OK'\\)\")",
+      "Bash(tasklist)",
+      "Bash(grep -E \"\\\\.py$\")",
+      "Bash(grep:*)",
+      "Bash(xxd src/pipeline/step6_experiment.py)"
     ]
   }
 }

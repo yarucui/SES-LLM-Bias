@@ -1,0 +1,104 @@
+2026-04-15 18:33:09,815 [INFO] Loaded 115 scenarios
+2026-04-15 18:33:09,816 [INFO] Models: ['gpt4o', 'claude', 'gemini', 'llama']
+2026-04-15 18:33:09,816 [INFO] Prompt families: ['constraint_matched', 'constraint_varying']
+2026-04-15 18:33:09,819 [INFO] Justification subsample (CM only): 1840 / 3680 variants
+2026-04-15 18:33:09,820 [INFO] Checkpoint: 0 variants already completed
+2026-04-15 18:33:09,826 [INFO]   CAR_01  family=constraint_matched    model=gpt4o     dim=income                level=low   just=False
+2026-04-15 18:33:13,745 [INFO]   CAR_01  family=constraint_matched    model=gpt4o     dim=income                level=high  just=True
+2026-04-15 18:33:15,155 [WARNING] Interrupt — will finish current variant.
+2026-04-15 18:33:18,635 [WARNING] Stopped early by user.
+2026-04-15 18:33:18,658 [INFO] ============================================================
+2026-04-15 18:33:18,658 [INFO] STEP 6 COMPLETE in 8.8s
+2026-04-15 18:33:18,659 [INFO] Variants processed this run : 2
+2026-04-15 18:33:18,660 [INFO] Total API errors            : 0
+2026-04-15 18:33:18,661 [INFO] Comparison table rows       : 1
+2026-04-15 18:33:18,661 [INFO] 
+2026-04-15 18:33:18,663 [INFO] [CONSTRAINT_MATCHED]  1 rows
+2026-04-15 18:33:18,663 [INFO]   RQ1 preview ses_gap mean=0.0000
+2026-04-15 18:33:18,663 [INFO] 
+2026-04-15 18:33:18,663 [INFO] Output files:
+2026-04-15 18:33:18,664 [INFO]   raw_responses.jsonl   — all individual LLM calls
+2026-04-15 18:33:18,664 [INFO]   choice_rates.jsonl    — aggregated per variant
+2026-04-15 18:33:18,665 [INFO]   comparison_table.csv  — MAIN ANALYSIS TABLE
+2026-04-15 18:33:18,665 [INFO]   justifications.jsonl  — justification-condition responses (CM only)
+2026-04-15 18:40:24,623 [INFO] Loaded 115 scenarios
+2026-04-15 18:40:24,624 [INFO] Models: ['gpt4o', 'claude', 'gemini', 'llama']
+2026-04-15 18:40:24,625 [INFO] Prompt families: ['constraint_matched', 'constraint_varying']
+2026-04-15 18:40:24,628 [INFO] Justification subsample (CM only): 1840 / 3680 variants
+2026-04-15 18:40:24,628 [INFO] Checkpoint: 0 variants already completed
+2026-04-15 18:40:24,629 [INFO]   CAR_01  family=constraint_matched    model=gpt4o     dim=income                level=low   just=False
+2026-04-15 18:40:27,522 [INFO]   CAR_01  family=constraint_matched    model=gpt4o     dim=income                level=high  just=True
+2026-04-15 18:40:34,617 [INFO]   CAR_01  family=constraint_matched    model=gpt4o     dim=parental_education    level=low   just=True
+2026-04-15 18:40:41,780 [INFO]   CAR_01  family=constraint_matched    model=gpt4o     dim=parental_education    level=high  just=False
+2026-04-15 18:40:42,264 [WARNING] Interrupt — will finish current variant.
+2026-04-15 18:40:47,490 [WARNING] Stopped early by user.
+2026-04-15 18:40:47,509 [INFO] ============================================================
+2026-04-15 18:40:47,509 [INFO] STEP 6 COMPLETE in 22.9s
+2026-04-15 18:40:47,509 [INFO] Variants processed this run : 4
+2026-04-15 18:40:47,509 [INFO] Total API errors            : 10
+2026-04-15 18:40:47,510 [INFO] Comparison table rows       : 2
+2026-04-15 18:40:47,510 [INFO] 
+2026-04-15 18:40:47,510 [INFO] [CONSTRAINT_MATCHED]  2 rows
+2026-04-15 18:40:47,511 [INFO] 
+2026-04-15 18:40:47,511 [INFO] Output files:
+2026-04-15 18:40:47,512 [INFO]   raw_responses.jsonl   — all individual LLM calls
+2026-04-15 18:40:47,512 [INFO]   choice_rates.jsonl    — aggregated per variant
+2026-04-15 18:40:47,512 [INFO]   comparison_table.csv  — MAIN ANALYSIS TABLE
+2026-04-15 18:40:47,513 [INFO]   justifications.jsonl  — justification-condition responses (CM only)
+2026-04-15 18:46:05,465 [INFO] Loaded 115 scenarios
+2026-04-15 18:46:05,466 [INFO] Models: ['gpt4o', 'claude', 'gemini', 'llama']
+2026-04-15 18:46:05,466 [INFO] Prompt families: ['constraint_matched', 'constraint_varying']
+2026-04-15 18:46:05,468 [INFO] Justification subsample (CM only): 1840 / 3680 variants
+2026-04-15 18:46:05,469 [INFO] Checkpoint: 4 variants already completed
+2026-04-15 18:46:05,469 [INFO]   CAR_01  family=constraint_matched    model=gpt4o     dim=occupation            level=low   just=True
+2026-04-15 18:46:07,291 [INFO]   CAR_01  family=constraint_matched    model=gpt4o     dim=occupation            level=high  just=False
+2026-04-15 18:46:09,011 [INFO]   CAR_01  family=constraint_matched    model=gpt4o     dim=first_gen             level=low   just=True
+2026-04-15 18:46:10,750 [INFO]   CAR_01  family=constraint_matched    model=gpt4o     dim=first_gen             level=high  just=False
+2026-04-15 18:46:12,558 [INFO]   CAR_01  family=constraint_matched    model=claude    dim=income                level=low   just=True
+2026-04-15 18:46:14,345 [INFO]   CAR_01  family=constraint_matched    model=claude    dim=income                level=high  just=False
+2026-04-15 18:46:16,115 [INFO]   CAR_01  family=constraint_matched    model=claude    dim=parental_education    level=low   just=True
+2026-04-15 18:46:17,846 [INFO]   CAR_01  family=constraint_matched    model=claude    dim=parental_education    level=high  just=True
+2026-04-15 18:46:19,614 [INFO]   CAR_01  family=constraint_matched    model=claude    dim=occupation            level=low   just=False
+2026-04-15 18:46:21,426 [INFO]   CAR_01  family=constraint_matched    model=claude    dim=occupation            level=high  just=True
+2026-04-15 18:46:23,257 [INFO]   CAR_01  family=constraint_matched    model=claude    dim=first_gen             level=low   just=True
+2026-04-15 18:46:25,045 [INFO]   CAR_01  family=constraint_matched    model=claude    dim=first_gen             level=high  just=False
+2026-04-15 18:46:26,802 [INFO]   CAR_01  family=constraint_matched    model=gemini    dim=income                level=low   just=False
+2026-04-15 18:46:28,528 [INFO]   CAR_01  family=constraint_matched    model=gemini    dim=income                level=high  just=False
+2026-04-15 18:46:30,274 [INFO]   CAR_01  family=constraint_matched    model=gemini    dim=parental_education    level=low   just=False
+2026-04-15 18:46:32,081 [INFO]   CAR_01  family=constraint_matched    model=gemini    dim=parental_education    level=high  just=False
+2026-04-15 18:46:33,893 [INFO]   CAR_01  family=constraint_matched    model=gemini    dim=occupation            level=low   just=False
+2026-04-15 18:46:35,814 [INFO]   CAR_01  family=constraint_matched    model=gemini    dim=occupation            level=high  just=False
+2026-04-15 18:46:37,653 [INFO]   CAR_01  family=constraint_matched    model=gemini    dim=first_gen             level=low   just=True
+2026-04-15 18:46:39,606 [INFO]   CAR_01  family=constraint_matched    model=gemini    dim=first_gen             level=high  just=False
+2026-04-15 18:46:41,445 [INFO]   CAR_01  family=constraint_matched    model=llama     dim=income                level=low   just=True
+2026-04-15 18:46:43,222 [INFO]   CAR_01  family=constraint_matched    model=llama     dim=income                level=high  just=True
+2026-04-15 18:46:44,991 [INFO]   CAR_01  family=constraint_matched    model=llama     dim=parental_education    level=low   just=True
+2026-04-15 18:46:46,826 [INFO]   CAR_01  family=constraint_matched    model=llama     dim=parental_education    level=high  just=False
+2026-04-15 18:46:48,678 [INFO]   CAR_01  family=constraint_matched    model=llama     dim=occupation            level=low   just=False
+2026-04-15 18:46:50,518 [INFO]   CAR_01  family=constraint_matched    model=llama     dim=occupation            level=high  just=True
+2026-04-15 18:46:52,394 [INFO]   CAR_01  family=constraint_matched    model=llama     dim=first_gen             level=low   just=False
+2026-04-15 18:46:54,360 [INFO]   CAR_01  family=constraint_matched    model=llama     dim=first_gen             level=high  just=True
+2026-04-15 18:46:56,300 [INFO]   CAR_01  family=constraint_varying    model=gpt4o     dim=income                level=low   just=False
+2026-04-15 18:46:58,332 [INFO]   CAR_01  family=constraint_varying    model=gpt4o     dim=income                level=high  just=False
+2026-04-15 18:47:00,311 [INFO]   CAR_01  family=constraint_varying    model=gpt4o     dim=parental_education    level=low   just=False
+2026-04-15 18:47:02,385 [INFO]   CAR_01  family=constraint_varying    model=gpt4o     dim=parental_education    level=high  just=False
+2026-04-15 18:47:06,353 [INFO]   CAR_01  family=constraint_varying    model=gpt4o     dim=occupation            level=low   just=False
+2026-04-15 18:47:08,300 [INFO]   CAR_01  family=constraint_varying    model=gpt4o     dim=occupation            level=high  just=False
+2026-04-15 18:47:10,023 [INFO]   CAR_01  family=constraint_varying    model=gpt4o     dim=first_gen             level=low   just=False
+2026-04-15 18:47:11,090 [WARNING] Interrupt — will finish current variant.
+2026-04-15 18:47:11,821 [WARNING] Stopped early by user.
+2026-04-15 18:47:11,848 [INFO] ============================================================
+2026-04-15 18:47:11,848 [INFO] STEP 6 COMPLETE in 66.4s
+2026-04-15 18:47:11,848 [INFO] Variants processed this run : 35
+2026-04-15 18:47:11,849 [INFO] Total API errors            : 175
+2026-04-15 18:47:11,849 [INFO] Comparison table rows       : 19
+2026-04-15 18:47:11,849 [INFO] 
+2026-04-15 18:47:11,850 [INFO] [CONSTRAINT_MATCHED]  16 rows
+2026-04-15 18:47:11,850 [INFO] 
+2026-04-15 18:47:11,850 [INFO] [CONSTRAINT_VARYING]  3 rows
+2026-04-15 18:47:11,850 [INFO] 
+2026-04-15 18:47:11,851 [INFO] Output files:
+2026-04-15 18:47:11,851 [INFO]   raw_responses.jsonl   — all individual LLM calls
+2026-04-15 18:47:11,851 [INFO]   choice_rates.jsonl    — aggregated per variant
+2026-04-15 18:47:11,851 [INFO]   comparison_table.csv  — MAIN ANALYSIS TABLE
+2026-04-15 18:47:11,852 [INFO]   justifications.jsonl  — justification-condition responses (CM only)

@@ -1,0 +1,500 @@
+2026-04-08 15:36:07,336 [INFO] Found 3 .zst file(s):
+2026-04-08 15:36:07,337 [INFO]   - D:\A_my_project\ses-llm-bias\raw\pushshift\RS_2022-01.zst
+2026-04-08 15:36:07,337 [INFO]   - D:\A_my_project\ses-llm-bias\raw\pushshift\RS_2023-06.zst
+2026-04-08 15:36:07,337 [INFO]   - D:\A_my_project\ses-llm-bias\raw\pushshift\RS_2024-12.zst
+2026-04-08 15:36:07,337 [INFO] Streaming RS_2022-01.zst
+2026-04-08 15:36:39,839 [INFO]   500000 lines read (kept 39 so far, 15384 lines/s)
+2026-04-08 15:37:11,833 [INFO]   1000000 lines read (kept 90 so far, 15505 lines/s)
+2026-04-08 15:37:28,889 [INFO] Dry-run quota met; stopping early.
+2026-04-08 15:37:29,104 [INFO] ============================================================
+2026-04-08 15:37:29,109 [INFO] STEP 1 COMPLETE
+2026-04-08 15:37:29,110 [INFO] Lines read : 1289398
+2026-04-08 15:37:29,110 [INFO] Total kept : 118
+2026-04-08 15:37:29,110 [INFO]   education  9
+2026-04-08 15:37:29,110 [INFO]       ApplyingToCollege         5
+2026-04-08 15:37:29,110 [INFO]       college                   3
+2026-04-08 15:37:29,110 [INFO]       StudentLoans              1
+2026-04-08 15:37:29,110 [INFO]   career     9
+2026-04-08 15:37:29,110 [INFO]       cscareerquestions         3
+2026-04-08 15:37:29,110 [INFO]       jobs                      3
+2026-04-08 15:37:29,110 [INFO]       careerguidance            2
+2026-04-08 15:37:29,110 [INFO]       findapath                 1
+2026-04-08 15:37:29,110 [INFO]   finance    23
+2026-04-08 15:37:29,110 [INFO]       personalfinance           18
+2026-04-08 15:37:29,110 [INFO]       investing                 3
+2026-04-08 15:37:29,110 [INFO]       FinancialPlanning         1
+2026-04-08 15:37:29,110 [INFO]       povertyfinance            1
+2026-04-08 15:37:29,110 [INFO]   health     2
+2026-04-08 15:37:29,110 [INFO]       AskDocs                   2
+2026-04-08 15:37:29,111 [INFO]   social     75
+2026-04-08 15:37:29,111 [INFO]       relationship_advice       55
+2026-04-08 15:37:29,111 [INFO]       Advice                    20
+2026-04-08 15:37:29,111 [INFO] Elapsed    : 81.8s
+2026-04-08 15:37:29,111 [INFO] --- DRY RUN SAMPLE ---
+2026-04-08 15:37:29,111 [INFO] [social] 3 sample(s)
+2026-04-08 15:37:29,111 [INFO]     rt79kg | Fiancé doesn’t trust me.
+2026-04-08 15:37:29,112 [INFO]     rt7miy | I have a quickly deteriorating medical issue and doctors can't find out what's w
+2026-04-08 15:37:29,112 [INFO]     rt7qap | I'm fucked and my life is going nowhere what to do?
+2026-04-08 15:37:29,112 [INFO] [education] 3 sample(s)
+2026-04-08 15:37:29,112 [INFO]     rtalrb | 6 APs senior year...?
+2026-04-08 15:37:29,112 [INFO]     rtc98u | should i even try to go to college with a ged?
+2026-04-08 15:37:29,112 [INFO]     rtlnll | I SUMMON ALL KOREANS ON THIS PAGE (preferably ones already in college)
+2026-04-08 15:37:29,112 [INFO] [career] 3 sample(s)
+2026-04-08 15:37:29,112 [INFO]     rt86co | I'm nearly 40 and terrible at math, what major should I choose for the most prof
+2026-04-08 15:37:29,112 [INFO]     rta2n0 | best way to potentially leave a job without burning bridges?
+2026-04-08 15:37:29,113 [INFO]     rtb94h | Should I keep grinding LeetCode?
+2026-04-08 15:37:29,113 [INFO] [finance] 3 sample(s)
+2026-04-08 15:37:29,113 [INFO]     rtclzr | Savings for my soon-to-be adopted son
+2026-04-08 15:37:29,113 [INFO]     rtgezn | Daily General Discussion and Advice Thread - January 01, 2022
+2026-04-08 15:37:29,113 [INFO]     rtkvo8 | Right time to buy a car? Or should I hold out?
+2026-04-08 15:37:29,113 [INFO] [health] 3 sample(s)
+2026-04-08 15:37:29,113 [INFO]     rtxri5 | Full body rash
+2026-04-08 15:37:29,113 [INFO]     ru1vrj | Am I at imminent risk of death? I’m scared. Please help… No insurance
+2026-04-08 15:37:29,113 [INFO]     ru7dx6 | Ridiculous opioid tolerance?
+2026-04-08 18:10:42,964 [INFO] Found 2 .zst file(s):
+2026-04-08 18:10:42,965 [INFO]   - D:\A_my_project\ses-llm-bias\raw\pushshift\RS_2022-01.zst
+2026-04-08 18:10:42,965 [INFO]   - D:\A_my_project\ses-llm-bias\raw\pushshift\RS_2023-06.zst
+2026-04-08 18:10:42,968 [INFO] Streaming RS_2022-01.zst
+2026-04-08 18:11:17,500 [INFO]   500000 lines read (kept 39 so far, 14479 lines/s)
+2026-04-08 18:11:49,890 [INFO]   1000000 lines read (kept 90 so far, 14943 lines/s)
+2026-04-08 18:12:22,211 [INFO]   1500000 lines read (kept 127 so far, 15114 lines/s)
+2026-04-08 18:12:54,481 [INFO]   2000000 lines read (kept 176 so far, 15208 lines/s)
+2026-04-08 18:13:26,695 [INFO]   2500000 lines read (kept 219 so far, 15269 lines/s)
+2026-04-08 18:14:08,058 [INFO]   3000000 lines read (kept 264 so far, 14628 lines/s)
+2026-04-08 18:14:44,911 [INFO]   3500000 lines read (kept 300 so far, 14466 lines/s)
+2026-04-08 18:15:23,302 [INFO]   4000000 lines read (kept 353 so far, 14269 lines/s)
+2026-04-08 18:16:01,207 [INFO]   4500000 lines read (kept 387 so far, 14140 lines/s)
+2026-04-08 18:16:35,586 [INFO]   5000000 lines read (kept 437 so far, 14180 lines/s)
+2026-04-08 18:16:39,699 [INFO] Found 2 .zst file(s):
+2026-04-08 18:16:39,699 [INFO]   - D:\A_my_project\ses-llm-bias\raw\pushshift\RS_2022-01.zst
+2026-04-08 18:16:39,701 [INFO]   - D:\A_my_project\ses-llm-bias\raw\pushshift\RS_2023-06.zst
+2026-04-08 18:16:39,701 [INFO] Streaming RS_2022-01.zst
+2026-04-08 18:17:11,128 [INFO]   5500000 lines read (kept 476 so far, 14169 lines/s)
+2026-04-08 18:17:22,403 [INFO]   500000 lines read (kept 39 so far, 11709 lines/s)
+2026-04-08 18:17:45,134 [INFO]   6000000 lines read (kept 516 so far, 14212 lines/s)
+2026-04-08 18:18:00,710 [INFO]   1000000 lines read (kept 90 so far, 12344 lines/s)
+2026-04-08 18:18:19,321 [INFO]   6500000 lines read (kept 552 so far, 14243 lines/s)
+2026-04-08 18:18:22,541 [INFO] Dry-run quota met; stopping early.
+2026-04-08 18:18:22,791 [INFO] ============================================================
+2026-04-08 18:18:22,791 [INFO] STEP 1 COMPLETE
+2026-04-08 18:18:22,791 [INFO] Lines read : 1289398
+2026-04-08 18:18:22,791 [INFO] Total kept : 118
+2026-04-08 18:18:22,791 [INFO]   education  9
+2026-04-08 18:18:22,791 [INFO]       ApplyingToCollege         5
+2026-04-08 18:18:22,791 [INFO]       college                   3
+2026-04-08 18:18:22,791 [INFO]       StudentLoans              1
+2026-04-08 18:18:22,791 [INFO]   career     9
+2026-04-08 18:18:22,791 [INFO]       cscareerquestions         3
+2026-04-08 18:18:22,791 [INFO]       jobs                      3
+2026-04-08 18:18:22,791 [INFO]       careerguidance            2
+2026-04-08 18:18:22,791 [INFO]       findapath                 1
+2026-04-08 18:18:22,791 [INFO]   finance    23
+2026-04-08 18:18:22,791 [INFO]       personalfinance           18
+2026-04-08 18:18:22,791 [INFO]       investing                 3
+2026-04-08 18:18:22,791 [INFO]       FinancialPlanning         1
+2026-04-08 18:18:22,791 [INFO]       povertyfinance            1
+2026-04-08 18:18:22,791 [INFO]   health     2
+2026-04-08 18:18:22,791 [INFO]       AskDocs                   2
+2026-04-08 18:18:22,791 [INFO]   social     75
+2026-04-08 18:18:22,791 [INFO]       relationship_advice       55
+2026-04-08 18:18:22,791 [INFO]       Advice                    20
+2026-04-08 18:18:22,791 [INFO] Elapsed    : 103.1s
+2026-04-08 18:18:22,807 [INFO] --- DRY RUN SAMPLE ---
+2026-04-08 18:18:22,807 [INFO] [social] 3 sample(s)
+2026-04-08 18:18:22,807 [INFO]     rt79kg | Fiancé doesn’t trust me.
+2026-04-08 18:18:22,809 [INFO]     rt7miy | I have a quickly deteriorating medical issue and doctors can't find out what's w
+2026-04-08 18:18:22,810 [INFO]     rt7qap | I'm fucked and my life is going nowhere what to do?
+2026-04-08 18:18:22,810 [INFO] [education] 3 sample(s)
+2026-04-08 18:18:22,811 [INFO]     rtalrb | 6 APs senior year...?
+2026-04-08 18:18:22,811 [INFO]     rtc98u | should i even try to go to college with a ged?
+2026-04-08 18:18:22,811 [INFO]     rtlnll | I SUMMON ALL KOREANS ON THIS PAGE (preferably ones already in college)
+2026-04-08 18:18:22,811 [INFO] [career] 3 sample(s)
+2026-04-08 18:18:22,811 [INFO]     rt86co | I'm nearly 40 and terrible at math, what major should I choose for the most prof
+2026-04-08 18:18:22,811 [INFO]     rta2n0 | best way to potentially leave a job without burning bridges?
+2026-04-08 18:18:22,811 [INFO]     rtb94h | Should I keep grinding LeetCode?
+2026-04-08 18:18:22,811 [INFO] [finance] 3 sample(s)
+2026-04-08 18:18:22,811 [INFO]     rtclzr | Savings for my soon-to-be adopted son
+2026-04-08 18:18:22,814 [INFO]     rtgezn | Daily General Discussion and Advice Thread - January 01, 2022
+2026-04-08 18:18:22,814 [INFO]     rtkvo8 | Right time to buy a car? Or should I hold out?
+2026-04-08 18:18:22,814 [INFO] [health] 3 sample(s)
+2026-04-08 18:18:22,814 [INFO]     rtxri5 | Full body rash
+2026-04-08 18:18:22,815 [INFO]     ru1vrj | Am I at imminent risk of death? I’m scared. Please help… No insurance
+2026-04-08 18:18:22,815 [INFO]     ru7dx6 | Ridiculous opioid tolerance?
+2026-04-08 18:18:23,061 [INFO] Found 3 .zst file(s):
+2026-04-08 18:18:23,061 [INFO]   - D:\A_my_project\ses-llm-bias\raw\pushshift\RS_2022-01.zst
+2026-04-08 18:18:23,061 [INFO]   - D:\A_my_project\ses-llm-bias\raw\pushshift\RS_2023-06.zst
+2026-04-08 18:18:23,061 [INFO]   - D:\A_my_project\ses-llm-bias\raw\pushshift\RS_2024-12.zst
+2026-04-08 18:18:23,069 [INFO] Streaming RS_2022-01.zst
+2026-04-08 18:18:53,616 [INFO]   7000000 lines read (kept 598 so far, 14267 lines/s)
+2026-04-08 18:18:59,157 [INFO]   500000 lines read (kept 39 so far, 13855 lines/s)
+2026-04-08 18:19:23,871 [INFO]   7500000 lines read (kept 644 so far, 14398 lines/s)
+2026-04-08 18:19:34,820 [INFO]   1000000 lines read (kept 90 so far, 13937 lines/s)
+2026-04-08 18:19:56,828 [INFO]   8000000 lines read (kept 679 so far, 14444 lines/s)
+2026-04-08 18:20:11,626 [INFO]   1500000 lines read (kept 127 so far, 13818 lines/s)
+2026-04-08 18:20:29,380 [INFO]   8500000 lines read (kept 710 so far, 14495 lines/s)
+2026-04-08 18:20:48,204 [INFO]   2000000 lines read (kept 176 so far, 13780 lines/s)
+2026-04-08 18:21:03,006 [INFO]   9000000 lines read (kept 753 so far, 14515 lines/s)
+2026-04-08 18:21:23,317 [INFO]   2500000 lines read (kept 219 so far, 13870 lines/s)
+2026-04-08 18:21:36,383 [INFO]   9500000 lines read (kept 798 so far, 14539 lines/s)
+2026-04-08 18:21:58,717 [INFO]   3000000 lines read (kept 264 so far, 13912 lines/s)
+2026-04-08 18:22:08,642 [INFO]   10000000 lines read (kept 839 so far, 14584 lines/s)
+2026-04-08 18:22:33,520 [INFO]   3500000 lines read (kept 300 so far, 13975 lines/s)
+2026-04-08 18:22:40,160 [INFO]   10500000 lines read (kept 878 so far, 14640 lines/s)
+2026-04-08 18:23:09,149 [INFO]   4000000 lines read (kept 353 so far, 13982 lines/s)
+2026-04-08 18:23:13,707 [INFO]   11000000 lines read (kept 908 so far, 14652 lines/s)
+2026-04-08 18:23:45,040 [INFO]   4500000 lines read (kept 387 so far, 13976 lines/s)
+2026-04-08 18:23:47,731 [INFO]   11500000 lines read (kept 949 so far, 14654 lines/s)
+2026-04-08 18:24:20,623 [INFO]   12000000 lines read (kept 986 so far, 14676 lines/s)
+2026-04-08 18:24:20,669 [INFO]   5000000 lines read (kept 437 so far, 13982 lines/s)
+2026-04-08 18:24:51,513 [INFO]   12500000 lines read (kept 1021 so far, 14731 lines/s)
+2026-04-08 18:24:55,774 [INFO]   5500000 lines read (kept 476 so far, 14005 lines/s)
+2026-04-08 18:25:09,986 [WARNING] Interrupt received; will stop after current line.
+2026-04-08 18:25:10,197 [WARNING] Stopped early by user.
+2026-04-08 18:25:10,197 [INFO] ============================================================
+2026-04-08 18:25:10,197 [INFO] STEP 1 COMPLETE
+2026-04-08 18:25:10,197 [INFO] Lines read : 5697835
+2026-04-08 18:25:10,197 [INFO] Total kept : 493
+2026-04-08 18:25:10,213 [INFO]   education  27
+2026-04-08 18:25:10,213 [INFO]       ApplyingToCollege         18
+2026-04-08 18:25:10,213 [INFO]       college                   5
+2026-04-08 18:25:10,213 [INFO]       StudentLoans              3
+2026-04-08 18:25:10,213 [INFO]       GradSchool                1
+2026-04-08 18:25:10,218 [INFO]   career     36
+2026-04-08 18:25:10,218 [INFO]       cscareerquestions         16
+2026-04-08 18:25:10,218 [INFO]       jobs                      10
+2026-04-08 18:25:10,219 [INFO]       careerguidance            6
+2026-04-08 18:25:10,219 [INFO]       findapath                 3
+2026-04-08 18:25:10,219 [INFO]       careeradvice              1
+2026-04-08 18:25:10,219 [INFO]   finance    112
+2026-04-08 18:25:10,225 [INFO]       personalfinance           85
+2026-04-08 18:25:10,226 [INFO]       investing                 13
+2026-04-08 18:25:10,226 [INFO]       povertyfinance            9
+2026-04-08 18:25:10,227 [INFO]       FinancialPlanning         5
+2026-04-08 18:25:10,227 [INFO]   health     15
+2026-04-08 18:25:10,227 [INFO]       AskDocs                   9
+2026-04-08 18:25:10,227 [INFO]       ChronicPain               4
+2026-04-08 18:25:10,230 [INFO]       medical_advice            2
+2026-04-08 18:25:10,230 [INFO]   social     303
+2026-04-08 18:25:10,231 [INFO]       relationship_advice       244
+2026-04-08 18:25:10,231 [INFO]       Advice                    58
+2026-04-08 18:25:10,231 [INFO]       LifeAdvice                1
+2026-04-08 18:25:10,232 [INFO] Elapsed    : 407.1s
+2026-04-08 18:25:24,601 [INFO]   13000000 lines read (kept 1059 so far, 14745 lines/s)
+2026-04-08 18:26:01,182 [INFO]   13500000 lines read (kept 1097 so far, 14702 lines/s)
+2026-04-08 18:26:33,934 [INFO]   14000000 lines read (kept 1139 so far, 14722 lines/s)
+2026-04-08 18:27:08,849 [INFO]   14500000 lines read (kept 1183 so far, 14708 lines/s)
+2026-04-08 18:27:43,091 [INFO]   15000000 lines read (kept 1219 so far, 14704 lines/s)
+2026-04-08 18:28:18,584 [INFO]   15500000 lines read (kept 1253 so far, 14683 lines/s)
+2026-04-08 18:28:49,901 [INFO]   16000000 lines read (kept 1294 so far, 14720 lines/s)
+2026-04-08 18:29:20,647 [INFO]   16500000 lines read (kept 1333 so far, 14763 lines/s)
+2026-04-08 18:29:54,627 [INFO]   17000000 lines read (kept 1371 so far, 14761 lines/s)
+2026-04-08 18:30:27,328 [INFO]   17500000 lines read (kept 1413 so far, 14776 lines/s)
+2026-04-08 18:31:01,909 [INFO]   18000000 lines read (kept 1455 so far, 14767 lines/s)
+2026-04-08 18:31:35,272 [INFO]   18500000 lines read (kept 1488 so far, 14773 lines/s)
+2026-04-08 18:32:05,468 [INFO]   19000000 lines read (kept 1527 so far, 14815 lines/s)
+2026-04-08 18:32:37,736 [INFO]   19500000 lines read (kept 1559 so far, 14832 lines/s)
+2026-04-08 18:33:07,276 [INFO]   20000000 lines read (kept 1597 so far, 14878 lines/s)
+2026-04-08 18:33:38,440 [INFO]   20500000 lines read (kept 1636 so far, 14904 lines/s)
+2026-04-08 18:34:11,205 [INFO]   21000000 lines read (kept 1666 so far, 14912 lines/s)
+2026-04-08 18:34:43,050 [INFO]   21500000 lines read (kept 1699 so far, 14930 lines/s)
+2026-04-08 18:35:15,339 [INFO]   22000000 lines read (kept 1738 so far, 14942 lines/s)
+2026-04-08 18:35:44,978 [INFO]   22500000 lines read (kept 1791 so far, 14980 lines/s)
+2026-04-08 18:36:14,412 [INFO]   23000000 lines read (kept 1830 so far, 15019 lines/s)
+2026-04-08 18:36:44,533 [INFO]   23500000 lines read (kept 1861 so far, 15049 lines/s)
+2026-04-08 18:37:13,413 [INFO]   24000000 lines read (kept 1909 so far, 15090 lines/s)
+2026-04-08 18:37:43,018 [INFO]   24500000 lines read (kept 1939 so far, 15123 lines/s)
+2026-04-08 18:38:15,243 [INFO]   25000000 lines read (kept 1980 so far, 15131 lines/s)
+2026-04-08 18:38:50,339 [INFO]   25500000 lines read (kept 2022 so far, 15112 lines/s)
+2026-04-08 18:39:20,594 [INFO]   26000000 lines read (kept 2062 so far, 15137 lines/s)
+2026-04-08 18:39:52,647 [INFO]   26500000 lines read (kept 2105 so far, 15146 lines/s)
+2026-04-08 18:40:23,196 [INFO]   27000000 lines read (kept 2155 so far, 15167 lines/s)
+2026-04-08 18:40:58,161 [INFO]   27500000 lines read (kept 2188 so far, 15150 lines/s)
+2026-04-08 18:41:28,907 [INFO]   28000000 lines read (kept 2234 so far, 15168 lines/s)
+2026-04-08 18:41:59,882 [INFO]   28500000 lines read (kept 2271 so far, 15184 lines/s)
+2026-04-14 21:07:18,494 [INFO] Found 3 .zst file(s):
+2026-04-14 21:07:18,494 [INFO]   - D:\A_my_project\ses-llm-bias\raw\pushshift\RS_2022-01.zst
+2026-04-14 21:07:18,495 [INFO]   - D:\A_my_project\ses-llm-bias\raw\pushshift\RS_2023-06.zst
+2026-04-14 21:07:18,495 [INFO]   - D:\A_my_project\ses-llm-bias\raw\pushshift\RS_2024-12.zst
+2026-04-14 21:07:18,499 [INFO] Streaming RS_2022-01.zst
+2026-04-14 21:07:25,462 [WARNING] Interrupt received; will stop after current line.
+2026-04-14 21:07:25,668 [WARNING] Stopped early by user.
+2026-04-14 21:07:25,671 [INFO] ============================================================
+2026-04-14 21:07:25,671 [INFO] STEP 1 COMPLETE
+2026-04-14 21:07:25,671 [INFO] Lines read : 94007
+2026-04-14 21:07:25,671 [INFO] Total kept : 11
+2026-04-14 21:07:25,672 [INFO]   education  0
+2026-04-14 21:07:25,672 [INFO]   career     1
+2026-04-14 21:07:25,672 [INFO]       findapath                 1
+2026-04-14 21:07:25,672 [INFO]   finance    0
+2026-04-14 21:07:25,673 [INFO]   health     0
+2026-04-14 21:07:25,673 [INFO]   social     10
+2026-04-14 21:07:25,673 [INFO]       relationship_advice       7
+2026-04-14 21:07:25,674 [INFO]       Advice                    3
+2026-04-14 21:07:25,674 [INFO] Elapsed    : 7.2s
+2026-04-14 21:10:11,521 [INFO] Found 3 .zst file(s):
+2026-04-14 21:10:11,521 [INFO]   - D:\A_my_project\ses-llm-bias\raw\pushshift\RS_2022-01.zst
+2026-04-14 21:10:11,521 [INFO]   - D:\A_my_project\ses-llm-bias\raw\pushshift\RS_2023-06.zst
+2026-04-14 21:10:11,522 [INFO]   - D:\A_my_project\ses-llm-bias\raw\pushshift\RS_2024-12.zst
+2026-04-14 21:10:11,524 [INFO] Streaming RS_2022-01.zst
+2026-04-14 21:10:47,916 [INFO]   500000 lines read (kept 39 so far, 13740 lines/s)
+2026-04-14 21:11:23,720 [INFO]   1000000 lines read (kept 90 so far, 13851 lines/s)
+2026-04-14 21:12:01,235 [INFO]   1500000 lines read (kept 127 so far, 13672 lines/s)
+2026-04-14 21:12:38,523 [INFO]   2000000 lines read (kept 176 so far, 13606 lines/s)
+2026-04-14 21:13:16,660 [INFO]   2500000 lines read (kept 219 so far, 13504 lines/s)
+2026-04-14 21:13:53,633 [INFO]   3000000 lines read (kept 264 so far, 13507 lines/s)
+2026-04-14 21:14:31,735 [INFO]   3500000 lines read (kept 300 so far, 13451 lines/s)
+2026-04-14 21:15:06,811 [INFO]   4000000 lines read (kept 353 so far, 13546 lines/s)
+2026-04-14 21:15:39,505 [INFO]   4500000 lines read (kept 387 so far, 13720 lines/s)
+2026-04-14 21:16:08,402 [INFO]   5000000 lines read (kept 437 so far, 14010 lines/s)
+2026-04-14 21:16:37,249 [INFO]   5500000 lines read (kept 476 so far, 14259 lines/s)
+2026-04-14 21:17:05,702 [INFO]   6000000 lines read (kept 516 so far, 14487 lines/s)
+2026-04-14 21:17:34,190 [INFO]   6500000 lines read (kept 552 so far, 14684 lines/s)
+2026-04-14 21:18:04,005 [INFO]   7000000 lines read (kept 598 so far, 14815 lines/s)
+2026-04-14 21:18:33,488 [INFO]   7500000 lines read (kept 644 so far, 14941 lines/s)
+2026-04-14 21:19:03,168 [INFO]   8000000 lines read (kept 679 so far, 15048 lines/s)
+2026-04-14 21:19:31,892 [INFO]   8500000 lines read (kept 710 so far, 15169 lines/s)
+2026-04-14 21:20:00,471 [INFO]   9000000 lines read (kept 753 so far, 15282 lines/s)
+2026-04-14 21:20:28,694 [INFO]   9500000 lines read (kept 798 so far, 15393 lines/s)
+2026-04-14 21:20:56,808 [INFO]   10000000 lines read (kept 839 so far, 15497 lines/s)
+2026-04-14 21:21:24,681 [INFO]   10500000 lines read (kept 878 so far, 15598 lines/s)
+2026-04-14 21:21:53,355 [INFO]   11000000 lines read (kept 908 so far, 15673 lines/s)
+2026-04-14 21:22:22,314 [INFO]   11500000 lines read (kept 949 so far, 15736 lines/s)
+2026-04-14 21:22:51,021 [INFO]   12000000 lines read (kept 986 so far, 15800 lines/s)
+2026-04-14 21:23:19,315 [INFO]   12500000 lines read (kept 1021 so far, 15867 lines/s)
+2026-04-14 21:23:48,601 [INFO]   13000000 lines read (kept 1059 so far, 15910 lines/s)
+2026-04-14 21:24:17,256 [INFO]   13500000 lines read (kept 1097 so far, 15963 lines/s)
+2026-04-14 21:24:45,869 [INFO]   14000000 lines read (kept 1139 so far, 16012 lines/s)
+2026-04-14 21:25:15,502 [INFO]   14500000 lines read (kept 1183 so far, 16040 lines/s)
+2026-04-14 21:25:43,761 [INFO]   15000000 lines read (kept 1219 so far, 16090 lines/s)
+2026-04-14 21:26:11,854 [INFO]   15500000 lines read (kept 1253 so far, 16140 lines/s)
+2026-04-14 21:26:39,680 [INFO]   16000000 lines read (kept 1294 so far, 16192 lines/s)
+2026-04-14 21:27:06,813 [INFO]   16500000 lines read (kept 1333 so far, 16252 lines/s)
+2026-04-14 21:27:34,137 [INFO]   17000000 lines read (kept 1371 so far, 16305 lines/s)
+2026-04-14 21:28:01,356 [INFO]   17500000 lines read (kept 1413 so far, 16358 lines/s)
+2026-04-14 21:28:30,124 [INFO]   18000000 lines read (kept 1455 so far, 16384 lines/s)
+2026-04-14 21:28:58,218 [INFO]   18500000 lines read (kept 1488 so far, 16420 lines/s)
+2026-04-14 21:29:25,764 [INFO]   19000000 lines read (kept 1527 so far, 16461 lines/s)
+2026-04-14 21:29:54,124 [INFO]   19500000 lines read (kept 1559 so far, 16489 lines/s)
+2026-04-14 21:30:22,021 [INFO]   20000000 lines read (kept 1597 so far, 16522 lines/s)
+2026-04-14 21:30:50,695 [INFO]   20500000 lines read (kept 1636 so far, 16543 lines/s)
+2026-04-14 21:31:18,947 [INFO]   21000000 lines read (kept 1666 so far, 16569 lines/s)
+2026-04-14 21:31:47,352 [INFO]   21500000 lines read (kept 1699 so far, 16592 lines/s)
+2026-04-14 21:32:15,494 [INFO]   22000000 lines read (kept 1738 so far, 16617 lines/s)
+2026-04-14 21:32:43,790 [INFO]   22500000 lines read (kept 1791 so far, 16639 lines/s)
+2026-04-14 21:33:11,460 [INFO]   23000000 lines read (kept 1830 so far, 16667 lines/s)
+2026-04-14 21:33:40,716 [INFO]   23500000 lines read (kept 1861 so far, 16676 lines/s)
+2026-04-14 21:34:09,433 [INFO]   24000000 lines read (kept 1909 so far, 16691 lines/s)
+2026-04-14 21:34:37,245 [INFO]   24500000 lines read (kept 1939 so far, 16715 lines/s)
+2026-04-14 21:35:05,639 [INFO]   25000000 lines read (kept 1980 so far, 16732 lines/s)
+2026-04-14 21:35:34,366 [INFO]   25500000 lines read (kept 2022 so far, 16745 lines/s)
+2026-04-14 21:36:02,045 [INFO]   26000000 lines read (kept 2062 so far, 16769 lines/s)
+2026-04-14 21:36:30,431 [INFO]   26500000 lines read (kept 2105 so far, 16784 lines/s)
+2026-04-14 21:36:58,082 [INFO]   27000000 lines read (kept 2155 so far, 16806 lines/s)
+2026-04-14 21:37:26,016 [INFO]   27500000 lines read (kept 2188 so far, 16825 lines/s)
+2026-04-14 21:37:54,384 [INFO]   28000000 lines read (kept 2234 so far, 16838 lines/s)
+2026-04-14 21:38:22,644 [INFO]   28500000 lines read (kept 2271 so far, 16853 lines/s)
+2026-04-14 21:38:50,757 [INFO]   29000000 lines read (kept 2312 so far, 16868 lines/s)
+2026-04-14 21:39:18,423 [INFO]   29500000 lines read (kept 2356 so far, 16887 lines/s)
+2026-04-14 21:39:46,826 [INFO]   30000000 lines read (kept 2399 so far, 16899 lines/s)
+2026-04-14 21:40:15,166 [INFO]   30500000 lines read (kept 2443 so far, 16910 lines/s)
+2026-04-14 21:40:43,279 [INFO]   31000000 lines read (kept 2490 so far, 16924 lines/s)
+2026-04-14 21:41:11,301 [INFO]   31500000 lines read (kept 2528 so far, 16938 lines/s)
+2026-04-14 21:41:40,178 [INFO]   32000000 lines read (kept 2575 so far, 16943 lines/s)
+2026-04-14 21:41:45,457 [INFO]   RS_2022-01.zst: 32091070 lines, 2583 kept
+2026-04-14 21:41:45,457 [INFO] Streaming RS_2023-06.zst
+2026-04-14 21:42:04,075 [INFO]   32500000 lines read (kept 2607 so far, 16993 lines/s)
+2026-04-14 21:42:26,495 [INFO]   33000000 lines read (kept 2628 so far, 17055 lines/s)
+2026-04-14 21:42:48,489 [INFO]   33500000 lines read (kept 2651 so far, 17118 lines/s)
+2026-04-14 21:43:10,703 [INFO]   34000000 lines read (kept 2681 so far, 17179 lines/s)
+2026-04-14 21:43:33,125 [INFO]   34500000 lines read (kept 2713 so far, 17236 lines/s)
+2026-04-14 21:43:54,595 [INFO]   35000000 lines read (kept 2735 so far, 17300 lines/s)
+2026-04-14 21:44:16,005 [INFO]   35500000 lines read (kept 2745 so far, 17364 lines/s)
+2026-04-14 21:44:37,960 [INFO]   36000000 lines read (kept 2775 so far, 17421 lines/s)
+2026-04-14 21:44:59,361 [INFO]   36500000 lines read (kept 2793 so far, 17482 lines/s)
+2026-04-14 21:45:20,413 [INFO]   37000000 lines read (kept 2808 so far, 17545 lines/s)
+2026-04-14 21:45:42,562 [INFO]   37500000 lines read (kept 2826 so far, 17597 lines/s)
+2026-04-14 21:46:03,978 [INFO]   38000000 lines read (kept 2847 so far, 17654 lines/s)
+2026-04-14 21:46:25,001 [INFO]   38500000 lines read (kept 2864 so far, 17714 lines/s)
+2026-04-14 21:46:46,930 [INFO]   39000000 lines read (kept 2891 so far, 17764 lines/s)
+2026-04-14 21:47:08,696 [INFO]   39500000 lines read (kept 2915 so far, 17815 lines/s)
+2026-04-14 21:47:29,758 [INFO]   40000000 lines read (kept 2930 so far, 17871 lines/s)
+2026-04-14 21:47:50,814 [INFO]   40500000 lines read (kept 2945 so far, 17926 lines/s)
+2026-04-14 21:48:12,484 [INFO]   41000000 lines read (kept 2980 so far, 17975 lines/s)
+2026-04-14 21:48:35,502 [INFO]   41500000 lines read (kept 3005 so far, 18012 lines/s)
+2026-04-14 21:48:57,735 [INFO]   42000000 lines read (kept 3035 so far, 18055 lines/s)
+2026-04-14 21:49:19,771 [INFO]   42500000 lines read (kept 3063 so far, 18099 lines/s)
+2026-04-14 21:49:41,722 [INFO]   43000000 lines read (kept 3085 so far, 18142 lines/s)
+2026-04-14 21:50:03,641 [INFO]   43500000 lines read (kept 3127 so far, 18185 lines/s)
+2026-04-14 21:50:26,255 [INFO]   44000000 lines read (kept 3154 so far, 18221 lines/s)
+2026-04-14 21:50:49,023 [INFO]   44500000 lines read (kept 3181 so far, 18256 lines/s)
+2026-04-14 21:51:11,324 [INFO]   45000000 lines read (kept 3209 so far, 18294 lines/s)
+2026-04-14 21:51:33,598 [INFO]   45500000 lines read (kept 3243 so far, 18331 lines/s)
+2026-04-14 21:51:55,792 [INFO]   46000000 lines read (kept 3268 so far, 18369 lines/s)
+2026-04-14 21:52:18,112 [INFO]   46500000 lines read (kept 3302 so far, 18404 lines/s)
+2026-04-14 21:52:40,310 [INFO]   47000000 lines read (kept 3325 so far, 18440 lines/s)
+2026-04-14 21:53:02,408 [INFO]   47500000 lines read (kept 3352 so far, 18476 lines/s)
+2026-04-14 21:53:24,929 [INFO]   48000000 lines read (kept 3381 so far, 18508 lines/s)
+2026-04-14 21:53:47,248 [INFO]   48500000 lines read (kept 3405 so far, 18542 lines/s)
+2026-04-14 21:54:09,346 [INFO]   49000000 lines read (kept 3428 so far, 18576 lines/s)
+2026-04-14 21:54:31,443 [INFO]   49500000 lines read (kept 3458 so far, 18610 lines/s)
+2026-04-14 21:54:53,328 [INFO]   50000000 lines read (kept 3483 so far, 18644 lines/s)
+2026-04-14 21:55:15,353 [INFO]   50500000 lines read (kept 3516 so far, 18677 lines/s)
+2026-04-14 21:55:38,044 [INFO]   51000000 lines read (kept 3545 so far, 18705 lines/s)
+2026-04-14 21:56:00,296 [INFO]   51500000 lines read (kept 3571 so far, 18736 lines/s)
+2026-04-14 21:56:22,637 [INFO]   52000000 lines read (kept 3588 so far, 18765 lines/s)
+2026-04-14 21:56:44,009 [INFO]   52500000 lines read (kept 3608 so far, 18800 lines/s)
+2026-04-14 21:57:05,797 [INFO]   53000000 lines read (kept 3640 so far, 18833 lines/s)
+2026-04-14 21:57:27,310 [INFO]   53500000 lines read (kept 3670 so far, 18866 lines/s)
+2026-04-14 21:57:50,947 [INFO]   54000000 lines read (kept 3703 so far, 18885 lines/s)
+2026-04-14 21:58:15,460 [INFO]   54500000 lines read (kept 3748 so far, 18898 lines/s)
+2026-04-14 21:58:40,168 [INFO]   55000000 lines read (kept 3789 so far, 18909 lines/s)
+2026-04-14 21:59:04,334 [INFO]   55500000 lines read (kept 3815 so far, 18924 lines/s)
+2026-04-14 21:59:28,879 [INFO]   56000000 lines read (kept 3845 so far, 18936 lines/s)
+2026-04-14 21:59:53,290 [INFO]   56500000 lines read (kept 3874 so far, 18949 lines/s)
+2026-04-14 22:00:18,051 [INFO]   57000000 lines read (kept 3907 so far, 18959 lines/s)
+2026-04-14 22:00:42,455 [INFO]   57500000 lines read (kept 3944 so far, 18971 lines/s)
+2026-04-14 22:01:07,365 [INFO]   58000000 lines read (kept 3974 so far, 18980 lines/s)
+2026-04-14 22:01:32,454 [INFO]   58500000 lines read (kept 4014 so far, 18988 lines/s)
+2026-04-14 22:01:57,089 [INFO]   59000000 lines read (kept 4058 so far, 18998 lines/s)
+2026-04-14 22:02:21,857 [INFO]   59500000 lines read (kept 4102 so far, 19008 lines/s)
+2026-04-14 22:02:46,904 [INFO]   60000000 lines read (kept 4131 so far, 19015 lines/s)
+2026-04-14 22:03:11,334 [INFO]   60500000 lines read (kept 4163 so far, 19026 lines/s)
+2026-04-14 22:03:35,935 [INFO]   61000000 lines read (kept 4204 so far, 19036 lines/s)
+2026-04-14 22:04:00,810 [INFO]   61500000 lines read (kept 4252 so far, 19044 lines/s)
+2026-04-14 22:04:25,407 [INFO]   62000000 lines read (kept 4282 so far, 19054 lines/s)
+2026-04-14 22:04:50,364 [INFO]   62500000 lines read (kept 4317 so far, 19062 lines/s)
+2026-04-14 22:05:14,849 [INFO]   63000000 lines read (kept 4360 so far, 19072 lines/s)
+2026-04-14 22:05:40,233 [INFO]   63500000 lines read (kept 4406 so far, 19076 lines/s)
+2026-04-14 22:06:05,492 [INFO]   64000000 lines read (kept 4444 so far, 19082 lines/s)
+2026-04-14 22:06:30,507 [INFO]   64500000 lines read (kept 4493 so far, 19089 lines/s)
+2026-04-14 22:06:55,110 [INFO]   65000000 lines read (kept 4535 so far, 19098 lines/s)
+2026-04-14 22:07:19,702 [INFO]   65500000 lines read (kept 4561 so far, 19106 lines/s)
+2026-04-14 22:07:44,724 [INFO]   66000000 lines read (kept 4600 so far, 19113 lines/s)
+2026-04-14 22:08:09,297 [INFO]   66500000 lines read (kept 4641 so far, 19121 lines/s)
+2026-04-14 22:08:34,643 [INFO]   67000000 lines read (kept 4685 so far, 19126 lines/s)
+2026-04-14 22:08:59,415 [INFO]   67500000 lines read (kept 4728 so far, 19133 lines/s)
+2026-04-14 22:09:24,189 [INFO]   68000000 lines read (kept 4768 so far, 19141 lines/s)
+2026-04-14 22:09:48,847 [INFO]   68500000 lines read (kept 4810 so far, 19148 lines/s)
+2026-04-14 22:10:14,190 [INFO]   69000000 lines read (kept 4849 so far, 19152 lines/s)
+2026-04-14 22:10:39,127 [INFO]   69500000 lines read (kept 4880 so far, 19159 lines/s)
+2026-04-14 22:11:03,889 [INFO]   70000000 lines read (kept 4928 so far, 19166 lines/s)
+2026-04-14 22:11:28,784 [INFO]   70500000 lines read (kept 4977 so far, 19172 lines/s)
+2026-04-14 22:11:53,817 [INFO]   71000000 lines read (kept 5011 so far, 19177 lines/s)
+2026-04-14 22:12:19,691 [INFO]   71500000 lines read (kept 5056 so far, 19178 lines/s)
+2026-04-14 22:12:44,841 [INFO]   72000000 lines read (kept 5094 so far, 19183 lines/s)
+2026-04-14 22:13:09,644 [INFO]   72500000 lines read (kept 5130 so far, 19189 lines/s)
+2026-04-14 22:13:35,079 [INFO]   73000000 lines read (kept 5167 so far, 19193 lines/s)
+2026-04-14 22:13:59,600 [INFO]   73500000 lines read (kept 5205 so far, 19200 lines/s)
+2026-04-14 22:14:24,005 [INFO]   74000000 lines read (kept 5237 so far, 19208 lines/s)
+2026-04-14 22:14:48,655 [INFO]   74500000 lines read (kept 5274 so far, 19215 lines/s)
+2026-04-14 22:15:08,693 [INFO]   RS_2023-06.zst: 42820922 lines, 2718 kept
+2026-04-14 22:15:08,693 [INFO] Streaming RS_2024-12.zst
+2026-04-14 22:15:13,104 [INFO]   75000000 lines read (kept 5310 so far, 19223 lines/s)
+2026-04-14 22:15:38,572 [INFO]   75500000 lines read (kept 5344 so far, 19226 lines/s)
+2026-04-14 22:16:04,021 [INFO]   76000000 lines read (kept 5384 so far, 19228 lines/s)
+2026-04-14 22:16:28,697 [INFO]   76500000 lines read (kept 5416 so far, 19235 lines/s)
+2026-04-14 22:16:54,042 [INFO]   77000000 lines read (kept 5454 so far, 19238 lines/s)
+2026-04-14 22:17:19,146 [INFO]   77500000 lines read (kept 5491 so far, 19242 lines/s)
+2026-04-14 22:17:44,369 [INFO]   78000000 lines read (kept 5534 so far, 19246 lines/s)
+2026-04-14 22:18:10,094 [INFO]   78500000 lines read (kept 5577 so far, 19247 lines/s)
+2026-04-14 22:18:35,800 [INFO]   79000000 lines read (kept 5617 so far, 19248 lines/s)
+2026-04-14 22:19:01,330 [INFO]   79500000 lines read (kept 5652 so far, 19250 lines/s)
+2026-04-14 22:19:26,767 [INFO]   80000000 lines read (kept 5703 so far, 19253 lines/s)
+2026-04-14 22:19:52,128 [INFO]   80500000 lines read (kept 5752 so far, 19256 lines/s)
+2026-04-14 22:20:17,691 [INFO]   81000000 lines read (kept 5810 so far, 19257 lines/s)
+2026-04-14 22:20:43,685 [INFO]   81500000 lines read (kept 5850 so far, 19257 lines/s)
+2026-04-14 22:21:08,643 [INFO]   82000000 lines read (kept 5898 so far, 19262 lines/s)
+2026-04-14 22:21:34,489 [INFO]   82500000 lines read (kept 5949 so far, 19262 lines/s)
+2026-04-14 22:21:59,744 [INFO]   83000000 lines read (kept 5989 so far, 19265 lines/s)
+2026-04-14 22:22:25,667 [INFO]   83500000 lines read (kept 6019 so far, 19266 lines/s)
+2026-04-14 22:22:51,041 [INFO]   84000000 lines read (kept 6068 so far, 19268 lines/s)
+2026-04-14 22:23:16,183 [INFO]   84500000 lines read (kept 6106 so far, 19272 lines/s)
+2026-04-14 22:23:42,036 [INFO]   85000000 lines read (kept 6157 so far, 19272 lines/s)
+2026-04-14 22:24:07,281 [INFO]   85500000 lines read (kept 6203 so far, 19275 lines/s)
+2026-04-14 22:24:32,698 [INFO]   86000000 lines read (kept 6249 so far, 19277 lines/s)
+2026-04-14 22:24:59,358 [INFO]   86500000 lines read (kept 6293 so far, 19274 lines/s)
+2026-04-14 22:25:24,689 [INFO]   87000000 lines read (kept 6333 so far, 19277 lines/s)
+2026-04-14 22:25:50,162 [INFO]   87500000 lines read (kept 6377 so far, 19279 lines/s)
+2026-04-14 22:26:15,357 [INFO]   88000000 lines read (kept 6421 so far, 19282 lines/s)
+2026-04-14 22:26:40,598 [INFO]   88500000 lines read (kept 6474 so far, 19285 lines/s)
+2026-04-14 22:27:05,785 [INFO]   89000000 lines read (kept 6513 so far, 19288 lines/s)
+2026-04-14 22:27:31,033 [INFO]   89500000 lines read (kept 6553 so far, 19291 lines/s)
+2026-04-14 22:27:56,636 [INFO]   90000000 lines read (kept 6588 so far, 19292 lines/s)
+2026-04-14 22:28:22,430 [INFO]   90500000 lines read (kept 6637 so far, 19293 lines/s)
+2026-04-14 22:28:48,174 [INFO]   91000000 lines read (kept 6685 so far, 19293 lines/s)
+2026-04-14 22:29:14,092 [INFO]   91500000 lines read (kept 6735 so far, 19293 lines/s)
+2026-04-14 22:29:39,323 [INFO]   92000000 lines read (kept 6770 so far, 19296 lines/s)
+2026-04-14 22:30:04,800 [INFO]   92500000 lines read (kept 6806 so far, 19298 lines/s)
+2026-04-14 22:30:29,897 [INFO]   93000000 lines read (kept 6842 so far, 19301 lines/s)
+2026-04-14 22:30:55,324 [INFO]   93500000 lines read (kept 6884 so far, 19303 lines/s)
+2026-04-14 22:31:20,698 [INFO]   94000000 lines read (kept 6927 so far, 19305 lines/s)
+2026-04-14 22:31:46,352 [INFO]   94500000 lines read (kept 6965 so far, 19306 lines/s)
+2026-04-14 22:32:12,376 [INFO]   95000000 lines read (kept 7010 so far, 19306 lines/s)
+2026-04-14 22:32:37,268 [INFO]   95500000 lines read (kept 7062 so far, 19310 lines/s)
+2026-04-14 22:33:02,462 [INFO]   96000000 lines read (kept 7099 so far, 19312 lines/s)
+2026-04-14 22:33:28,285 [INFO]   96500000 lines read (kept 7149 so far, 19313 lines/s)
+2026-04-14 22:33:53,724 [INFO]   97000000 lines read (kept 7189 so far, 19314 lines/s)
+2026-04-14 22:34:19,275 [INFO]   97500000 lines read (kept 7238 so far, 19316 lines/s)
+2026-04-14 22:34:44,268 [INFO]   98000000 lines read (kept 7299 so far, 19319 lines/s)
+2026-04-14 22:35:09,658 [INFO]   98500000 lines read (kept 7341 so far, 19321 lines/s)
+2026-04-14 22:35:35,200 [INFO]   99000000 lines read (kept 7393 so far, 19322 lines/s)
+2026-04-14 22:36:00,956 [INFO]   99500000 lines read (kept 7422 so far, 19323 lines/s)
+2026-04-14 22:36:27,452 [INFO]   100000000 lines read (kept 7465 so far, 19320 lines/s)
+2026-04-14 22:36:54,024 [INFO]   100500000 lines read (kept 7513 so far, 19318 lines/s)
+2026-04-14 22:37:19,739 [INFO]   101000000 lines read (kept 7569 so far, 19318 lines/s)
+2026-04-14 22:37:44,898 [INFO]   101500000 lines read (kept 7621 so far, 19321 lines/s)
+2026-04-14 22:38:11,348 [INFO]   102000000 lines read (kept 7657 so far, 19319 lines/s)
+2026-04-14 22:38:37,042 [INFO]   102500000 lines read (kept 7701 so far, 19320 lines/s)
+2026-04-14 22:39:02,443 [INFO]   103000000 lines read (kept 7746 so far, 19321 lines/s)
+2026-04-14 22:39:27,897 [INFO]   103500000 lines read (kept 7792 so far, 19323 lines/s)
+2026-04-14 22:39:53,429 [INFO]   104000000 lines read (kept 7840 so far, 19324 lines/s)
+2026-04-14 22:40:19,473 [INFO]   104500000 lines read (kept 7891 so far, 19323 lines/s)
+2026-04-14 22:40:44,613 [INFO]   105000000 lines read (kept 7955 so far, 19326 lines/s)
+2026-04-14 22:41:10,061 [INFO]   105500000 lines read (kept 8001 so far, 19328 lines/s)
+2026-04-14 22:41:35,604 [INFO]   106000000 lines read (kept 8041 so far, 19329 lines/s)
+2026-04-14 22:42:01,077 [INFO]   106500000 lines read (kept 8093 so far, 19330 lines/s)
+2026-04-14 22:42:26,206 [INFO]   107000000 lines read (kept 8139 so far, 19333 lines/s)
+2026-04-14 22:42:51,844 [INFO]   107500000 lines read (kept 8184 so far, 19333 lines/s)
+2026-04-14 22:43:17,558 [INFO]   108000000 lines read (kept 8243 so far, 19334 lines/s)
+2026-04-14 22:43:43,481 [INFO]   108500000 lines read (kept 8285 so far, 19334 lines/s)
+2026-04-14 22:44:09,263 [INFO]   109000000 lines read (kept 8319 so far, 19334 lines/s)
+2026-04-14 22:44:34,821 [INFO]   109500000 lines read (kept 8379 so far, 19335 lines/s)
+2026-04-14 22:44:59,936 [INFO]   110000000 lines read (kept 8426 so far, 19338 lines/s)
+2026-04-14 22:45:25,538 [INFO]   110500000 lines read (kept 8475 so far, 19338 lines/s)
+2026-04-14 22:45:51,059 [INFO]   111000000 lines read (kept 8529 so far, 19340 lines/s)
+2026-04-14 22:46:16,642 [INFO]   111500000 lines read (kept 8585 so far, 19340 lines/s)
+2026-04-14 22:46:42,034 [INFO]   112000000 lines read (kept 8630 so far, 19342 lines/s)
+2026-04-14 22:47:07,069 [INFO]   112500000 lines read (kept 8662 so far, 19345 lines/s)
+2026-04-14 22:47:32,960 [INFO]   113000000 lines read (kept 8708 so far, 19345 lines/s)
+2026-04-14 22:47:38,351 [INFO]   RS_2024-12.zst: 38192053 lines, 3415 kept
+2026-04-14 22:47:38,354 [INFO] ============================================================
+2026-04-14 22:47:38,354 [INFO] STEP 1 COMPLETE
+2026-04-14 22:47:38,354 [INFO] Lines read : 113104045
+2026-04-14 22:47:38,355 [INFO] Total kept : 8716
+2026-04-14 22:47:38,355 [INFO]   education  596
+2026-04-14 22:47:38,355 [INFO]       ApplyingToCollege         240
+2026-04-14 22:47:38,355 [INFO]       college                   192
+2026-04-14 22:47:38,355 [INFO]       StudentLoans              110
+2026-04-14 22:47:38,356 [INFO]       GradSchool                42
+2026-04-14 22:47:38,356 [INFO]       TransferStudents          12
+2026-04-14 22:47:38,356 [INFO]   career     1057
+2026-04-14 22:47:38,357 [INFO]       careerguidance            364
+2026-04-14 22:47:38,357 [INFO]       cscareerquestions         231
+2026-04-14 22:47:38,358 [INFO]       jobs                      186
+2026-04-14 22:47:38,358 [INFO]       careeradvice              147
+2026-04-14 22:47:38,358 [INFO]       findapath                 129
+2026-04-14 22:47:38,358 [INFO]   finance    2020
+2026-04-14 22:47:38,359 [INFO]       personalfinance           1270
+2026-04-14 22:47:38,359 [INFO]       investing                 345
+2026-04-14 22:47:38,359 [INFO]       FinancialPlanning         208
+2026-04-14 22:47:38,359 [INFO]       povertyfinance            197
+2026-04-14 22:47:38,360 [INFO]   health     391
+2026-04-14 22:47:38,360 [INFO]       AskDocs                   201
+2026-04-14 22:47:38,360 [INFO]       HealthInsurance           78
+2026-04-14 22:47:38,360 [INFO]       ChronicPain               69
+2026-04-14 22:47:38,361 [INFO]       medical_advice            43
+2026-04-14 22:47:38,361 [INFO]   social     4652
+2026-04-14 22:47:38,361 [INFO]       relationship_advice       3325
+2026-04-14 22:47:38,361 [INFO]       Advice                    1236
+2026-04-14 22:47:38,362 [INFO]       LifeAdvice                91
+2026-04-14 22:47:38,362 [INFO] Elapsed    : 5846.8s

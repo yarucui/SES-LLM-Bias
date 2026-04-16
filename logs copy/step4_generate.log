@@ -1,0 +1,20 @@
+2026-04-15 15:52:44,065 [INFO] Checkpoint: 0 existing generated scenarios
+2026-04-15 15:52:44,091 [INFO] Loaded 115 archetypes
+2026-04-15 16:00:43,868 [INFO] ============================================================
+2026-04-15 16:00:43,869 [INFO] STEP 4 COMPLETE in 479.8s
+2026-04-15 16:00:43,869 [INFO] New scenarios this run : 115
+2026-04-15 16:00:43,870 [INFO] Generated scenarios by domain:
+2026-04-15 16:00:43,870 [INFO]   education  7
+2026-04-15 16:00:43,871 [INFO]   career     9
+2026-04-15 16:00:43,871 [INFO]   finance    6
+2026-04-15 16:00:43,871 [INFO]   health     2
+2026-04-15 16:00:43,872 [INFO]   social     8
+2026-04-15 16:00:43,872 [INFO] Generated scenarios by consensus level:
+2026-04-15 16:00:43,872 [INFO]   high_risky      28
+2026-04-15 16:00:43,874 [INFO]   ambiguous       17
+2026-04-15 16:00:43,875 [INFO]   high_safe       40
+2026-04-15 16:00:43,875 [INFO] 
+2026-04-15 16:00:43,875 [INFO] Next step: run the LLM experiment step (step6_experiment.py)
+2026-04-15 16:00:43,876 [INFO]   Each scenario gets SES minimal-pair variants injected,
+2026-04-15 16:00:43,876 [INFO]   then queried across the 4 main study models.
+2026-04-15 16:00:43,876 [INFO]   Compare: risky_ratio (human) vs LLM choice rate by SES condition.

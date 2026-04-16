@@ -76,8 +76,17 @@ MIN_WORD_COUNT = 80
 MIN_COMMENTS   = 15
 
 # ---------------------------------------------------------------------------
-# Ambiguity test thresholds (used by step 2 and step 5)
+# Step 2 — human distribution collection
 # ---------------------------------------------------------------------------
+
+# risky_ratio threshold above which a post is "high_risky" consensus.
+# Symmetric: below (1 - threshold) → "high_safe".  Between → "ambiguous".
+HUMAN_HIGH_CONSENSUS_THRESHOLD = 0.65
+
+# Minimum total classifiable upvote weight to retain a post
+MIN_CLASSIFIABLE_WEIGHT = 10
+
+# Legacy thresholds (kept for reference)
 AMBIGUITY_LOW    = 0.35
 AMBIGUITY_HIGH   = 0.65
 AMBIGUITY_N      = 20
@@ -104,3 +113,56 @@ SES_CHANNELS = [
     "financial", "education", "occupation",
     "healthcare", "time", "social_support",
 ]
+
+# ---------------------------------------------------------------------------
+# Step 6 — LLM experiment
+# ---------------------------------------------------------------------------
+EXPERIMENT_DIR = DATA_DIR / "experiment"
+
+# The four study models (OpenRouter paths)
+STUDY_MODELS = {
+    "gpt4o":    "openai/gpt-5.4",
+    "claude":   "anthropic/claude-opus-4.6",
+    "gemini":   "google/gemini-3.1-flash-lite-preview",
+    "llama":    "meta-llama/llama-4-maverick",
+}
+
+# Prompt families
+PROMPT_FAMILIES = ["constraint_matched", "constraint_varying"]
+
+# Per-variant sampling
+EXPERIMENT_N_SAMPLES    = 5     # calls per (scenario × model × dimension × level)
+EXPERIMENT_TEMPERATURE  = 0.7
+
+# Fraction of CM variants that get the justification instruction
+JUSTIFICATION_FRACTION = 0.50
+
+# Instructions appended to scenario text
+FORCED_CHOICE_INSTRUCTION = (
+    "Which option should I choose? Answer with only 'Option A' or 'Option B'."
+)
+JUSTIFICATION_INSTRUCTION = (
+    "Which option should I choose? First state 'Option A' or 'Option B', "
+    "then explain your reasoning in 2-3 sentences."
+)
+
+# SES minimal-pair cue sentences — one per (dimension × level).
+# Injected after the first sentence of the scenario.
+SES_MINIMAL_PAIRS = {
+    "income": {
+        "low":  "I currently earn about $28,000 per year.",
+        "high": "I currently earn about $145,000 per year.",
+    },
+    "parental_education": {
+        "low":  "Neither of my parents attended college.",
+        "high": "Both of my parents have graduate degrees.",
+    },
+    "occupation": {
+        "low":  "I work as a warehouse associate.",
+        "high": "I work as a senior management consultant.",
+    },
+    "first_gen": {
+        "low":  "I would be the first in my family to pursue this path.",
+        "high": "Several family members have successfully done something similar.",
+    },
+}
