@@ -1,26 +1,29 @@
 """
-Step 3 — Extract abstract decision archetypes from B2 posts.
+Step 3 — Extract abstract decision archetypes from all SES-valid posts.
 
-DESIGN CHANGE: Previously step 3 sorted posts by ambiguity score and
-took only the most ambiguous. Now it reads all_scored_b2.jsonl (all
-posts that are strongly SES-sensitive, across the full consensus spectrum)
-and stratifies the sample to represent all three consensus levels:
-high_risky, ambiguous, and high_safe.
+DESIGN (v5.2):
 
-This matters because the comparison analysis needs the full range of human
-consensus levels, not just the contested middle. The archetype pipeline still
-deduplicates by trade-off structure, but the sampling step now preserves
-distributional coverage.
+Reads all_scored_valid.jsonl (all posts with valid SES annotation from
+step 2b), regardless of ses_sensitivity level. Previously this step read
+only B2 posts, but B0/B1 posts are equally valid experiment material:
+  - B0 (SES should not affect advice): any LLM SES differential found
+    here is unambiguous bias — it cannot be explained as rational
+    inference from SES signals.
+  - B1/B2: provide complementary evidence where SES differentials may
+    be partly rational — useful for analysis stratification.
 
-Each archetype record carries:
-  - the full human distribution stats (risky_ratio, consensus_level, etc.)
-  - the ses_natural_cues from the source post (for controlled cue injection)
-  - the SES channels and sensitivity classification
-  - the abstract structural fields (trade_off_type, option_A/B, etc.)
+ses_sensitivity is preserved in every archetype record so the experiment
+results can be stratified by this variable during analysis.
+
+Stratified sampling across domain × consensus_level still applies.
+high_risky and ambiguous buckets are prioritised (processed first) to
+ensure rare consensus levels are represented before deduplication removes
+structurally similar archetypes.
 
 Usage:
     python src/pipeline/step3_extract.py
     python src/pipeline/step3_extract.py --dry-run
+    python src/pipeline/step3_extract.py --rerun-errors
 """
 
 from __future__ import annotations
@@ -201,6 +204,8 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--dry-run", action="store_true",
                         help="Process 3 posts per domain and don't write outputs.")
+    parser.add_argument("--rerun-errors", action="store_true",
+                        help="Re-extract posts that previously failed (llm_parse_error, etc.).")
     args = parser.parse_args()
 
     config.ARCHETYPES_DIR.mkdir(parents=True, exist_ok=True)
@@ -208,41 +213,52 @@ def main() -> None:
     checkpoint = load_checkpoint(checkpoint_path)
     log.info("Checkpoint: %d existing extractions", len(checkpoint))
 
-    # ── Load B2 posts ──────────────────────────────────────────────────────
-    src = config.POSTS_SCORED_DIR / "all_scored_b2.jsonl"
+    # ── Load all SES-valid posts ───────────────────────────────────────────
+    src = config.POSTS_SCORED_DIR / "all_scored_valid.jsonl"
     if not src.exists():
-        log.error("ERROR: all_scored_b2.jsonl not found. Run step2b first.")
+        log.error("Missing %s — run step2b_ses_filter.py first", src)
         sys.exit(1)
 
-    all_b2: list[dict] = []
+    all_posts: list[dict] = []
     with src.open("r", encoding="utf-8") as f:
         for line in f:
             line = line.strip()
             if line:
-                all_b2.append(json.loads(line))
-    log.info("Loaded %d B2 posts", len(all_b2))
+                all_posts.append(json.loads(line))
+    log.info("Loaded %d SES-valid posts (B0+B1+B2)", len(all_posts))
 
     # ── Stratified sampling across domain × consensus_level ───────────────
-    # Group by (domain, consensus_level)
     buckets: dict[tuple[str, str], list[dict]] = defaultdict(list)
-    for p in all_b2:
+    for p in all_posts:
         d   = p.get("domain", "unknown")
         cls = p.get("consensus_level", "ambiguous")
         buckets[(d, cls)].append(p)
 
-    # Sort each bucket by risky_weight desc (more commented = richer signal)
+    # Sort each bucket by total_weight desc (more signal = better archetype source)
     for key in buckets:
         buckets[key].sort(key=lambda r: -(r.get("total_weight") or 0))
 
-    # Build the work list: up to TARGETS_PER_CONSENSUS × 3 per bucket
+    # Build the work list with guaranteed minimums for rare consensus levels.
+    # high_safe tends to dominate; we over-sample high_risky and ambiguous
+    # to ensure enough archetypes for consensus-stratified analysis.
     work: list[dict] = []
     per_bucket_cap = 3 if args.dry_run else (config.TARGETS_PER_DOMAIN * 3)
 
-    for (domain, cons_level), posts in buckets.items():
-        selected = posts[:per_bucket_cap]
+    # Minimum guaranteed posts per rare bucket (regardless of availability)
+    RARE_LEVELS = {"high_risky", "ambiguous"}
+    RARE_MIN_CAP = per_bucket_cap  # same cap, but we process rare buckets FIRST
+
+    # Process rare buckets first so they're not displaced by high_safe
+    for (domain, cons_level), posts in sorted(
+        buckets.items(),
+        key=lambda x: (0 if x[0][1] in RARE_LEVELS else 1, x[0])
+    ):
+        cap_this = RARE_MIN_CAP if cons_level in RARE_LEVELS else per_bucket_cap
+        selected = posts[:cap_this]
         log.info(
-            "[%s / %s] selected %d posts (of %d available)",
+            "[%s / %s] selected %d posts (of %d available)%s",
             domain, cons_level, len(selected), len(posts),
+            " [RARE — prioritised]" if cons_level in RARE_LEVELS else "",
         )
         work.extend(selected)
 
@@ -264,8 +280,13 @@ def main() -> None:
             if interrupted["flag"]:
                 raise KeyboardInterrupt
             pid = post["post_id"]
-            if pid in checkpoint and not args.dry_run:
-                continue
+            prev = checkpoint.get(pid)
+            if prev and not args.dry_run:
+                if prev.get("status") == "ok":
+                    continue
+                if not args.rerun_errors:
+                    continue
+                log.info("  Retrying extraction for %s (prev: %s)", pid, prev.get("status"))
 
             parsed, err = call_extract(post)
             time.sleep(LLM_SLEEP)
