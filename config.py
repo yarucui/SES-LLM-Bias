@@ -72,7 +72,7 @@ TRIGGER_PHRASES = [
     "thinking about whether", "risk",
 ]
 
-MIN_WORD_COUNT = 80
+MIN_WORD_COUNT = 50
 MIN_COMMENTS   = 15
 
 # ---------------------------------------------------------------------------

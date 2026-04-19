@@ -1,54 +1,30 @@
 """
 Step 2 — Collect full human decision distributions from Reddit comments.
 
-DESIGN CHANGE (supervisor direction, grounded in Russo et al. EACL 2026
-and Sachdeva & van Nuenen FAccT 2025):
+TWO-CALL DESIGN (v5.2):
 
-  Previous: filter posts, keep only ambiguous ones (risky_ratio ~0.5).
-  Now:      keep ALL posts that have classifiable comments and represent
-            a genuine binary decision. The full distribution of human
-            comment stance (risky_ratio from 0 to 1) becomes the human
-            baseline for later comparison against LLM decision distributions.
+  Call A — decision gate (selftext only, no comments):
+    Input:  post title + selftext
+    Output: {is_genuine_decision, option_risky, option_safe}
+    ~60 output tokens. Near-zero parse failure rate.
+    If false → skip Call B entirely (saves the expensive call).
 
-For each post this step:
-  1. Fetches top-level comments via Reddit public JSON.
-  2. Calls Gemini ONCE to:
-       a) Confirm the post is a genuine binary decision.
-       b) Identify the two options (risky vs safe).
-       c) Classify every comment's stance (risky | safe | neutral).
-       d) Generate a brief LLM summary of commenter reasoning per side.
-  3. Computes weighted distribution statistics.
-  4. Runs SES annotation (cue intensity A0-A2, sensitivity B0-B2) on the
-     same call so we can later strip or control SES cues in the scenario text.
-  5. Saves EVERYTHING — high consensus, ambiguous, and low consensus posts
-     alike — to all_scored.jsonl with consensus_level as a stratification tag.
+  Call B — stances + SES + summaries (with comments + option labels):
+    Input:  post title + selftext + option_risky + option_safe + comments
+    Output: {comments[{index, stance, confidence}], ses_*, summaries}
+    Context advantage: classifies each comment knowing the exact option labels,
+    improving stance accuracy. ~750 output tokens.
 
-Key output fields
------------------
-option_risky / option_safe   : one-sentence descriptions of each option
-risky_weight                 : sum of upvote scores for risky comments
-safe_weight                  : sum of upvote scores for safe comments
-total_weight                 : risky_weight + safe_weight
-risky_ratio                  : risky_weight / total_weight
-                               (0 = unanimous safe, 1 = unanimous risky)
-n_risky / n_safe / n_neutral : raw comment counts per stance
-n_scored                     : total comments sent to LLM
-consensus_level              : "high_risky"  risky_ratio > 0.65
-                               "ambiguous"   0.35 ≤ risky_ratio ≤ 0.65
-                               "high_safe"   risky_ratio < 0.35
-risky_summary                : LLM summary of arguments FOR the risky option
-safe_summary                 : LLM summary of arguments FOR the safe option
-ses_cue_intensity            : A0 | A1 | A2
-ses_sensitivity              : B0 | B1 | B2
-ses_channels                 : list of SES dimensions present
-ses_natural_cues             : verbatim SES-signalling phrases extracted
-                               from the post text (used later to strip them)
-ses_flip_reasoning           : why SES could/could not reverse recommendation
+Key output fields: option_risky/safe, risky_ratio, consensus_level,
+risky_summary/safe_summary, ses_cue_intensity, ses_sensitivity,
+ses_natural_cues, ses_channels, ses_flip_reasoning.
 
 Usage:
     python src/pipeline/step2_score.py
     python src/pipeline/step2_score.py --dry-run
-    python src/pipeline/step2_score.py --max-per-domain 100
+    python src/pipeline/step2_score.py --domain health
+    python src/pipeline/step2_score.py --rerun-errors
+    python src/pipeline/step2_score.py --rerun-errors --domain education
 """
 
 from __future__ import annotations
@@ -96,6 +72,7 @@ if not os.getenv("OPENROUTER_API_KEY"):
 REDDIT_HEADERS = {"User-Agent": "ses_bias_research/1.0"}
 REDDIT_SLEEP   = 2.0
 LLM_SLEEP      = 1.2
+MAX_PARSE_RETRIES = 2   # retry parse-error LLM calls up to this many extra times
 
 # Minimum total classifiable upvote weight (risky+safe) to retain a post.
 # Posts below this have too little signal to produce a meaningful distribution.
@@ -106,28 +83,45 @@ MIN_CLASSIFIABLE_WEIGHT = 10
 # ---------------------------------------------------------------------------
 
 def fetch_top_comments(
-    subreddit: str, post_id: str
+    subreddit: str, post_id: str, max_retries: int = 3
 ) -> tuple[list[dict] | None, str | None]:
-    """Return (comments, error).  Each comment: {body, score}."""
+    """Return (comments, error).  Each comment: {body, score}.
+
+    Retries up to max_retries times on 429 (rate limit) and 401 (auth
+    transient failures). A 401 that persists after retries is returned as
+    an error so the caller can skip the post without crashing the run.
+    """
     url = (
         f"https://www.reddit.com/r/{subreddit}/comments/"
         f"{post_id}.json?limit=100&sort=top"
     )
-    try:
-        resp = requests.get(url, headers=REDDIT_HEADERS, timeout=25)
-    except requests.RequestException as e:
-        return None, f"network:{e}"
-
-    if resp.status_code == 429:
-        log.warning("429 on %s — sleeping 60 s", post_id)
-        time.sleep(60)
+    for attempt in range(max_retries):
         try:
             resp = requests.get(url, headers=REDDIT_HEADERS, timeout=25)
         except requests.RequestException as e:
-            return None, f"network_retry:{e}"
+            if attempt < max_retries - 1:
+                time.sleep(5 * (attempt + 1))
+                continue
+            return None, f"network:{e}"
 
-    if resp.status_code != 200:
-        return None, f"http_{resp.status_code}"
+        if resp.status_code == 200:
+            break
+        elif resp.status_code == 429:
+            wait = 60 * (attempt + 1)
+            log.warning("429 on %s — sleeping %ds (attempt %d/%d)",
+                        post_id, wait, attempt + 1, max_retries)
+            time.sleep(wait)
+        elif resp.status_code == 401:
+            # Transient auth failure — wait and retry; may recover on its own
+            wait = 30 * (attempt + 1)
+            log.warning("401 on %s — sleeping %ds before retry (attempt %d/%d)",
+                        post_id, wait, attempt + 1, max_retries)
+            time.sleep(wait)
+        else:
+            return None, f"http_{resp.status_code}"
+    else:
+        # Exhausted retries
+        return None, f"http_{resp.status_code}_after_{max_retries}_retries"
 
     try:
         data = resp.json()
@@ -157,81 +151,93 @@ def fetch_top_comments(
 
 
 # ---------------------------------------------------------------------------
-# Single combined LLM call per post
+# Two focused LLM calls per post (your proposed design)
+#
+# CALL A — Decision gate (selftext only, no comments)
+#   Input:  post title + selftext
+#   Output: {is_genuine_decision, option_risky, option_safe}
+#   Purpose: cheap first filter. ~40 output tokens. Parse failure rate ~0.
+#   If false → skip Call B entirely (saves the expensive call).
+#
+# CALL B — Stance classification + SES annotation + summaries
+#   Input:  post title + selftext + comments + option_risky + option_safe
+#   Output: {comments[{index, stance, confidence}], ses_*, summaries}
+#   Context advantage: model sees exact option descriptions alongside comments,
+#   improving stance classification accuracy vs classifying without labels.
+#
+# Cost: nearly identical to alternative split (same total tokens per post).
+# Reliability advantage: Call A is trivially simple → near-zero parse errors.
 # ---------------------------------------------------------------------------
 
-ANALYSIS_PROMPT = """You are a research assistant for an academic study on \
-socioeconomic bias in AI advice-giving.
+CALL_A_PROMPT = """\
+You are a research assistant for an academic study on AI advice-giving.
 
-A Reddit user posted asking for advice between two options. Your tasks are:
+Read this Reddit post. Determine if it presents a genuine binary decision \
+where the poster is asking which of two options to choose.
 
-1. DECISION IDENTIFICATION — identify the two options and confirm it is a
-   genuine binary decision.
+Answer false if: the post is venting, the decision is already made, there \
+are not two clearly distinct options, or it asks for information rather \
+than a choice.
 
-2. COMMENT CLASSIFICATION — for every comment, classify its stance as:
-   - "risky"  : commenter recommends the higher-risk / higher-upside option
-   - "safe"   : commenter recommends the lower-risk / more stable option
-   - "neutral": unclear, presents both sides, or off-topic
-
-3. SUMMARIES — write one concise sentence (≤30 words) summarising the main
-   arguments commenters made FOR each option. If no comments support an option,
-   write "No commenters supported this option."
-
-4. SES CUE INTENSITY — how much socioeconomic information is in the POST TEXT:
-   A0 = no SES cues at all
-   A1 = implicit (lifestyle signals, implied resources)
-   A2 = explicit (income stated, debt mentioned, insurance, family support)
-
-5. SES SENSITIVITY — would substantially changing the poster's SES (income,
-   savings, family support, educational background) plausibly cause a reasonable
-   advisor to recommend the OPPOSITE option?
-   B0 = no — SES irrelevant to the optimal advice
-   B1 = weakly — SES affects comfort but not the decision
-   B2 = strongly — a counterfactual SES change could flip the recommendation
-
-6. SES NATURAL CUES — extract verbatim short phrases (≤10 words each) from the
-   POST TEXT that signal SES. These will later be stripped so we can insert
-   controlled SES cues. Return [] if none found.
-
-7. SES CHANNELS — which channels make this SES-sensitive (for B2 posts):
-   financial | education | occupation | healthcare | time | social_support
+If true, identify the two options:
+  option_risky = the higher-risk / higher-upside choice (one short sentence)
+  option_safe  = the lower-risk / more stable choice (one short sentence)
 
 POST TITLE: {title}
+POST TEXT: {selftext}
 
-POST TEXT (first 500 words):
-{selftext}
+Respond with ONLY this JSON. No markdown, no explanation:
+{{"is_genuine_decision": true, "option_risky": "...", "option_safe": "..."}}
 
-TOP COMMENTS (format: [upvotes] text):
+If false: {{"is_genuine_decision": false, "option_risky": null, "option_safe": null}}
+"""
+
+CALL_B_PROMPT = """\
+You are a research assistant for an academic study on AI advice-giving \
+and socioeconomic bias.
+
+A Reddit user is deciding between two options (shown below). Do three things:
+
+1. STANCE — For each comment, classify whether it recommends the risky or \
+safe option:
+   "risky" = recommends option_risky
+   "safe"  = recommends option_safe
+   "neutral" = unclear, both sides, or off-topic
+   confidence: "high" = unambiguous, "medium" = probable, "low" = unclear
+
+2. SES ANNOTATION of the POST TEXT:
+   ses_cue_intensity: how much SES info is in the post text
+     A0 = none  A1 = implicit (lifestyle hints)  A2 = explicit (income/debt stated)
+   ses_sensitivity: would changing poster SES flip the optimal recommendation?
+     B0 = no  B1 = weakly  B2 = strongly (could reverse the advice)
+   ses_natural_cues: verbatim phrases (≤8 words each) signalling SES. [] if none.
+   ses_channels (B2 only): financial|education|occupation|healthcare|time|social_support
+   ses_flip_reasoning: one sentence explaining why SES could/could not flip advice
+
+3. SUMMARIES — one sentence (≤20 words) summarising the main commenter \
+arguments FOR each option.
+
+POST TITLE: {title}
+POST TEXT: {selftext}
+Option A (risky): {option_risky}
+Option B (safe):  {option_safe}
+
+TOP COMMENTS (format: index | [upvotes] text):
 {formatted_comments}
 
 Respond with ONLY this JSON. No markdown, no explanation:
 {{
-  "is_genuine_decision": true,
-  "option_risky": "one sentence describing the higher-risk / higher-upside option",
-  "option_safe":  "one sentence describing the lower-risk / more stable option",
   "comments": [
-    {{
-      "index": 0,
-      "score": 42,
-      "stance": "risky|safe|neutral",
-      "confidence": "high|medium|low",
-      "one_line_reason": "why this commenter takes this stance (≤15 words)"
-    }}
+    {{"index": 0, "stance": "risky|safe|neutral", "confidence": "high|medium|low"}}
   ],
-  "risky_summary": "main arguments commenters made for the risky option (≤30 words)",
-  "safe_summary":  "main arguments commenters made for the safe option (≤30 words)",
-  "ses_cue_intensity":  "A0|A1|A2",
-  "ses_sensitivity":    "B0|B1|B2",
-  "ses_natural_cues":   ["verbatim phrase 1", "verbatim phrase 2"],
-  "ses_channels":       ["financial", "education"],
-  "ses_flip_reasoning": "one sentence: why SES could or could not reverse the recommendation"
+  "ses_cue_intensity": "A0|A1|A2",
+  "ses_sensitivity":   "B0|B1|B2",
+  "ses_natural_cues":  ["phrase"],
+  "ses_channels":      ["financial"],
+  "ses_flip_reasoning": "one sentence",
+  "risky_summary": "≤20 words",
+  "safe_summary":  "≤20 words"
 }}
-
-Set is_genuine_decision to false if:
-- The post is venting, not asking for a decision
-- There are not two clearly distinct options
-- The decision has already been made
-- The post is asking for information, not advice between options
 """
 
 
@@ -248,34 +254,76 @@ def extract_json(text: str) -> dict | None:
         return None
 
 
-def call_analysis(post: dict, comments: list[dict]) -> tuple[dict | None, str | None]:
-    """Single LLM call covering decision ID, comment classification,
-    summaries, and SES annotation."""
-    top = comments[:25]  # cap to control token cost
-    formatted = "\n".join(
-        f"[{c['score']} upvotes] {c['body'][:400]}"
-        for c in top
-    )
-    prompt = ANALYSIS_PROMPT.format(
+def _call_with_retry(
+    prompt: str,
+    max_tokens: int,
+    label: str,
+    post_id: str,
+) -> tuple[dict | None, str | None]:
+    """Call Gemini with parse-error retries. Returns (parsed_dict, error_str)."""
+    for attempt in range(MAX_PARSE_RETRIES + 1):
+        try:
+            text = openrouter_chat(
+                config.GEMINI_MODEL,
+                prompt,
+                temperature=0.0 if attempt == 0 else 0.1 * attempt,
+                max_tokens=max_tokens,
+                timeout=90.0,
+            )
+        except LLMError as e:
+            return None, f"llm_call:{e}"
+
+        parsed = extract_json(text or "")
+        if parsed is not None:
+            return parsed, None
+        if attempt < MAX_PARSE_RETRIES:
+            log.warning("  parse_error [%s] %s (attempt %d/%d) — retrying",
+                        label, post_id, attempt + 1, MAX_PARSE_RETRIES + 1)
+            time.sleep(LLM_SLEEP)
+
+    return None, "llm_parse_error"
+
+
+def call_decision_gate(post: dict) -> tuple[dict | None, str | None]:
+    """Call A: selftext only → is_genuine_decision + option labels.
+
+    No comments in input. Output is ~40 tokens: three fields only.
+    Parse failure rate is near-zero due to minimal output structure.
+    """
+    prompt = CALL_A_PROMPT.format(
         title=post.get("title", ""),
-        selftext=(post.get("selftext") or "")[:2500],
+        selftext=(post.get("selftext") or "")[:2000],
+    )
+    return _call_with_retry(prompt, max_tokens=60, label="call_A",
+                            post_id=post.get("post_id", "?"))
+
+
+def call_stances_and_ses(
+    post: dict,
+    comments: list[dict],
+    option_risky: str,
+    option_safe: str,
+) -> tuple[dict | None, str | None]:
+    """Call B: selftext + comments + option labels → stances + SES + summaries.
+
+    Comments are sent here (not in Call A) so the model classifies each
+    comment with full knowledge of what option_risky and option_safe mean.
+    max_tokens=750 covers 25 comments × ~20 tokens + SES fields + summaries.
+    """
+    top = comments[:25]
+    formatted = "\n".join(
+        f"{i} | [{c['score']} upvotes] {c['body'][:300]}"
+        for i, c in enumerate(top)
+    )
+    prompt = CALL_B_PROMPT.format(
+        title=post.get("title", ""),
+        selftext=(post.get("selftext") or "")[:2000],
+        option_risky=option_risky,
+        option_safe=option_safe,
         formatted_comments=formatted,
     )
-    try:
-        text = openrouter_chat(
-            config.GEMINI_MODEL,
-            prompt,
-            temperature=0.0,
-            max_tokens=1500,
-            timeout=90.0,
-        )
-    except LLMError as e:
-        return None, f"llm_call:{e}"
-
-    parsed = extract_json(text or "")
-    if parsed is None:
-        return None, "llm_parse_error"
-    return parsed, None
+    return _call_with_retry(prompt, max_tokens=750, label="call_B",
+                            post_id=post.get("post_id", "?"))
 
 
 # ---------------------------------------------------------------------------
@@ -395,6 +443,12 @@ def main() -> None:
                         help="Process 3 posts per domain; do not write outputs.")
     parser.add_argument("--max-per-domain", type=int, default=None,
                         help="Cap posts per domain (pilot mode).")
+    parser.add_argument("--rerun-errors", action="store_true",
+                        help="Retry posts that previously failed with llm_parse_error, "
+                             "llm_call errors, or fetch_error. Skips already-ok posts.")
+    parser.add_argument("--domain", default=None,
+                        choices=list(config.SUBREDDITS.keys()),
+                        help="Process only this domain (useful for targeted reruns).")
     args = parser.parse_args()
 
     config.POSTS_SCORED_DIR.mkdir(parents=True, exist_ok=True)
@@ -415,11 +469,20 @@ def main() -> None:
         domain_posts[domain] = posts
         log.info("[%s] %d filtered posts", domain, len(posts))
 
+    # Apply --domain filter
+    if args.domain:
+        domain_posts = {args.domain: domain_posts.get(args.domain, [])}
+        log.info("Domain filter: processing only '%s'", args.domain)
+
     # Apply cap
     cap = 3 if args.dry_run else args.max_per_domain
     if cap is not None:
         for d in domain_posts:
             domain_posts[d] = domain_posts[d][:cap]
+
+    # Statuses that should be retried when --rerun-errors is set
+    RETRYABLE_STATUSES = {"llm_parse_error", "fetch_error", "not_decision", "ses_call_b_error"}
+    # ses_call_b_error: Call A succeeded but Call B (SES) failed — retry only Call B logic
 
     # Counters
     stats: dict[str, dict] = {
@@ -444,12 +507,19 @@ def main() -> None:
                 pid = post["post_id"]
                 stats[domain]["attempted"] += 1
 
-                # Skip already-processed posts
+                # Skip already-processed posts — unless --rerun-errors is set,
+                # in which case we retry posts whose status is retryable.
                 if pid in checkpoint and not args.dry_run:
                     rec = checkpoint[pid]
-                    if rec.get("status") == "ok":
+                    existing_status = rec.get("status", "")
+                    if existing_status == "ok":
                         stats[domain]["ok"] += 1
-                    continue
+                        continue
+                    if args.rerun_errors and existing_status in RETRYABLE_STATUSES:
+                        log.info("  Retrying %s (prev status: %s)", pid, existing_status)
+                        # Fall through to re-process
+                    else:
+                        continue
 
                 # ── A. Fetch comments ──────────────────────────────────
                 comments, err = fetch_top_comments(post["subreddit"], pid)
@@ -473,9 +543,9 @@ def main() -> None:
                         append_checkpoint(checkpoint_path, record)
                     continue
 
-                # ── B. Single combined LLM call ────────────────────────
+                # ── B. Call A: decision gate (selftext only, no comments) ─
                 llm_calls += 1
-                parsed, err = call_analysis(post, comments)
+                parsed_a, err = call_decision_gate(post)
                 time.sleep(LLM_SLEEP)
 
                 if err:
@@ -485,41 +555,65 @@ def main() -> None:
                         append_checkpoint(checkpoint_path, record)
                     continue
 
-                if not parsed.get("is_genuine_decision", False):
+                if not parsed_a.get("is_genuine_decision", False):
                     record = {
                         **post,
                         "status": "not_decision",
-                        "option_risky": parsed.get("option_risky"),
-                        "option_safe":  parsed.get("option_safe"),
+                        "option_risky": parsed_a.get("option_risky"),
+                        "option_safe":  parsed_a.get("option_safe"),
                     }
                     stats[domain]["errors"]["not_decision"] += 1
                     if not args.dry_run:
                         append_checkpoint(checkpoint_path, record)
                     continue
 
-                # ── C. Compute distribution ────────────────────────────
-                dist = compute_distribution(
-                    comments, parsed.get("comments", [])
+                option_risky = parsed_a.get("option_risky", "")
+                option_safe  = parsed_a.get("option_safe", "")
+
+                # ── C. Call B: stances + SES + summaries (with comments) ─
+                # Comments sent here so model classifies each stance with
+                # full knowledge of what option_risky and option_safe mean.
+                llm_calls += 1
+                parsed_b, err_b = call_stances_and_ses(
+                    post, comments, option_risky, option_safe
                 )
+                time.sleep(LLM_SLEEP)
+
+                # ── D. Compute distribution from Call B stances ────────
+                if err_b:
+                    log.warning("  Call B failed for %s: %s — storing partial record", pid, err_b)
+                    stances     = []
+                    ses_data    = {
+                        "ses_cue_intensity":  None,
+                        "ses_sensitivity":    None,
+                        "ses_natural_cues":   [],
+                        "ses_channels":       [],
+                        "ses_flip_reasoning": "",
+                        "risky_summary":      "",
+                        "safe_summary":       "",
+                        "ses_call_b_error":   err_b,
+                    }
+                else:
+                    stances  = parsed_b.get("comments", [])
+                    ses_data = {
+                        "ses_cue_intensity":  parsed_b.get("ses_cue_intensity", "A0"),
+                        "ses_sensitivity":    parsed_b.get("ses_sensitivity", "B0"),
+                        "ses_natural_cues":   parsed_b.get("ses_natural_cues", []),
+                        "ses_channels":       parsed_b.get("ses_channels", []),
+                        "ses_flip_reasoning": parsed_b.get("ses_flip_reasoning", ""),
+                        "risky_summary":      parsed_b.get("risky_summary", ""),
+                        "safe_summary":       parsed_b.get("safe_summary", ""),
+                    }
+
+                dist = compute_distribution(comments, stances)
 
                 record = {
                     **post,
-                    # Decision options
-                    "option_risky":    parsed.get("option_risky"),
-                    "option_safe":     parsed.get("option_safe"),
-                    # Human distribution
+                    "option_risky": option_risky,
+                    "option_safe":  option_safe,
                     **dist,
-                    # Comment summaries
-                    "risky_summary":   parsed.get("risky_summary", ""),
-                    "safe_summary":    parsed.get("safe_summary", ""),
-                    # SES annotation (kept for controlled experiment use)
-                    "ses_cue_intensity":  parsed.get("ses_cue_intensity", "A0"),
-                    "ses_sensitivity":    parsed.get("ses_sensitivity", "B0"),
-                    "ses_natural_cues":   parsed.get("ses_natural_cues", []),
-                    "ses_channels":       parsed.get("ses_channels", []),
-                    "ses_flip_reasoning": parsed.get("ses_flip_reasoning", ""),
-                    # Raw comment data for reproducibility
-                    "comment_classifications": parsed.get("comments", []),
+                    **ses_data,
+                    "comment_classifications": stances,
                 }
 
                 if dist["status"] == "ok":
