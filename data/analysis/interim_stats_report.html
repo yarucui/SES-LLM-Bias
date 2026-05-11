@@ -1,0 +1,127 @@
+<!doctype html>
+<html><head><meta charset='utf-8'><title>Interim stats -- Llama + GPT</title>
+<style>
+  body { font-family: -apple-system, Segoe UI, Roboto, sans-serif;
+          max-width: 1100px; margin: 2em auto; padding: 0 1em; color: #222; }
+  h1 { border-bottom: 2px solid #888; padding-bottom: 0.3em; }
+  h2 { margin-top: 2em; color: #333; }
+  table { border-collapse: collapse; margin: 0.8em 0; }
+  table.reg { font-family: Menlo, Consolas, monospace; font-size: 0.9em; }
+  th, td { border: 1px solid #ccc; padding: 6px 10px; text-align: right; }
+  th { background: #f4f4f4; text-align: center; }
+  .small { font-size: 0.85em; color: #555; }
+  .interp { margin: 0.5em 0 0.2em; font-style: italic; color: #333; }
+  code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; }
+</style></head><body>
+<h1>Interim statistical analysis -- Llama + GPT</h1>
+
+<div class='disclaimer-strong' style='background: #ffd6d6; border: 2px solid #c00;
+     padding: 1em; border-radius: 6px; margin: 1em 0;'>
+<b>WARNING -- INTERIM EXPLORATORY ANALYSIS.</b><br>
+This report contains formal statistical tests run on partial data
+(2 of 3 preregistered models). These p-values are NOT confirmatory.
+The preregistered confirmatory analysis will be run on the full
+3-model dataset after data collection completes.<br>
+Do not cite these results as final.
+</div>
+<p><b>No multiple-comparison correction is applied to interim tests.</b>
+The preregistration commits to BH-FDR (q=0.05) on the seven primary
+hypotheses run on the full 3-model dataset.</p>
+
+<p><b>Preregistration notes (user to verify filed before Claude run):</b></p>
+<ul>
+  <li>SES binary contrast (low vs non-low) -- used in Test 5.</li>
+  <li>Exclusion of <code>trade_off_type</code> from the H2 regression
+      -- near-constant in pilot (~92% risk_vs_stability).</li>
+</ul>
+
+<h2>Test 1 -- H1a: mean abs_gap &gt; 0</h2>
+<p class='small'>1-sample t-test, H0: mean(abs_gap) = 0. Two-sided.</p>
+<table><tr><th>stratum</th><th>n</th><th>mean</th><th>sd</th>
+<th>t</th><th>p</th><th>Cohen's d</th><th>95% CI d</th></tr>
+<tr><th>pooled</th><td>1236</td><td>0.348</td><td>0.381</td><td>t(1235)=32.10</td><td><0.001</td><td>0.91 (large)</td><td>[0.85, 0.98]</td></tr>
+<tr><th>gpt</th><td>620</td><td>0.309</td><td>0.361</td><td>t(619)=21.29</td><td><0.001</td><td>0.85 (large)</td><td>[0.76, 0.95]</td></tr>
+<tr><th>llama</th><td>616</td><td>0.388</td><td>0.397</td><td>t(615)=24.24</td><td><0.001</td><td>0.98 (large)</td><td>[0.88, 1.07]</td></tr>
+</table>
+<p class='interp'>Pooled mean abs_gap is 0.348 (d=0.91, large). Interpretation under the interim test: LLM and human choice rates differ from one another by a non-trivial amount on average.</p>
+
+<h2>Test 2 -- H1b: entropy collapse on ambiguous stratum</h2>
+<p class='small'>Paired difference (human_entropy - llm_entropy) on
+posts with consensus_level = 'ambiguous'. One-sided, expecting positive
+(humans more uncertain than LLM).</p>
+<table><tr><th>stratum</th><th>n</th><th>mean diff</th>
+<th>t</th><th>p (two)</th><th>p (one)</th>
+<th>Cohen's d</th><th>95% CI d</th></tr>
+<tr><th>pooled</th><td>122</td><td>0.628</td><td>t(121)=48.66</td><td>two=<0.001</td><td>one=<0.001</td><td>4.41 (large)</td><td>[3.82, 4.99]</td></tr>
+<tr><th>gpt</th><td>62</td><td>0.598</td><td>t(61)=26.01</td><td>two=<0.001</td><td>one=<0.001</td><td>3.30 (large)</td><td>[2.67, 3.94]</td></tr>
+<tr><th>llama</th><td>60</td><td>0.660</td><td>t(59)=66.73</td><td>two=<0.001</td><td>one=<0.001</td><td>8.61 (large)</td><td>[7.05, 10.18]</td></tr>
+</table>
+<p class='interp'>On ambiguous posts (n=122 paired observations), the human choice distribution is more spread out than the LLM's by 0.628 nats on average (d=4.41, large). Interim support for H1b if one-sided p is small.</p>
+
+<h2>Tests 3/4/5 -- H2a, H2b, H2c: moderator regression</h2>
+<p class='small'>Mixed-effects linear regression on <code>abs_gap</code>
+with a random intercept grouped by <code>post_id</code>.
+Formula (SES as 3-level factor):<br>
+<code>abs_gap ~ C(reversibility, Treatment(reference=&#x27;reversible&#x27;)) + C(time_horizon, Treatment(reference=&#x27;short&#x27;)) + C(ses_level, Treatment(reference=&#x27;mid&#x27;)) + C(domain, Treatment(reference=&#x27;education&#x27;)) + C(model, Treatment(reference=&#x27;gpt&#x27;))</code></p>
+
+<h3>Full model (SES 3-level)</h3>
+<table class='reg'><tr><th>term</th><th>coef</th><th>SE</th><th>95% CI</th><th>p</th></tr><tr><td style='text-align:left'><code>Intercept</code></td><td>0.312</td><td>0.051</td><td>[0.212, 0.412]</td><td><0.001</td></tr>
+<tr><td style='text-align:left'><code>C(reversibility, Treatment(reference=&#x27;reversible&#x27;))[T.irreversible]</code></td><td>0.006</td><td>0.061</td><td>[-0.114, 0.126]</td><td>0.921</td></tr>
+<tr><td style='text-align:left'><code>C(reversibility, Treatment(reference=&#x27;reversible&#x27;))[T.partially_reversible]</code></td><td>0.055</td><td>0.033</td><td>[-0.010, 0.119]</td><td>0.099</td></tr>
+<tr><td style='text-align:left'><code>C(time_horizon, Treatment(reference=&#x27;short&#x27;))[T.long]</code></td><td>-0.081</td><td>0.034</td><td>[-0.147, -0.014]</td><td>0.018</td></tr>
+<tr><td style='text-align:left'><code>C(ses_level, Treatment(reference=&#x27;mid&#x27;))[T.high]</code></td><td>0.224</td><td>0.238</td><td>[-0.243, 0.692]</td><td>0.347</td></tr>
+<tr><td style='text-align:left'><code>C(ses_level, Treatment(reference=&#x27;mid&#x27;))[T.low]</code></td><td>0.005</td><td>0.042</td><td>[-0.078, 0.088]</td><td>0.914</td></tr>
+<tr><td style='text-align:left'><code>C(domain, Treatment(reference=&#x27;education&#x27;))[T.career]</code></td><td>0.060</td><td>0.045</td><td>[-0.029, 0.149]</td><td>0.186</td></tr>
+<tr><td style='text-align:left'><code>C(domain, Treatment(reference=&#x27;education&#x27;))[T.finance]</code></td><td>-0.018</td><td>0.043</td><td>[-0.102, 0.066]</td><td>0.671</td></tr>
+<tr><td style='text-align:left'><code>C(domain, Treatment(reference=&#x27;education&#x27;))[T.health]</code></td><td>-0.178</td><td>0.173</td><td>[-0.518, 0.162]</td><td>0.306</td></tr>
+<tr><td style='text-align:left'><code>C(domain, Treatment(reference=&#x27;education&#x27;))[T.social]</code></td><td>0.007</td><td>0.109</td><td>[-0.206, 0.221]</td><td>0.946</td></tr>
+<tr><td style='text-align:left'><code>C(model, Treatment(reference=&#x27;gpt&#x27;))[T.llama]</code></td><td>0.078</td><td>0.014</td><td>[0.051, 0.105]</td><td><0.001</td></tr>
+<tr><td style='text-align:left'><code>Group Var</code></td><td>1.420</td><td>0.155</td><td>[1.116, 1.724]</td><td><0.001</td></tr></table><p class='small'>Random-intercept variance (post_id): 0.083. Residual variance: 0.059. Approx. marginal R^2 (fixed-effect variance / total variance): 0.317. Converged: True. N = 1236.</p>
+
+<h3>Binary SES contrast (H2c preregistration update)</h3>
+<p class='small'>Same regression with <code>ses_level</code> collapsed
+to <code>ses_strain = 1[ses_level == 'low']</code>. The
+<code>ses_strain</code> coefficient is the contrast of interest.</p>
+<table class='reg'><tr><th>term</th><th>coef</th><th>SE</th><th>95% CI</th><th>p</th></tr><tr><td style='text-align:left'><code>Intercept</code></td><td>0.312</td><td>0.051</td><td>[0.212, 0.412]</td><td><0.001</td></tr>
+<tr><td style='text-align:left'><code>C(reversibility, Treatment(reference=&#x27;reversible&#x27;))[T.irreversible]</code></td><td>0.005</td><td>0.061</td><td>[-0.115, 0.126]</td><td>0.929</td></tr>
+<tr><td style='text-align:left'><code>C(reversibility, Treatment(reference=&#x27;reversible&#x27;))[T.partially_reversible]</code></td><td>0.054</td><td>0.033</td><td>[-0.011, 0.118]</td><td>0.106</td></tr>
+<tr><td style='text-align:left'><code>C(time_horizon, Treatment(reference=&#x27;short&#x27;))[T.long]</code></td><td>-0.079</td><td>0.034</td><td>[-0.146, -0.013]</td><td>0.020</td></tr>
+<tr><td style='text-align:left'><code>C(domain, Treatment(reference=&#x27;education&#x27;))[T.career]</code></td><td>0.060</td><td>0.045</td><td>[-0.029, 0.149]</td><td>0.183</td></tr>
+<tr><td style='text-align:left'><code>C(domain, Treatment(reference=&#x27;education&#x27;))[T.finance]</code></td><td>-0.017</td><td>0.043</td><td>[-0.101, 0.068]</td><td>0.700</td></tr>
+<tr><td style='text-align:left'><code>C(domain, Treatment(reference=&#x27;education&#x27;))[T.health]</code></td><td>-0.177</td><td>0.173</td><td>[-0.517, 0.163]</td><td>0.308</td></tr>
+<tr><td style='text-align:left'><code>C(domain, Treatment(reference=&#x27;education&#x27;))[T.social]</code></td><td>0.008</td><td>0.109</td><td>[-0.206, 0.221]</td><td>0.942</td></tr>
+<tr><td style='text-align:left'><code>C(model, Treatment(reference=&#x27;gpt&#x27;))[T.llama]</code></td><td>0.078</td><td>0.014</td><td>[0.051, 0.105]</td><td><0.001</td></tr>
+<tr><td style='text-align:left'><code>ses_strain</code></td><td>0.003</td><td>0.042</td><td>[-0.079, 0.086]</td><td>0.935</td></tr>
+<tr><td style='text-align:left'><code>Group Var</code></td><td>1.420</td><td>0.155</td><td>[1.116, 1.724]</td><td><0.001</td></tr></table><p class='small'>Random-intercept variance (post_id): 0.083. Residual variance: 0.059. Approx. marginal R^2 (fixed-effect variance / total variance): 0.317. Converged: True. N = 1236.</p>
+
+<h2>Test 6 -- H3: cross-model abs_gap difference</h2>
+<p class='small'>Paired t-test on abs_gap by post_id (gpt - llama).
+Becomes a 3-level within-post ANOVA when Claude is added.</p>
+
+<table><tr><th>n pairs</th><th>mean_gpt</th><th>mean_llama</th><th>mean diff</th><th>t</th><th>p</th><th>Cohen's d</th><th>95% CI d</th></tr><tr><td>616</td><td>0.309</td><td>0.388</td><td>-0.078</td><td>t(615)=-5.67</td><td><0.001</td><td>-0.23 (small)</td><td>[-0.31, -0.15]</td></tr></table>
+<p class='interp'>GPT abs_gap mean = 0.309, Llama abs_gap mean = 0.388 (paired difference -0.078, d=-0.23, small). A small effect size here suggests the two models diverge from humans in broadly similar magnitudes, leaving model as a moderate contributor to variance.</p>
+<h2>Test 7 -- cross-model agreement (descriptive, no test)</h2>
+<table><tr><th>n shared posts</th><th>both risky</th><th>both safe</th><th>agreement</th><th>Pearson r</th><th>r p-value</th></tr><tr><td>616</td><td>225</td><td>276</td><td>81.3%</td><td>0.671</td><td><0.001</td></tr></table>
+<p class='interp'>GPT and Llama agree on the majority direction for 81.3% of 616 shared posts, with Pearson r = 0.671. If agreement and correlation are already high, adding Claude will not change the qualitative picture, though it is still required for the preregistered confirmatory tests.</p>
+<h2>Test 8 -- stability: llm_entropy by consensus_level</h2>
+<p class='small'>One-way ANOVA per model. A well-calibrated model should show F significantly &gt; 1 with ambiguous &gt; high_safe / high_risky group means.</p>
+<table><tr><th>model</th><th>group sizes (safe/amb/risky)</th><th>mean safe</th><th>mean amb</th><th>mean risky</th><th>F</th><th>p</th><th>partial eta^2</th></tr>
+<tr><th>gpt</th><td>[367, 62, 191]</td><td>0.049</td><td>0.076</td><td>0.064</td><td>F(2,617)=1.02</td><td>0.363</td><td>0.003</td></tr>
+<tr><th>llama</th><td>[365, 60, 191]</td><td>0.038</td><td>0.014</td><td>0.021</td><td>F(2,613)=1.97</td><td>0.140</td><td>0.006</td></tr>
+</table>
+<p class='interp'>gpt: F(2,617)=1.02, p=0.363, eta^2=0.003. Means: high_safe=0.049, ambiguous=0.076, high_risky=0.064.<br>llama: F(2,613)=1.97, p=0.140, eta^2=0.006. Means: high_safe=0.038, ambiguous=0.014, high_risky=0.021.</p>
+
+<div class='disclaimer-strong' style='background: #ffd6d6; border: 2px solid #c00;
+     padding: 1em; border-radius: 6px; margin: 1em 0;'>
+<b>WARNING -- INTERIM EXPLORATORY ANALYSIS.</b><br>
+This report contains formal statistical tests run on partial data
+(2 of 3 preregistered models). These p-values are NOT confirmatory.
+The preregistered confirmatory analysis will be run on the full
+3-model dataset after data collection completes.<br>
+Do not cite these results as final.
+</div>
+<p><b>No multiple-comparison correction is applied to interim tests.</b>
+The preregistration commits to BH-FDR (q=0.05) on the seven primary
+hypotheses run on the full 3-model dataset.</p>
+
+</body></html>

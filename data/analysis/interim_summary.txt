@@ -1,0 +1,17 @@
+Interim descriptive summary (Llama + GPT only)
+================================================
+
+gpt: n_posts=620, n_qualified=620, mean_abs_gap=0.309, median_abs_gap=0.109, mean_entropy_gap=0.183
+llama: n_posts=616, n_qualified=616, mean_abs_gap=0.388, median_abs_gap=0.208, mean_entropy_gap=0.208
+
+Cross-model directional agreement (n=616): 81.3%
+
+Ambiguous-stratum mean entropy gap:
+  gpt: n=62, mean_entropy_gap=0.598
+  llama: n=60, mean_entropy_gap=0.660
+
+SES strain (binary):
+  gpt: low n=75 (median abs_gap=0.146), non-low n=545 (median abs_gap=0.105)
+  llama: low n=74 (median abs_gap=0.239), non-low n=542 (median abs_gap=0.205)
+
+Interim descriptive analysis. Confirmatory tests will be run after all three preregistered models are collected.

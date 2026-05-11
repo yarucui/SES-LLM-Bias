@@ -1,0 +1,96 @@
+{
+  "n_selected_posts": 132,
+  "selection_band": [
+    0.2,
+    0.8
+  ],
+  "domain_breakdown": {
+    "education": 12,
+    "career": 62,
+    "finance": 58
+  },
+  "n_calls_per_condition": {
+    "vs": 1584,
+    "dv": 1584,
+    "hight": 10560
+  },
+  "n_calls_total": 13728,
+  "successful_calls": 13437,
+  "parse_failures_by_condition": {
+    "vs": 11,
+    "dv": 7,
+    "hight": 269
+  },
+  "by_model": {
+    "claude": {
+      "vs_failures": 3,
+      "dv_failures": 3,
+      "hight_failures": 20,
+      "api_errors": 0,
+      "mean_latency_ms": 2392.8,
+      "n_calls": 3432,
+      "input_tokens": 1404323,
+      "output_tokens": 33169,
+      "cost_usd": 4.710504
+    },
+    "gpt": {
+      "vs_failures": 4,
+      "dv_failures": 1,
+      "hight_failures": 1,
+      "api_errors": 0,
+      "mean_latency_ms": 2675.8,
+      "n_calls": 3432,
+      "input_tokens": 1301421,
+      "output_tokens": 84273,
+      "cost_usd": 2.469506
+    },
+    "llama": {
+      "vs_failures": 0,
+      "dv_failures": 3,
+      "hight_failures": 245,
+      "api_errors": 0,
+      "mean_latency_ms": 1613.7,
+      "n_calls": 3432,
+      "input_tokens": 1459305,
+      "output_tokens": 29715,
+      "cost_usd": 0.479425
+    },
+    "mistral": {
+      "vs_failures": 4,
+      "dv_failures": 0,
+      "hight_failures": 3,
+      "api_errors": 4,
+      "mean_latency_ms": 1821.6,
+      "n_calls": 3432,
+      "input_tokens": 1391177,
+      "output_tokens": 26942,
+      "cost_usd": 2.944006
+    }
+  },
+  "cost_breakdown": {
+    "total_input_tokens": 5556226,
+    "total_output_tokens": 174099,
+    "total_cost_usd": 10.603441,
+    "by_condition": {
+      "dv": {
+        "n_calls": 1584,
+        "input_tokens": 708260,
+        "output_tokens": 43818,
+        "cost_usd": 1.542569
+      },
+      "hight": {
+        "n_calls": 10560,
+        "input_tokens": 4188266,
+        "output_tokens": 86234,
+        "cost_usd": 7.595865
+      },
+      "vs": {
+        "n_calls": 1584,
+        "input_tokens": 659700,
+        "output_tokens": 44047,
+        "cost_usd": 1.465007
+      }
+    }
+  },
+  "elapsed_seconds": 2964.0
+}

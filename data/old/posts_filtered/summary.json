@@ -1,0 +1,33 @@
+{
+  "education": {
+    "ApplyingToCollege": 240,
+    "college": 192,
+    "StudentLoans": 110,
+    "GradSchool": 42,
+    "TransferStudents": 12
+  },
+  "career": {
+    "findapath": 129,
+    "careerguidance": 364,
+    "cscareerquestions": 231,
+    "jobs": 186,
+    "careeradvice": 147
+  },
+  "finance": {
+    "personalfinance": 1270,
+    "investing": 345,
+    "FinancialPlanning": 208,
+    "povertyfinance": 197
+  },
+  "health": {
+    "AskDocs": 201,
+    "ChronicPain": 69,
+    "medical_advice": 43,
+    "HealthInsurance": 78
+  },
+  "social": {
+    "relationship_advice": 3325,
+    "Advice": 1236,
+    "LifeAdvice": 91
+  }
+}

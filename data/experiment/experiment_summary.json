@@ -1,0 +1,45 @@
+{
+  "total_posts": 620,
+  "total_models": 4,
+  "models": [
+    "claude",
+    "gpt",
+    "llama",
+    "mistral"
+  ],
+  "n_samples_per_cell": 10,
+  "total_api_calls": 24800,
+  "successful_calls": 24658,
+  "api_errors": 5,
+  "parse_failures": 137,
+  "failure_rate": 0.005725806451612903,
+  "by_model": {
+    "claude": {
+      "n_calls": 6200,
+      "api_errors": 0,
+      "parse_failures": 30,
+      "valid": 6170
+    },
+    "gpt": {
+      "n_calls": 6200,
+      "api_errors": 0,
+      "parse_failures": 0,
+      "valid": 6200
+    },
+    "llama": {
+      "n_calls": 6200,
+      "api_errors": 0,
+      "parse_failures": 102,
+      "valid": 6098
+    },
+    "mistral": {
+      "n_calls": 6200,
+      "api_errors": 5,
+      "parse_failures": 5,
+      "valid": 6190
+    }
+  },
+  "qualified_cells": 2472,
+  "unqualified_cells": 8,
+  "elapsed_seconds": 1984.0
+}

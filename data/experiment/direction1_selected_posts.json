@@ -1,0 +1,808 @@
+{
+  "created_at": "2026-05-09T12:25:09Z",
+  "pilot": false,
+  "selection_band": [
+    0.2,
+    0.8
+  ],
+  "n_selected_posts": 132,
+  "domain_breakdown": {
+    "education": 12,
+    "career": 62,
+    "finance": 58
+  },
+  "posts": [
+    {
+      "post_id": "1rqccjm",
+      "domain": "career",
+      "subreddit": "findapath",
+      "human_risky_ratio": 0.5
+    },
+    {
+      "post_id": "1rtzj98",
+      "domain": "education",
+      "subreddit": "StudentLoans",
+      "human_risky_ratio": 0.5
+    },
+    {
+      "post_id": "1s07ew7",
+      "domain": "career",
+      "subreddit": "careeradvice",
+      "human_risky_ratio": 0.5
+    },
+    {
+      "post_id": "1rjpl9i",
+      "domain": "career",
+      "subreddit": "jobs",
+      "human_risky_ratio": 0.50625
+    },
+    {
+      "post_id": "1rjng9t",
+      "domain": "finance",
+      "subreddit": "personalfinance",
+      "human_risky_ratio": 0.4897959183673469
+    },
+    {
+      "post_id": "1rvh2z4",
+      "domain": "finance",
+      "subreddit": "personalfinance",
+      "human_risky_ratio": 0.5172413793103449
+    },
+    {
+      "post_id": "1rtasfn",
+      "domain": "career",
+      "subreddit": "careerguidance",
+      "human_risky_ratio": 0.5172413793103449
+    },
+    {
+      "post_id": "1s0bnus",
+      "domain": "finance",
+      "subreddit": "investing",
+      "human_risky_ratio": 0.4782608695652174
+    },
+    {
+      "post_id": "1s1ugsy",
+      "domain": "career",
+      "subreddit": "careerguidance",
+      "human_risky_ratio": 0.4772727272727273
+    },
+    {
+      "post_id": "1ruf3i4",
+      "domain": "education",
+      "subreddit": "ApplyingToCollege",
+      "human_risky_ratio": 0.5260770975056689
+    },
+    {
+      "post_id": "1s5z3jr",
+      "domain": "career",
+      "subreddit": "careerguidance",
+      "human_risky_ratio": 0.5294117647058824
+    },
+    {
+      "post_id": "1ritgxn",
+      "domain": "education",
+      "subreddit": "ApplyingToCollege",
+      "human_risky_ratio": 0.5333333333333333
+    },
+    {
+      "post_id": "1roh5yv",
+      "domain": "finance",
+      "subreddit": "personalfinance",
+      "human_risky_ratio": 0.46153846153846156
+    },
+    {
+      "post_id": "1s7scmh",
+      "domain": "career",
+      "subreddit": "careerguidance",
+      "human_risky_ratio": 0.5472972972972973
+    },
+    {
+      "post_id": "1rkz521",
+      "domain": "finance",
+      "subreddit": "personalfinance",
+      "human_risky_ratio": 0.5483870967741935
+    },
+    {
+      "post_id": "1ropagl",
+      "domain": "finance",
+      "subreddit": "personalfinance",
+      "human_risky_ratio": 0.5483870967741935
+    },
+    {
+      "post_id": "1s3x5i1",
+      "domain": "career",
+      "subreddit": "careerguidance",
+      "human_risky_ratio": 0.5502958579881657
+    },
+    {
+      "post_id": "1ryue4n",
+      "domain": "finance",
+      "subreddit": "personalfinance",
+      "human_risky_ratio": 0.4444444444444444
+    },
+    {
+      "post_id": "1rl992w",
+      "domain": "career",
+      "subreddit": "jobs",
+      "human_risky_ratio": 0.44385026737967914
+    },
+    {
+      "post_id": "1s86ro6",
+      "domain": "education",
+      "subreddit": "ApplyingToCollege",
+      "human_risky_ratio": 0.56
+    },
+    {
+      "post_id": "1ruzwq4",
+      "domain": "career",
+      "subreddit": "careeradvice",
+      "human_risky_ratio": 0.56
+    },
+    {
+      "post_id": "1s2qvdu",
+      "domain": "finance",
+      "subreddit": "povertyfinance",
+      "human_risky_ratio": 0.5641025641025641
+    },
+    {
+      "post_id": "1rmfunv",
+      "domain": "career",
+      "subreddit": "jobs",
+      "human_risky_ratio": 0.4358974358974359
+    },
+    {
+      "post_id": "1ry00u1",
+      "domain": "career",
+      "subreddit": "careerguidance",
+      "human_risky_ratio": 0.5714285714285714
+    },
+    {
+      "post_id": "1s7rvhq",
+      "domain": "education",
+      "subreddit": "ApplyingToCollege",
+      "human_risky_ratio": 0.42592592592592593
+    },
+    {
+      "post_id": "1s7sz6a",
+      "domain": "finance",
+      "subreddit": "personalfinance",
+      "human_risky_ratio": 0.5862068965517241
+    },
+    {
+      "post_id": "1rjldz6",
+      "domain": "career",
+      "subreddit": "findapath",
+      "human_risky_ratio": 0.41353383458646614
+    },
+    {
+      "post_id": "1rlrm9w",
+      "domain": "career",
+      "subreddit": "careerguidance",
+      "human_risky_ratio": 0.4125
+    },
+    {
+      "post_id": "1s7q3ka",
+      "domain": "career",
+      "subreddit": "jobs",
+      "human_risky_ratio": 0.4098360655737705
+    },
+    {
+      "post_id": "1s7cask",
+      "domain": "finance",
+      "subreddit": "personalfinance",
+      "human_risky_ratio": 0.4087932647333957
+    },
+    {
+      "post_id": "1s83992",
+      "domain": "career",
+      "subreddit": "careeradvice",
+      "human_risky_ratio": 0.5972222222222222
+    },
+    {
+      "post_id": "1s8dzpp",
+      "domain": "education",
+      "subreddit": "TransferStudents",
+      "human_risky_ratio": 0.6
+    },
+    {
+      "post_id": "1rtbrbj",
+      "domain": "career",
+      "subreddit": "careerguidance",
+      "human_risky_ratio": 0.6
+    },
+    {
+      "post_id": "1s7qj0o",
+      "domain": "finance",
+      "subreddit": "personalfinance",
+      "human_risky_ratio": 0.6037735849056604
+    },
+    {
+      "post_id": "1rnwyzd",
+      "domain": "finance",
+      "subreddit": "personalfinance",
+      "human_risky_ratio": 0.39436619718309857
+    },
+    {
+      "post_id": "1rj2bw6",
+      "domain": "finance",
+      "subreddit": "personalfinance",
+      "human_risky_ratio": 0.3939393939393939
+    },
+    {
+      "post_id": "1rywfgh",
+      "domain": "career",
+      "subreddit": "careerguidance",
+      "human_risky_ratio": 0.3888888888888889
+    },
+    {
+      "post_id": "1rne8j8",
+      "domain": "career",
+      "subreddit": "careeradvice",
+      "human_risky_ratio": 0.6166666666666667
+    },
+    {
+      "post_id": "1ruf6hx",
+      "domain": "career",
+      "subreddit": "cscareerquestions",
+      "human_risky_ratio": 0.3819444444444444
+    },
+    {
+      "post_id": "1rij3fe",
+      "domain": "education",
+      "subreddit": "ApplyingToCollege",
+      "human_risky_ratio": 0.38095238095238093
+    },
+    {
+      "post_id": "1s0c7yc",
+      "domain": "finance",
+      "subreddit": "povertyfinance",
+      "human_risky_ratio": 0.6236559139784946
+    },
+    {
+      "post_id": "1rqyemv",
+      "domain": "finance",
+      "subreddit": "personalfinance",
+      "human_risky_ratio": 0.3741935483870968
+    },
+    {
+      "post_id": "1s4s354",
+      "domain": "finance",
+      "subreddit": "FinancialPlanning",
+      "human_risky_ratio": 0.3723404255319149
+    },
+    {
+      "post_id": "1s46rur",
+      "domain": "career",
+      "subreddit": "careerguidance",
+      "human_risky_ratio": 0.631578947368421
+    },
+    {
+      "post_id": "1rkpx8f",
+      "domain": "education",
+      "subreddit": "ApplyingToCollege",
+      "human_risky_ratio": 0.631578947368421
+    },
+    {
+      "post_id": "1s28efr",
+      "domain": "career",
+      "subreddit": "careerguidance",
+      "human_risky_ratio": 0.631578947368421
+    },
+    {
+      "post_id": "1rvhvrr",
+      "domain": "finance",
+      "subreddit": "investing",
+      "human_risky_ratio": 0.6341463414634146
+    },
+    {
+      "post_id": "1rnmypg",
+      "domain": "finance",
+      "subreddit": "personalfinance",
+      "human_risky_ratio": 0.3644859813084112
+    },
+    {
+      "post_id": "1s0mmty",
+      "domain": "career",
+      "subreddit": "careerguidance",
+      "human_risky_ratio": 0.3620689655172414
+    },
+    {
+      "post_id": "1s3atmj",
+      "domain": "finance",
+      "subreddit": "personalfinance",
+      "human_risky_ratio": 0.6379310344827587
+    },
+    {
+      "post_id": "1s052ra",
+      "domain": "career",
+      "subreddit": "jobs",
+      "human_risky_ratio": 0.36
+    },
+    {
+      "post_id": "1rrvl7u",
+      "domain": "finance",
+      "subreddit": "personalfinance",
+      "human_risky_ratio": 0.358974358974359
+    },
+    {
+      "post_id": "1s4j3px",
+      "domain": "finance",
+      "subreddit": "investing",
+      "human_risky_ratio": 0.6410256410256411
+    },
+    {
+      "post_id": "1rsdgpw",
+      "domain": "career",
+      "subreddit": "findapath",
+      "human_risky_ratio": 0.35714285714285715
+    },
+    {
+      "post_id": "1s1syv3",
+      "domain": "career",
+      "subreddit": "careerguidance",
+      "human_risky_ratio": 0.6428571428571429
+    },
+    {
+      "post_id": "1rm5d8x",
+      "domain": "career",
+      "subreddit": "findapath",
+      "human_risky_ratio": 0.3561643835616438
+    },
+    {
+      "post_id": "1ryk5rn",
+      "domain": "career",
+      "subreddit": "careerguidance",
+      "human_risky_ratio": 0.6439482961222092
+    },
+    {
+      "post_id": "1rjexy5",
+      "domain": "career",
+      "subreddit": "careeradvice",
+      "human_risky_ratio": 0.35294117647058826
+    },
+    {
+      "post_id": "1ry81qc",
+      "domain": "career",
+      "subreddit": "careerguidance",
+      "human_risky_ratio": 0.6477272727272727
+    },
+    {
+      "post_id": "1rjbghf",
+      "domain": "finance",
+      "subreddit": "personalfinance",
+      "human_risky_ratio": 0.65
+    },
+    {
+      "post_id": "1s4ixgm",
+      "domain": "finance",
+      "subreddit": "FinancialPlanning",
+      "human_risky_ratio": 0.34951456310679613
+    },
+    {
+      "post_id": "1roj2nl",
+      "domain": "finance",
+      "subreddit": "personalfinance",
+      "human_risky_ratio": 0.3492063492063492
+    },
+    {
+      "post_id": "1s4imxe",
+      "domain": "career",
+      "subreddit": "careerguidance",
+      "human_risky_ratio": 0.3464052287581699
+    },
+    {
+      "post_id": "1rjttmw",
+      "domain": "finance",
+      "subreddit": "investing",
+      "human_risky_ratio": 0.6538461538461539
+    },
+    {
+      "post_id": "1ro8zp0",
+      "domain": "career",
+      "subreddit": "careeradvice",
+      "human_risky_ratio": 0.34615384615384615
+    },
+    {
+      "post_id": "1s4pp0l",
+      "domain": "finance",
+      "subreddit": "investing",
+      "human_risky_ratio": 0.34615384615384615
+    },
+    {
+      "post_id": "1s4qd5d",
+      "domain": "career",
+      "subreddit": "careerguidance",
+      "human_risky_ratio": 0.6666666666666666
+    },
+    {
+      "post_id": "1rjmjnu",
+      "domain": "career",
+      "subreddit": "jobs",
+      "human_risky_ratio": 0.6666666666666666
+    },
+    {
+      "post_id": "1s0onex",
+      "domain": "education",
+      "subreddit": "ApplyingToCollege",
+      "human_risky_ratio": 0.6666666666666666
+    },
+    {
+      "post_id": "1rjrtqa",
+      "domain": "career",
+      "subreddit": "careerguidance",
+      "human_risky_ratio": 0.3333333333333333
+    },
+    {
+      "post_id": "1rxfkpd",
+      "domain": "finance",
+      "subreddit": "personalfinance",
+      "human_risky_ratio": 0.6695652173913044
+    },
+    {
+      "post_id": "1rvi32t",
+      "domain": "education",
+      "subreddit": "ApplyingToCollege",
+      "human_risky_ratio": 0.3235294117647059
+    },
+    {
+      "post_id": "1rzozms",
+      "domain": "finance",
+      "subreddit": "investing",
+      "human_risky_ratio": 0.3227848101265823
+    },
+    {
+      "post_id": "1rjcymy",
+      "domain": "career",
+      "subreddit": "careerguidance",
+      "human_risky_ratio": 0.6793478260869565
+    },
+    {
+      "post_id": "1rl16dz",
+      "domain": "career",
+      "subreddit": "jobs",
+      "human_risky_ratio": 0.6823204419889503
+    },
+    {
+      "post_id": "1robuzu",
+      "domain": "finance",
+      "subreddit": "personalfinance",
+      "human_risky_ratio": 0.3137254901960784
+    },
+    {
+      "post_id": "1rmcsrj",
+      "domain": "finance",
+      "subreddit": "personalfinance",
+      "human_risky_ratio": 0.3125
+    },
+    {
+      "post_id": "1ru04xb",
+      "domain": "finance",
+      "subreddit": "investing",
+      "human_risky_ratio": 0.6893939393939394
+    },
+    {
+      "post_id": "1s6g8my",
+      "domain": "finance",
+      "subreddit": "personalfinance",
+      "human_risky_ratio": 0.6923076923076923
+    },
+    {
+      "post_id": "1rrrxwr",
+      "domain": "finance",
+      "subreddit": "personalfinance",
+      "human_risky_ratio": 0.6949152542372882
+    },
+    {
+      "post_id": "1rxwnkr",
+      "domain": "career",
+      "subreddit": "jobs",
+      "human_risky_ratio": 0.30303030303030304
+    },
+    {
+      "post_id": "1rxi5a0",
+      "domain": "career",
+      "subreddit": "jobs",
+      "human_risky_ratio": 0.7045951859956237
+    },
+    {
+      "post_id": "1rt3apm",
+      "domain": "education",
+      "subreddit": "StudentLoans",
+      "human_risky_ratio": 0.2926829268292683
+    },
+    {
+      "post_id": "1s8wcv2",
+      "domain": "finance",
+      "subreddit": "personalfinance",
+      "human_risky_ratio": 0.2916666666666667
+    },
+    {
+      "post_id": "1s43cag",
+      "domain": "finance",
+      "subreddit": "personalfinance",
+      "human_risky_ratio": 0.7086092715231788
+    },
+    {
+      "post_id": "1rtzpqi",
+      "domain": "finance",
+      "subreddit": "personalfinance",
+      "human_risky_ratio": 0.289544235924933
+    },
+    {
+      "post_id": "1rpsbs1",
+      "domain": "finance",
+      "subreddit": "investing",
+      "human_risky_ratio": 0.2857142857142857
+    },
+    {
+      "post_id": "1rl4rlo",
+      "domain": "career",
+      "subreddit": "careeradvice",
+      "human_risky_ratio": 0.2857142857142857
+    },
+    {
+      "post_id": "1rxrics",
+      "domain": "finance",
+      "subreddit": "personalfinance",
+      "human_risky_ratio": 0.2826086956521739
+    },
+    {
+      "post_id": "1rokjmq",
+      "domain": "finance",
+      "subreddit": "personalfinance",
+      "human_risky_ratio": 0.27906976744186046
+    },
+    {
+      "post_id": "1s0zzmf",
+      "domain": "finance",
+      "subreddit": "investing",
+      "human_risky_ratio": 0.27692307692307694
+    },
+    {
+      "post_id": "1s2833s",
+      "domain": "career",
+      "subreddit": "careeradvice",
+      "human_risky_ratio": 0.7307692307692307
+    },
+    {
+      "post_id": "1s887e4",
+      "domain": "finance",
+      "subreddit": "personalfinance",
+      "human_risky_ratio": 0.2669902912621359
+    },
+    {
+      "post_id": "1rp0fn8",
+      "domain": "career",
+      "subreddit": "careeradvice",
+      "human_risky_ratio": 0.7337662337662337
+    },
+    {
+      "post_id": "1s7thi2",
+      "domain": "career",
+      "subreddit": "cscareerquestions",
+      "human_risky_ratio": 0.2647058823529412
+    },
+    {
+      "post_id": "1s8shlz",
+      "domain": "finance",
+      "subreddit": "personalfinance",
+      "human_risky_ratio": 0.2619047619047619
+    },
+    {
+      "post_id": "1rinrfd",
+      "domain": "finance",
+      "subreddit": "investing",
+      "human_risky_ratio": 0.7407407407407407
+    },
+    {
+      "post_id": "1s0qeem",
+      "domain": "finance",
+      "subreddit": "personalfinance",
+      "human_risky_ratio": 0.25806451612903225
+    },
+    {
+      "post_id": "1s8wcid",
+      "domain": "finance",
+      "subreddit": "personalfinance",
+      "human_risky_ratio": 0.2571428571428571
+    },
+    {
+      "post_id": "1s1fu2v",
+      "domain": "career",
+      "subreddit": "jobs",
+      "human_risky_ratio": 0.7446808510638298
+    },
+    {
+      "post_id": "1s6kp1y",
+      "domain": "finance",
+      "subreddit": "personalfinance",
+      "human_risky_ratio": 0.25
+    },
+    {
+      "post_id": "1ruekpn",
+      "domain": "career",
+      "subreddit": "careeradvice",
+      "human_risky_ratio": 0.25
+    },
+    {
+      "post_id": "1ryg2zo",
+      "domain": "career",
+      "subreddit": "careeradvice",
+      "human_risky_ratio": 0.75
+    },
+    {
+      "post_id": "1roryj3",
+      "domain": "career",
+      "subreddit": "careerguidance",
+      "human_risky_ratio": 0.25
+    },
+    {
+      "post_id": "1rin442",
+      "domain": "career",
+      "subreddit": "careeradvice",
+      "human_risky_ratio": 0.24731182795698925
+    },
+    {
+      "post_id": "1s393pe",
+      "domain": "finance",
+      "subreddit": "investing",
+      "human_risky_ratio": 0.7555555555555555
+    },
+    {
+      "post_id": "1s15keq",
+      "domain": "career",
+      "subreddit": "careerguidance",
+      "human_risky_ratio": 0.24375
+    },
+    {
+      "post_id": "1rqc4ha",
+      "domain": "career",
+      "subreddit": "careerguidance",
+      "human_risky_ratio": 0.24242424242424243
+    },
+    {
+      "post_id": "1ru4k7q",
+      "domain": "finance",
+      "subreddit": "personalfinance",
+      "human_risky_ratio": 0.7581699346405228
+    },
+    {
+      "post_id": "1s1rj4a",
+      "domain": "finance",
+      "subreddit": "personalfinance",
+      "human_risky_ratio": 0.2403846153846154
+    },
+    {
+      "post_id": "1rry4hg",
+      "domain": "finance",
+      "subreddit": "povertyfinance",
+      "human_risky_ratio": 0.76
+    },
+    {
+      "post_id": "1rl4tr2",
+      "domain": "career",
+      "subreddit": "jobs",
+      "human_risky_ratio": 0.7608695652173914
+    },
+    {
+      "post_id": "1rs7lz6",
+      "domain": "career",
+      "subreddit": "careerguidance",
+      "human_risky_ratio": 0.7613636363636364
+    },
+    {
+      "post_id": "1rhodb3",
+      "domain": "finance",
+      "subreddit": "investing",
+      "human_risky_ratio": 0.7613636363636364
+    },
+    {
+      "post_id": "1s1xoxt",
+      "domain": "career",
+      "subreddit": "careeradvice",
+      "human_risky_ratio": 0.7619047619047619
+    },
+    {
+      "post_id": "1s3wery",
+      "domain": "finance",
+      "subreddit": "personalfinance",
+      "human_risky_ratio": 0.23383084577114427
+    },
+    {
+      "post_id": "1s3my1p",
+      "domain": "education",
+      "subreddit": "StudentLoans",
+      "human_risky_ratio": 0.23076923076923078
+    },
+    {
+      "post_id": "1s6pt8k",
+      "domain": "career",
+      "subreddit": "careeradvice",
+      "human_risky_ratio": 0.7741935483870968
+    },
+    {
+      "post_id": "1rogzqs",
+      "domain": "finance",
+      "subreddit": "povertyfinance",
+      "human_risky_ratio": 0.22556390977443608
+    },
+    {
+      "post_id": "1s2t5ns",
+      "domain": "finance",
+      "subreddit": "investing",
+      "human_risky_ratio": 0.22424242424242424
+    },
+    {
+      "post_id": "1rltc6h",
+      "domain": "career",
+      "subreddit": "findapath",
+      "human_risky_ratio": 0.21428571428571427
+    },
+    {
+      "post_id": "1s397or",
+      "domain": "career",
+      "subreddit": "careeradvice",
+      "human_risky_ratio": 0.2132701421800948
+    },
+    {
+      "post_id": "1ry8sfu",
+      "domain": "finance",
+      "subreddit": "personalfinance",
+      "human_risky_ratio": 0.21138211382113822
+    },
+    {
+      "post_id": "1rr5dcw",
+      "domain": "career",
+      "subreddit": "careerguidance",
+      "human_risky_ratio": 0.7894736842105263
+    },
+    {
+      "post_id": "1roq8t3",
+      "domain": "career",
+      "subreddit": "cscareerquestions",
+      "human_risky_ratio": 0.20857699805068225
+    },
+    {
+      "post_id": "1rlshru",
+      "domain": "career",
+      "subreddit": "careerguidance",
+      "human_risky_ratio": 0.7916666666666666
+    },
+    {
+      "post_id": "1rpz0gi",
+      "domain": "career",
+      "subreddit": "jobs",
+      "human_risky_ratio": 0.7927063339731286
+    },
+    {
+      "post_id": "1ru4lfu",
+      "domain": "career",
+      "subreddit": "careeradvice",
+      "human_risky_ratio": 0.7928082191780822
+    },
+    {
+      "post_id": "1rtjp4e",
+      "domain": "career",
+      "subreddit": "cscareerquestions",
+      "human_risky_ratio": 0.2032520325203252
+    },
+    {
+      "post_id": "1s82xgu",
+      "domain": "finance",
+      "subreddit": "povertyfinance",
+      "human_risky_ratio": 0.7998790810157195
+    },
+    {
+      "post_id": "1s01ky5",
+      "domain": "finance",
+      "subreddit": "personalfinance",
+      "human_risky_ratio": 0.2
+    },
+    {
+      "post_id": "1rofmyu",
+      "domain": "finance",
+      "subreddit": "povertyfinance",
+      "human_risky_ratio": 0.2
+    }
+  ]
+}

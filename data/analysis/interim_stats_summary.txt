@@ -1,0 +1,66 @@
+WARNING -- INTERIM EXPLORATORY ANALYSIS
+Tests below run on partial data (2 of 3 preregistered models).
+These p-values are NOT confirmatory. The preregistered confirmatory
+analysis runs on the full 3-model dataset after data collection.
+No multiple-comparison correction is applied here; the preregistration
+reserves BH-FDR (q=0.05) for the seven primary hypotheses on the full dataset.
+
+========================================================================
+
+
+Test 1 -- H1a: mean abs_gap vs 0 (1-sample t-test)
+--------------------------------------------------
+  pooled: n=1236, mean=0.348, t(1235)=32.10, p=<0.001, d=0.91 (large), 95% CI d=[0.85, 0.98]
+  gpt: n=620, mean=0.309, t(619)=21.29, p=<0.001, d=0.85 (large), 95% CI d=[0.76, 0.95]
+  llama: n=616, mean=0.388, t(615)=24.24, p=<0.001, d=0.98 (large), 95% CI d=[0.88, 1.07]
+
+Test 2 -- H1b: entropy collapse on ambiguous (paired, one-sided)
+----------------------------------------------------------------
+  pooled: n=122, mean_diff=0.628, t(121)=48.66, p_one=<0.001, d=4.41 (large), 95% CI d=[3.82, 4.99]
+  gpt: n=62, mean_diff=0.598, t(61)=26.01, p_one=<0.001, d=3.30 (large), 95% CI d=[2.67, 3.94]
+  llama: n=60, mean_diff=0.660, t(59)=66.73, p_one=<0.001, d=8.61 (large), 95% CI d=[7.05, 10.18]
+
+Tests 3/4/5 -- H2 mixed-effects regression
+------------------------------------------
+  Formula: abs_gap ~ C(reversibility, Treatment(reference='reversible')) + C(time_horizon, Treatment(reference='short')) + C(ses_level, Treatment(reference='mid')) + C(domain, Treatment(reference='education')) + C(model, Treatment(reference='gpt'))
+  N (full model) = 1236, converged=True
+  Approx marginal R^2 (full) = 0.317
+  Var(post_id) = 0.083, Var(residual) = 0.059
+
+  Fixed-effect coefficients (full model):
+    Intercept: coef=0.312 (SE=0.051, 95% CI=[0.212,0.412], p=<0.001)
+    C(reversibility, Treatment(reference='reversible'))[T.irreversible]: coef=0.006 (SE=0.061, 95% CI=[-0.114,0.126], p=0.921)
+    C(reversibility, Treatment(reference='reversible'))[T.partially_reversible]: coef=0.055 (SE=0.033, 95% CI=[-0.010,0.119], p=0.099)
+    C(time_horizon, Treatment(reference='short'))[T.long]: coef=-0.081 (SE=0.034, 95% CI=[-0.147,-0.014], p=0.018)
+    C(ses_level, Treatment(reference='mid'))[T.high]: coef=0.224 (SE=0.238, 95% CI=[-0.243,0.692], p=0.347)
+    C(ses_level, Treatment(reference='mid'))[T.low]: coef=0.005 (SE=0.042, 95% CI=[-0.078,0.088], p=0.914)
+    C(domain, Treatment(reference='education'))[T.career]: coef=0.060 (SE=0.045, 95% CI=[-0.029,0.149], p=0.186)
+    C(domain, Treatment(reference='education'))[T.finance]: coef=-0.018 (SE=0.043, 95% CI=[-0.102,0.066], p=0.671)
+    C(domain, Treatment(reference='education'))[T.health]: coef=-0.178 (SE=0.173, 95% CI=[-0.518,0.162], p=0.306)
+    C(domain, Treatment(reference='education'))[T.social]: coef=0.007 (SE=0.109, 95% CI=[-0.206,0.221], p=0.946)
+    C(model, Treatment(reference='gpt'))[T.llama]: coef=0.078 (SE=0.014, 95% CI=[0.051,0.105], p=<0.001)
+    Group Var: coef=1.420 (SE=0.155, 95% CI=[1.116,1.724], p=<0.001)
+
+  Binary-SES variant (H2c preregistration update):
+    Intercept: coef=0.312 (SE=0.051, 95% CI=[0.212,0.412], p=<0.001)
+    ses_strain: coef=0.003 (SE=0.042, 95% CI=[-0.079,0.086], p=0.935)
+
+Test 6 -- H3: paired t-test on abs_gap (gpt vs llama)
+-----------------------------------------------------
+  n=616, mean_gpt=0.309, mean_llama=0.388, diff=-0.078, t(615)=-5.67, p=<0.001, d=-0.23 (small), 95% CI d=[-0.31, -0.15]
+
+Test 7 -- cross-model agreement (descriptive)
+---------------------------------------------
+  n=616, agreement=81.3%, Pearson r=0.671, p=<0.001
+
+Test 8 -- stability: llm_entropy by consensus_level (one-way ANOVA)
+-------------------------------------------------------------------
+  gpt: F(2,617)=1.02, p=0.363, partial_eta^2=0.003, means(safe/amb/risky)=(0.049/0.076/0.064)
+  llama: F(2,613)=1.97, p=0.140, partial_eta^2=0.006, means(safe/amb/risky)=(0.038/0.014/0.021)
+
+WARNING -- INTERIM EXPLORATORY ANALYSIS
+Tests below run on partial data (2 of 3 preregistered models).
+These p-values are NOT confirmatory. The preregistered confirmatory
+analysis runs on the full 3-model dataset after data collection.
+No multiple-comparison correction is applied here; the preregistration
+reserves BH-FDR (q=0.05) for the seven primary hypotheses on the full dataset.

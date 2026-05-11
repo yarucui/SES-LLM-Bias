@@ -1,0 +1,60 @@
+{
+  "n_posts": 620,
+  "n_models": 4,
+  "models": [
+    "gpt",
+    "claude",
+    "mistral",
+    "llama"
+  ],
+  "n_samples_per_cell": 10,
+  "new_api_calls": 49600,
+  "advisor_cells_reused": 2480,
+  "parse_failures_by_framing": {
+    "personal": 403,
+    "oracle": 36
+  },
+  "by_model": {
+    "claude": {
+      "n_calls": 12400,
+      "api_errors": 0,
+      "parse_failures": 35,
+      "input_tokens": 5141926,
+      "output_tokens": 62869,
+      "cost_usd": 16.368813
+    },
+    "gpt": {
+      "n_calls": 12400,
+      "api_errors": 0,
+      "parse_failures": 2,
+      "input_tokens": 4748740,
+      "output_tokens": 248020,
+      "cost_usd": 8.416125
+    },
+    "llama": {
+      "n_calls": 12400,
+      "api_errors": 0,
+      "parse_failures": 402,
+      "input_tokens": 5267177,
+      "output_tokens": 43891,
+      "cost_usd": 1.672766
+    },
+    "mistral": {
+      "n_calls": 12400,
+      "api_errors": 19,
+      "parse_failures": 0,
+      "input_tokens": 5087040,
+      "output_tokens": 37143,
+      "cost_usd": 10.396938
+    }
+  },
+  "cost_breakdown": {
+    "total_input_tokens": 20244883,
+    "total_output_tokens": 391923,
+    "total_cost_usd": 36.854642
+  },
+  "comparison_rows": 7440,
+  "qualified_cells": 7395,
+  "unqualified_cells": 45,
+  "elapsed_seconds": 10262.1
+}

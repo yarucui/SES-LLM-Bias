@@ -1,0 +1,35 @@
+{
+  "n_selected_posts": 5,
+  "selection_band": [
+    0.2,
+    0.8
+  ],
+  "domain_breakdown": {
+    "education": 0,
+    "career": 4,
+    "finance": 1
+  },
+  "n_calls_per_condition": {
+    "vs": 15,
+    "dv": 15,
+    "hight": 100
+  },
+  "n_calls_total": 130,
+  "successful_calls": 130,
+  "parse_failures_by_condition": {
+    "vs": 0,
+    "dv": 0,
+    "hight": 0
+  },
+  "by_model": {
+    "gpt": {
+      "vs_failures": 0,
+      "dv_failures": 0,
+      "hight_failures": 0,
+      "api_errors": 0,
+      "mean_latency_ms": 2108.0,
+      "n_calls": 130
+    }
+  },
+  "elapsed_seconds": 35.2
+}

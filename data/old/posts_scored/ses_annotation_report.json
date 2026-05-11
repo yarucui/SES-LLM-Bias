@@ -1,0 +1,43 @@
+{
+  "total_input": 874,
+  "valid_annotation": 778,
+  "invalid_annotation": 96,
+  "b2_count": 615,
+  "all_ses_count": 778,
+  "sensitivity_counts": {
+    "B2": 622,
+    "B0": 58,
+    "B1": 98
+  },
+  "cue_counts": {
+    "A1": 343,
+    "A0": 88,
+    "A2": 347
+  },
+  "b2_by_domain": {
+    "career": 235,
+    "finance": 193,
+    "education": 187
+  },
+  "all_by_domain": {
+    "career": 320,
+    "finance": 212,
+    "education": 246
+  },
+  "b2_by_consensus": {
+    "high_safe": 353,
+    "high_risky": 196,
+    "ambiguous": 66
+  },
+  "top_ses_channels": {
+    "financial": 563,
+    "education": 339,
+    "social_support": 254,
+    "occupation": 173,
+    "healthcare": 44,
+    "time": 23
+  },
+  "krippendorff_alpha_cue": null,
+  "krippendorff_alpha_sensitivity": null,
+  "human_validation_sample_size": 155
+}

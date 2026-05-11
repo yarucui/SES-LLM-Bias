@@ -1,0 +1,23 @@
+{
+  "total_posts_attempted": 2614,
+  "total_posts_ok": 874,
+  "by_consensus_level": {
+    "unknown": 96,
+    "high_safe": 448,
+    "ambiguous": 83,
+    "high_risky": 247
+  },
+  "by_ses_sensitivity": {
+    "unknown": 96,
+    "B2": 622,
+    "B0": 58,
+    "B1": 98
+  },
+  "by_domain": {
+    "education": 309,
+    "career": 353,
+    "finance": 212
+  },
+  "risky_ratio_mean": 0.3659376968529984,
+  "risky_ratio_std": 0.39445501121925913
+}

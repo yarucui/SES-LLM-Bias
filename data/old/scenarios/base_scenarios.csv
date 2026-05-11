@@ -1,0 +1,790 @@
+archetype_id,domain,trade_off_type,consensus_level,risky_ratio,risky_weight,safe_weight,total_weight,n_risky,n_safe,n_neutral,ses_sensitivity,ses_cue_intensity,generation_status,iteration,scenario_text
+CAR_01,career,risk_vs_stability,,,,,,,,,,,ok,0,"I am a 26-year-old professional working at a company. I strongly dislike several aspects of my current role, including the commute and the management style. I have the opportunity to leave my job immediately. However, I have not yet secured another position. The thought of starting over is daunting.
+
+Option A: Quit my job immediately. I would be free from the current job's negative aspects, but I would face uncertainty and the possibility of financial strain while searching for a new role.
+
+Option B: Remain at my current job while actively seeking other employment. I would maintain a steady income, but I would continue to experience the job's drawbacks for the foreseeable future.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+CAR_02,career,risk_vs_stability,ambiguous,0.48717948717948717,76,80,156,12,2,2,B2,A1,ok,0,"I am a 26-year-old professional working in a competitive field. I currently work in a role that has become increasingly unfulfilling. A new opportunity has presented itself, promising significantly better working conditions.
+
+Option A: Resign from my current position immediately to pursue the new opportunity. This would require an immediate lifestyle adjustment and a period of uncertainty.
+
+Option B: Remain in my current position for six months while I continue to explore my options, which offers stability but maintains my current dissatisfaction.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+CAR_03,career,risk_vs_stability,high_risky,0.8003369839932604,2850,711,3561,2,6,7,B2,A1,ok,0,"I am a 26-year-old professional working at a mid-sized organization. A recent project I completed was unexpectedly successful. Someone has offered me the chance to take credit for the work of a colleague, who has been unfairly criticized. Taking this credit would likely lead to a promotion and a salary increase. However, the situation also carries the risk of being exposed and facing severe consequences. Remaining silent means I stay in my current role.
+
+Option A: Take credit for the work and pursue the promotion, risking exposure and negative repercussions.
+
+Option B: Remain silent, accept the status quo, and avoid any potential career risks.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+CAR_04,career,risk_vs_stability,high_risky,0.8941605839416058,980,116,1096,12,4,1,B2,A1,ok,0,"I am a 26-year-old professional. I recently left a job and believe I was wrongly treated. I have two choices.
+
+Option A: Pursue legal action against the former employer. This could lead to a significant financial settlement and a feeling of vindication. However, it will require a significant time commitment, cost me $50 per hour of legal fees, and cause considerable stress.
+
+Option B: Accept a settlement offer from the former employer. This offers a modest financial payout and allows me to move forward without further conflict. I would receive $5,000 immediately, but I would waive my right to sue.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+CAR_05,career,short_term_vs_long_term,high_safe,0.014084507042253521,1,70,71,1,7,7,B2,A2,ok,0,"I am a 26-year-old professional who recently completed a degree. I must now decide between two employment options. Option A involves dedicating the next six months to intensive networking and skill-building, with the aim of securing a position in my preferred field. This approach could lead to a starting salary of $70,000.
+
+Option A: Dedicate six months to job searching and networking.
+
+Option B: Accept an entry-level position that pays $35,000 annually.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+CAR_06,career,risk_vs_stability,high_safe,0.07613469985358712,52,631,683,1,10,9,B2,A1,ok,0,"I am a 26-year-old professional working at a mid-sized organization. Recently, I've had limited access to work resources. I've sent several emails and made phone calls to my supervisor and HR, but I haven't received a clear answer about my employment status or when I'll regain access. I need to decide how to proceed. I have been in this role for nearly two years. The lack of communication is causing me considerable stress.
+
+Option A: Continue to wait for a response from the company regarding access to work resources and employment status. This could lead to a resolution, but also job loss.
+
+Option B: Take proactive steps to clarify my employment status or begin seeking alternative employment. This could secure my future, but also be unnecessary.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+CAR_07,career,risk_vs_stability,high_safe,0.11009174311926606,12,97,109,1,4,3,B2,A1,ok,0,"I am a 26-year-old professional seeking a new job. I have a significant gap in my employment history due to a medical condition. I'm preparing my application materials and am unsure how to proceed when asked about this time. I want to be truthful, but I also need to secure employment quickly.
+
+Option A: I could disclose the employment gap and the health issues, hoping for understanding. This might lead to a more honest relationship with a potential employer.
+
+Option B: I could omit the gap, hoping to avoid any negative perceptions. This might increase my chances of getting hired, but at the risk of dishonesty.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+CAR_08,career,prestige_vs_cost,high_safe,0.14990942028985507,331,1877,2208,9,7,2,B2,A2,ok,0,"I am a 26-year-old professional at a mid-sized firm. My team is invited to a week-long industry conference. The company will reimburse travel expenses, but I'd need to pay $300 upfront for the flight and $400 for the hotel. Attending could boost my profile within the company, but reimbursement can take a month. Staying home means no immediate costs, but I'd miss out on key networking opportunities.
+
+Option A: Attend the conference, paying the $700 upfront.
+
+Option B: Decline the conference and stay home.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+CAR_09,career,risk_vs_stability,high_safe,0.0,0,153,153,0,8,4,B2,A1,ok,0,"I am a 26-year-old professional looking for a new job. I recently received an offer from a company that seems like a good fit. The role offers a salary of $60,000 per year, which is within my expectations. However, the company's long-term remote work policy is unclear. The offer letter states that remote work is currently permitted, but that the policy is subject to change. I am concerned about a potential mandate to return to the office.
+
+Option A: Accept the job offer, hoping the remote work arrangement continues, which would allow me to avoid a commute and improve my work-life balance.
+
+Option B: Reject the job offer and continue my job search, prioritizing companies with clear, long-term remote work policies.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_01,career|finance,risk_vs_stability,,,,,,,,,,,ok,0,"I am a 26-year-old professional at a career crossroads. I've been offered two distinct paths. One involves staying in my current location and accepting a promotion within my existing company. The other involves relocating to a different country for a role with a new company. This role promises faster career progression.
+
+Option A: Relocate to a new country. The initial salary is $85,000, with potential for rapid advancement. It requires a two-year commitment.
+
+Option B: Remain in my current location, taking the promotion. The salary is $68,000 with a more predictable career trajectory.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_02,career|finance,risk_vs_stability,ambiguous,0.6186440677966102,219,135,354,9,5,2,B2,A2,ok,0,"I am a 26-year-old professional working in a technical field. I have a stable job that provides a comfortable living, but I'm looking for ways to grow my income. I enjoy a computer science-related hobby. I've been researching how to monetize it, which could lead to extra income in 6 months, but it would require 15 hours of work per week. Alternatively, I could continue to focus on my primary job and enjoy my free time.
+
+Option A: Dedicate 15 hours per week to the hobby with the goal of generating extra income.
+Option B: Maintain my current work-life balance and focus on my primary job.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_03,career|finance,risk_vs_stability | short_term_vs_long_term,high_safe,0.047619047619047616,4,80,84,2,8,4,B2,A2,ok,0,"I am a 26-year-old professional exploring different career paths. I've been creating online content in my spare time, and it's starting to gain traction. I'm at a crossroads: I could dedicate myself to content creation full-time or continue with my current job while developing content as a side project. Full-time would mean leaving my current role, which has a predictable salary and benefits.
+
+Option A: Quit my job and pursue content creation full-time. This path offers the potential for significantly higher earnings and creative freedom, but income would be unpredictable for at least 12 months.
+
+Option B: Keep my current job and continue creating content in my free time. This provides financial stability, but I'd have less time for content creation and a slower growth trajectory.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_04,career|finance,risk_vs_stability | short_term_vs_long_term,high_safe,0.1111111111111111,14,112,126,1,10,8,B2,A1,ok,0,"I am a 26-year-old professional at a crossroads. I have been offered two distinct paths. One involves a demanding new role with a small company, requiring me to relocate and work long hours. The position offers a starting salary of $85,000 and the potential for rapid promotion within three years, but success is not guaranteed.
+
+Alternatively, I could accept a similar position at a larger, more established firm. This would allow me to stay in my current city with a starting salary of $68,000. While the growth potential is more modest, the work-life balance is better, and the job security is higher.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_05,career|finance,risk_vs_stability,high_safe,0.19672131147540983,36,147,183,2,9,2,B2,A2,ok,0,"I am a 26-year-old professional. I recently discovered a significant error in my employment agreement. My current salary is 15% higher than the agreed-upon amount, and my title is more senior than my actual responsibilities. I have been in this role for six months and have not been challenged on this. The error could be due to a clerical mistake.
+
+Option A: Continue to accept the inflated salary and title. This could lead to further advantages. However, there's a risk of immediate job loss if the error is discovered.
+
+Option B: Report the discrepancy immediately. This might result in a salary reduction or a demotion. However, it aligns with ethical conduct and promotes long-term stability.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_06,career|finance|education,risk_vs_stability | short_term_vs_long_term | cost_vs_prestige,ambiguous,0.46153846153846156,24,28,52,10,5,1,B2,A2,ok,0,"I am a 26-year-old professional working in a field I find unfulfilling. A person close to me suggested I pursue a long-held passion. This would require a significant commitment, including a 12-month training program costing $18,000, with no guarantee of immediate employment. The alternative is to remain in my current role, which offers stability and a reliable income. I am unsure what to do.
+
+Option A: Enroll in the program. Accept the risk of debt and job uncertainty, hoping for a fulfilling career.
+
+Option B: Stay in my current role. Prioritize financial security and avoid the risks associated with the program.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_07,career|finance|health,risk_vs_stability | short_term_vs_long_term,,,,,,,,,,,ok,0,"I am a 26-year-old professional working in the tech industry. I have been offered a new opportunity in a different sector. The role comes with a starting salary of $60,000, and requires relocation. It offers no work-from-home options. My current job pays $85,000 annually and allows me to work remotely. However, I am experiencing mental fatigue and a lack of job satisfaction. The new role promises greater long-term career growth.
+
+Option A: Accept the new role, relocate, and accept a lower salary.
+Option B: Remain in my current role, maintaining financial stability and work flexibility.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_08,career|finance|health,risk_vs_stability,,,,,,,,,,,ok,0,"I am a 26-year-old professional exploring new job opportunities. I’ve received two offers. One is located further away and involves a 60-minute commute each way. The salary is $60,000 per year, but the role requires long hours. The other job is a 15-minute walk from where I live. The salary is $35,000 per year, but the work is less demanding.
+
+Option A: Accept the higher-paying job. This means a longer commute, less free time, and potential for burnout.
+
+Option B: Take the job closer to home. This provides more free time, less stress, but with a lower salary.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_09,career|finance|health,risk_vs_stability,high_risky,0.68,17,8,25,2,3,2,B2,A2,ok,0,"I am a 26-year-old professional at a crossroads. I have been offered two distinct paths. Option A involves a six-month intensive training program with a tuition cost of $7,500, promising a potentially lucrative career in a rapidly growing field. However, there's no guarantee of immediate employment afterward. Option B is a more secure position with a steady salary, requiring skills I already possess. It offers immediate employment with a starting salary of $48,000 per year.
+
+Option A: Pursue the training program.
+Option B: Accept the stable job offer.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_10,career|finance|health,risk_vs_stability | short_term_vs_long_term,high_risky,0.9736842105263158,74,2,76,13,2,4,B2,A2,ok,0,"I am a 26-year-old professional at a mid-sized company. I've been in my current role for three years, and while it's stable, I find the work unfulfilling. I have a long-term personal goal I've always wanted to pursue, but it would require me to leave my job. The goal would take approximately 18 months to complete. I estimate the cost of the project to be around $15,000. After that, I would re-enter the job market.
+
+Option A: Leave my current job immediately to pursue my goal.
+Option B: Remain in my current job for the next 18 months.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_11,career|finance|health|social,risk_vs_stability,,,,,,,,,,,ok,0,"I am a 26-year-old professional working in a competitive field. My current role offers a comfortable salary, but the work-life balance is poor, and there is limited opportunity for advancement. I am considering a career change.
+
+Option A involves pursuing advanced certifications, which would cost $8,000 and take two years, but could lead to a job with a $20,000 higher salary.
+
+Option B involves applying for similar roles at different companies. These roles offer more reasonable hours but only a $5,000 salary increase.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_12,career|finance|health|social,risk_vs_stability,,,,,,,,,,,ok,0,"I am a 26-year-old professional at a crossroads. I have been offered two distinct paths. One involves a demanding new opportunity, requiring significant initial investment of time and energy. It promises a potentially high reward in the future, with the possibility of rapid advancement and significant influence. The other option offers a more predictable, consistent path. It involves less risk, a steady pace, and a manageable workload. There is less chance of dramatic success, but also less chance of failure.
+
+Option A: Commit to the demanding opportunity for three years, with a potential salary increase of 60% if successful.
+
+Option B: Pursue the steady path with a guaranteed 10% annual salary increase, offering stability and less pressure.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_13,career|finance|health|social,risk_vs_stability,ambiguous,0.4246575342465753,62,84,146,8,3,4,B2,A2,ok,0,"I am a 26-year-old professional exploring career options. I recently completed a training program, but the job market is competitive. I have two potential paths forward. I am unsure which is best.
+
+Option A: Enroll in an advanced certification program. This would cost $8,000 and take one year. The potential salary after completion is $85,000.
+
+Option B: Accept an entry-level position. The salary is $42,000, and there is potential for internal promotion after two years.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_14,career|finance|health|social,risk_vs_stability,ambiguous,0.5454545454545454,6,5,11,2,2,8,B2,A2,ok,0,"I am a 26-year-old professional at a crossroads. I have been working in my current role for three years, and while it provides the basics, it feels stagnant. A person I know offered me a chance to join a new venture with high growth potential, but it involves a significant time commitment and a substantial initial investment of $8,000. Alternatively, I could apply for a similar, but more established, position with a well-known company that offers a lower starting salary but a comprehensive benefits package, including healthcare.
+
+Option A: Join the new venture, with the potential for high earnings within two years, but with no guarantee of success.
+
+Option B: Accept the stable position, securing regular income and benefits, though career growth may be slower.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_15,career|finance|health|social,risk_vs_stability | short_term_vs_long_term,high_risky,0.7796610169491526,46,13,59,5,6,5,B2,A2,ok,0,"I am a 28-year-old professional. I've been working in my field for several years, but I'm feeling restless and unfulfilled. I have a chance to pursue a new certification that could significantly boost my earning potential, but it requires a substantial time commitment. Alternatively, I could accept a promotion at my current company, which would offer more stability and a moderate salary increase. The certification costs $8,000 and takes two years. The promotion offers a salary increase of $12,000 per year.
+
+Option A: Pursue the certification, aiming for a higher salary and career change in two years.
+
+Option B: Accept the promotion, staying in my current field with a guaranteed salary increase.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_16,career|finance|social,risk_vs_stability,,,,,,,,,,,ok,0,"I am a 26-year-old professional considering a job offer. The position is in a new city, and I need to decide between two housing options. Option A is a stylish apartment downtown, costing $2,800 per month, plus utilities. It's close to work and social events. Option B is a smaller place located in a quieter suburb, costing $1,900 per month, all-inclusive. It's a longer commute.
+
+Option A offers a prime location and great amenities.
+Option B provides affordability and convenience.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_17,career|finance|social,risk_vs_stability | short_term_vs_long_term,high_risky,0.9811320754716981,52,1,53,11,1,1,B2,A1,ok,0,"I am a 26-year-old professional at a career crossroads. I've been offered two distinct opportunities. One involves a year-long project in a field I'm passionate about, with a starting salary of $45,000. It offers exposure to cutting-edge techniques, but the long-term career impact is uncertain. The other is a more traditional role with a well-established company, offering a salary of $60,000 and clear paths for advancement. This role also offers immediate professional recognition.
+
+Option A: Accept the year-long project.
+
+Option B: Accept the traditional role.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_18,career|finance|social,risk_vs_stability,high_safe,0.023255813953488372,2,84,86,4,5,6,B2,A2,ok,0,"I am a 26-year-old professional. My workplace regularly hosts after-work social events, which colleagues often attend. These events typically involve dinners or outings, costing around $50 each time. Attending is seen as a way to build relationships and network within the company. However, I also value my free time and personal space.
+
+Option A: Attend the next work social event. This will cost $50 and take up an evening, but may lead to valuable career connections.
+
+Option B: Decline the invitation to the work social event. This saves $50 and avoids the evening commitment, but may mean missing out on networking.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_19,career|health,risk_vs_stability,,,,,,,,,,,ok,0,"I am a 26-year-old professional working in a demanding industry. For the past three years, I've been in a role that requires extensive travel and long hours. The position offers a substantial annual salary, but the pressure is immense, and I often feel overwhelmed. I've started to experience health problems and struggle to maintain a healthy work-life balance. I am at a crossroads.
+
+Option A: Stay in my current role. I would receive a significant salary increase, but the stress and travel would likely continue, with potential for further advancement.
+
+Option B: Look for a less demanding position. I would prioritize my health and well-being, but with a potentially lower salary and possible career stagnation.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_20,career|social,risk_vs_stability | short_term_vs_long_term,high_safe,0.10909090909090909,6,49,55,3,5,3,B2,A1,ok,0,"I am a 26-year-old professional at a career crossroads. A new startup has offered me a co-founder/CTO position. The role requires a minimum three-year commitment, with the potential for considerable financial reward if the company succeeds. However, I know the startup environment is demanding, and success is far from guaranteed. I also value my current work-life balance and other personal ambitions.
+
+Option A: Accept the co-founder/CTO offer. This means dedicating significant time and energy to the startup, with the potential for substantial career advancement and financial gains.
+
+Option B: Decline the offer, allowing me to focus on my personal life and other goals, while maintaining my current work-life balance.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+EDU_01,education,risk_vs_stability,high_risky,0.8539325842696629,76,13,89,10,3,6,B2,A2,ok,0,"I am a 26-year-old professional currently enrolled in a demanding academic program. Recently, I have struggled with several core courses, and my grades have suffered. I am at a crossroads, needing to make a critical decision about my future. The pressure is mounting, and I must choose a path forward.
+
+Option A: I can retake the difficult courses next semester, committing to extra study and seeking additional academic support. This could lead to degree completion and better job prospects. However, it also means facing more stress and potential failure.
+
+Option B: I can withdraw from the program for a year, focusing on my well-being and possibly working. This would give me time to reassess my goals and reduce my current stress. However, it will delay my degree and possibly impact my long-term career.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+EDU_02,education,risk_vs_stability,high_risky,0.9970887918486172,685,2,687,9,1,3,B2,A1,ok,0,"I am a person preparing for a significant career transition. I've been offered two distinct paths. One involves immediately starting a new training program that lasts 18 months, with a potential starting salary of $85,000. Alternatively, I could accept a shorter-term, six-month role that pays $60,000, with the possibility of extending it based on performance. The longer program promises more specialization, but the shorter role offers immediate income.
+
+Option A: Pursue the 18-month training program.
+
+Option B: Accept the six-month role.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+EDU_03,education,risk_vs_stability,high_safe,0.04088785046728972,35,821,856,1,12,2,B2,A2,ok,0,"I am a person who recently received a notice that a university has rescinded my admission offer. The university cited a decline in my academic performance during my final term. I have the option to appeal the decision, providing additional context and evidence to support my case. This process will take about 4 weeks.
+
+Option A: Appeal the university's decision. If successful, I can attend the university. If unsuccessful, I will have to find other options.
+
+Option B: Accept the rescinded admission and begin researching alternative educational paths. This will involve exploring other schools and programs.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+EDU_04,education,risk_vs_stability,high_safe,0.07920792079207921,8,93,101,1,8,10,B2,A1,ok,0,"I am a 26-year-old professional in a demanding training program. I've dedicated the last three years to this pursuit, and the final year looms. Lately, I've felt overwhelmed. I'm struggling to maintain my physical and mental health. The program requires intense focus and a significant time commitment. I feel drained, and I'm questioning if I can continue.
+
+Option A: I could withdraw from the program immediately. This would end the pressure, but I'd lose the investment of time and effort.
+
+Option B: I could persevere and complete the program. This would secure future opportunities, but I'd face another year of intense demands.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+EDU_05,education,prestige_vs_cost,high_safe,0.0,0,404,404,0,14,4,B2,A2,ok,0,"I am a person preparing to pursue further education. I have a strong academic record and have been accepted into several programs. I'm torn between two paths. One involves enrolling in a program abroad. It has a tuition cost of $40,000 per year, and requires moving to a new country. The other option is a program in a different region, at a cost of $15,000 per year.
+
+Option A: Enroll in the program abroad, with a high potential for career advancement. This includes relocating and a large financial commitment.
+
+Option B: Enroll in the program closer to home, with greater financial stability and less disruption to my current life.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+EDU_06,education,prestige_vs_cost,high_safe,0.0,0,328,328,0,11,8,B2,A1,ok,0,"I am a person preparing for advanced academic study. I have been accepted to multiple programs, and now I must decide which one to attend. Option A is a program at a well-regarded institution, but the location is far from my current support network. Option B is a program at a less prestigious institution, but it is located closer to home. The tuition for both programs is identical: $35,000 per year. The programs are similar in length, lasting two years.
+
+Option A: Attend the prestigious program.
+
+Option B: Attend the less prestigious program.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+EDU_07,education,risk_vs_stability,high_safe,0.0,0,103,103,0,8,8,B2,A2,ok,0,"I am a person preparing for the next phase of my education. I have identified a specific institution that aligns well with my academic interests. An early decision application deadline is approaching, offering the chance to receive an admission decision sooner. However, if accepted, I would be committed to attending.
+
+Option A: Apply through the early decision program. If accepted, I am committed to attend.
+
+Option B: Explore other educational institutions and consider all available options.
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_21,education|career,risk_vs_stability,,,,,,,,,,,ok,0,"I am a 26-year-old person considering my next steps in education. I completed a high school equivalency program and now want to pursue further studies. I'm choosing between two paths. I am prepared to dedicate the next few years to this decision.
+
+Option A: Apply directly to a four-year university. It's a gamble, but a degree could open doors to careers I want. This means immediate immersion in a new academic environment.
+
+Option B: Enroll in a two-year college program. This offers a more structured transition and a chance to build skills before transferring to a four-year university. It will take longer to reach my goals.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_22,education|career,prestige_vs_cost,ambiguous,0.41935483870967744,26,36,62,4,8,7,B2,A2,ok,0,"I am a 26-year-old professional exploring options for a career change by pursuing a computer science degree. I have been accepted to two universities. One is a highly-regarded program located in another state, known for its strong industry connections. The other is a well-regarded program in my current state, with a solid reputation. The out-of-state school will require relocation and a significantly higher tuition cost, totaling $35,000 per year. The in-state school's tuition is $18,000 annually.
+
+Option A: Attend the out-of-state university. The program is ranked in the top 10 nationally, promising a wider network and potentially faster career advancement.
+
+Option B: Attend the in-state university. I can stay near my current support system and reduce costs, but the program is less widely known.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_23,education|career,prestige_vs_cost,high_risky,0.7102803738317757,76,31,107,7,3,1,B2,A1,ok,0,"I am a person preparing for college applications. I am currently volunteering at a local community center, a commitment that takes up 6 hours per week. I am considering whether to continue this activity or to pursue alternative activities. I have been volunteering for 12 months, and I am starting to feel that my time could be better spent.
+
+Option A: Discontinue current volunteer activity and pursue alternative activities. This may lead to more fulfilling experiences and better support my college goals, but risks a gap in my application and a loss of my current experience.
+
+Option B: Continue current volunteer activity. This ensures steady hours for my application, but I fear it may not be the best use of my time and will limit my clinical experience.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_24,education|career,risk_vs_stability,high_risky,0.9659090909090909,170,6,176,9,2,7,B2,A1,ok,0,"I am a person considering my next steps after completing a certification program. I have two paths in front of me. Option A involves applying to several highly competitive programs. This path offers the chance to gain advanced credentials and potentially open doors to more lucrative opportunities. However, the application process is rigorous, and there is a significant chance of rejection.
+
+Option B involves pursuing a more accessible certification program which provides a guaranteed, stable career path. This program offers a faster route to employment with a solid starting salary. The long-term career prospects, however, may be limited compared to Option A.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_25,education|career,short_term_vs_long_term,high_risky,0.9695121951219512,159,5,164,8,3,5,B2,A1,ok,0,"I am a 26-year-old professional at a crossroads in my career. I'm considering applying to a post-baccalaureate program. The program costs $12,000 and requires a full-time commitment for two years. Success could significantly enhance my future career prospects, potentially leading to a higher-level role. However, there's no guarantee the program will deliver the promised benefits.
+
+Option A: Enroll in the post-baccalaureate program, investing time and money for potential career advancement.
+Option B: Decline the program, continuing my current job and avoiding the financial and time commitments.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_26,education|career,risk_vs_stability,high_risky,1.0,114,0,114,9,0,3,B2,A1,ok,0,"I am a 26-year-old professional at a career crossroads. I have been accepted into a Master's program in a field I am passionate about, located in a country far away. This program is highly regarded, but it requires a two-year commitment and significant relocation costs. Staying in my current role offers job security and a steady income, but limits my potential for advanced learning. The Master's program costs $30,000 in tuition.
+
+Option A: Enroll in the Master's program.
+
+Option B: Decline the program and remain in my current role.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_27,education|career,risk_vs_stability,high_risky,1.0,96,0,96,14,0,1,B2,A2,ok,0,"I am a 26-year-old professional looking to change careers. I have recently completed a professional certification program, but my grades were somewhat disappointing. I am eager to begin working in the new field. I have been offered a choice between two paths to achieve my goal.
+
+Option A: Focus on job applications, downplaying academic performance, and emphasizing skills.
+
+Option B: Focus on job applications, downplaying academic performance, and emphasizing skills.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_28,education|career,risk_vs_stability | short_term_vs_long_term,high_risky,1.0,101,0,101,5,0,2,B2,A1,ok,0,"I am a person in their late 20s, working on a professional certification. I recently completed a challenging module and received a grade that feels significantly lower than I expected, given the effort I put in. The grade could impact my overall standing in the program, which is important for my future career goals. I have the option to formally dispute the grade.
+
+Option A: I can challenge the grade, which could lead to a higher score. However, this may strain my relationship with the instructor and potentially result in a lower grade.
+
+Option B: I can accept the grade as is, avoiding conflict. This preserves my relationship with the instructor but may negatively affect my certification application.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_29,education|career,risk_vs_stability,high_risky,1.0,71,0,71,6,0,4,B2,A1,ok,0,"I am a 26-year-old professional studying full-time. I am considering a change in my academic program. The new program would take an additional 18 months, requiring me to rearrange my schedule and potentially take on a heavier workload. It offers the possibility of greater personal fulfillment and potentially a higher salary upon graduation. However, there is no guarantee of success.
+
+Option A: Switch programs, accepting the risk of a longer path and potential disappointment, but with the possibility of greater reward.
+
+Option B: Remain in my current program, accepting the current trajectory and avoiding the risks of change, but potentially missing out on a better opportunity.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_30,education|career,risk_vs_stability,high_safe,0.0,0,82,82,0,6,8,B2,A1,ok,0,"I am a person in my mid-twenties evaluating my career path. I have been working in my current role for three years and have gained valuable experience. I am at a crossroads and need to decide how to best invest my time and energy to maximize my future opportunities. I am considering two distinct paths.
+
+Option A: Dedicate the next six months to intensive self-directed learning and building a portfolio of independent projects. This would involve a significant time commitment, but could lead to rapid skill development.
+
+Option B: Apply to transfer to a more selective institution. This process would also take six months, requiring me to prepare applications and essays. Success would offer access to a wider network.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_31,education|career,risk_vs_stability,high_safe,0.0,0,309,309,0,10,3,B2,A1,ok,0,"I am a 26-year-old professional working on a significant project. I've completed a draft that I believe is ready for external review. However, my advisors have not yet given formal approval to submit it. I am at a crossroads, needing to make a critical decision.
+
+Option A: Submit the draft to a relevant journal immediately. This could lead to swift feedback and potential publication within six months. However, the manuscript might be rejected, and my advisors might be displeased.
+
+Option B: Wait for my advisors to review and approve the draft. This will likely push back the submission date by at least three months. But I'll have the benefit of their feedback and maintain their support.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_32,education|career,short_term_vs_long_term | risk_vs_stability,high_safe,0.0,0,113,113,0,8,0,B2,A1,ok,0,"I am a 26-year-old professional considering my future education. I have been accepted into a program abroad that aligns perfectly with my long-term career goals. However, accepting the offer would mean abandoning my current degree, which is 75% complete.
+
+Option A: Enroll in the new program. This would take four more years, but it could lead to a more valuable degree and open up exciting career opportunities.
+
+Option B: Finish my current degree in one year, then explore opportunities to study or work abroad. This would shorten my time to graduation, but it might limit my options.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_33,education|career|finance,risk_vs_stability,,,,,,,,,,,ok,0,"I am a 26-year-old professional with a bachelor's degree. I'm at a crossroads in my career. I could pursue a Master's degree, which would take two years and cost $35,000 in tuition. This degree could potentially open doors to a highly specialized field with a starting salary of $95,000. However, there's no guarantee of a job afterward. Alternatively, I could accept a full-time position currently offered to me, earning $60,000 per year.
+
+Option A: Enroll in the Master's program, investing time and money for a potentially higher-paying, specialized career.
+
+Option B: Accept the job offer, gaining immediate income and career stability, but potentially limiting future opportunities.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_34,education|career|finance,one of: risk_vs_stability,,,,,,,,,,,ok,0,"I am a 26-year-old professional looking to advance my career. I've been researching graduate programs for the past few months. I've narrowed down my choices, and now I'm facing a tough decision. One program is a newer, fully online option, but the curriculum looks interesting, and it offers tuition benefits. The other is a more established university with a strong reputation.
+
+Option A: Enroll in the online program. It could lead to rapid career advancement, but there’s a risk of the degree not being valued by future employers. The program takes two years to complete.
+
+Option B: Apply to the established university. This option offers a more recognized degree, but the program is more rigorous and could take three years.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_35,education|career|finance,risk_vs_stability,,,,,,,,,,,ok,0,"I am a 26-year-old professional considering further education. I currently work in a field that I find stable, but not particularly fulfilling. I'm debating between two degree programs. One program is directly related to my current career, while the other is in a field I've always found fascinating, but that has uncertain career prospects. I'm willing to dedicate the next two years to my studies.
+
+Option A: Enroll in the program in the unrelated field. This would cost approximately $30,000 in tuition and fees.
+
+Option B: Enroll in the program related to my existing career. This would cost $25,000.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_36,education|career|finance,risk_vs_stability | short_term_vs_long_term,ambiguous,0.3835616438356164,28,45,73,4,3,10,B2,A1,ok,0,"I am a 26-year-old professional at a crossroads in my career. I've been working in my current field for three years and am considering my next steps. Two distinct paths have emerged. One involves a high degree of uncertainty, while the other offers greater stability. The choice feels significant.
+
+Option A: Pursue advanced training. This requires a two-year commitment and a tuition cost of $4,000 per year. It promises to greatly enhance my earning potential.
+
+Option B: Remain in my current role. This offers immediate stability and a steady income. My salary would increase by $3,000 annually.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_37,education|career|finance,risk_vs_stability,ambiguous,0.39880952380952384,134,202,336,1,8,3,B2,A2,ok,0,"I am a 26-year-old professional. I recently completed a significant project at work, and my supervisor informed me that I would receive a bonus. However, the bonus amount is less than I anticipated, based on my understanding of the project's scope and my contributions. I value my relationship with my supervisor and the team. I also need to pay my monthly bills.
+
+Option A: Accept the bonus as offered. This avoids any conflict and maintains a positive working relationship, but it leaves me with less money than expected.
+
+Option B: Politely inquire about the discrepancy in the bonus. This could potentially result in a larger bonus, but it might be perceived negatively by my supervisor.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_38,education|career|finance,risk_vs_stability | short_term_vs_long_term,ambiguous,0.6,9,6,15,3,1,0,B2,A2,ok,0,"I am a 26-year-old professional exploring my educational options. I'm currently enrolled in a demanding degree program. I am finding it difficult to manage the coursework, and a major project is due in three months. The program requires a tuition payment of $4,000 per semester. I also need to pay for essential living expenses. I am unsure how I will pay for the next semester.
+
+Option A: Continue in the program. This allows me to finish the degree in two years, but I will need to take out a loan that will total $16,000.
+
+Option B: Withdraw from the program. I can find a job that pays $50,000 per year, but I will not have a degree.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_39,education|career|finance,prestige_vs_cost,ambiguous,0.6363636363636364,7,4,11,1,2,4,B2,A2,ok,0,"I am a 26-year-old professional considering further education. I've been accepted to two programs. One is at a university known for its strong reputation, but the program costs $45,000 per year, not including living expenses. The other program is at a less renowned institution, but is located nearby and the tuition is $15,000 per year. Both programs would take two years to complete. I am unsure which path to take.
+
+Option A: Attend the prestigious university, taking on substantial debt. The program is known to open doors to many career opportunities.
+
+Option B: Attend the local institution. I can avoid significant debt and remain close to support networks.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_40,education|career|finance,prestige_vs_cost | risk_vs_stability,high_risky,0.8461538461538461,55,10,65,2,1,1,B2,A1,ok,0,"I am a 26-year-old professional considering further education. I've been accepted to two programs. Program X is at a highly-regarded institution and claims strong career placement rates. However, the program costs $65,000 and is in a location that requires significant relocation. Program Y is at a well-regarded institution, costs $20,000, and is located near my current residence.
+
+Option A: Attend Program X. Take on the higher cost and relocate for the perceived career benefits.
+
+Option B: Attend Program Y. Stay local and minimize costs, prioritizing quality of life.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_41,education|career|finance,prestige_vs_cost | risk_vs_stability,high_risky,1.0,51,0,51,1,0,16,B2,A2,ok,0,"I am a 26-year-old professional considering my next career move. I have been accepted into two different training programs. Program A is a highly regarded, intensive course that promises excellent job placement and a salary of $90,000 within two years. However, it requires a $30,000 upfront tuition payment and a further $5,000 for materials. Program B is a less competitive but still reputable program that costs $10,000 total and offers a salary of $70,000 within three years.
+
+Option A: Enroll in the highly regarded, intensive program.
+
+Option B: Enroll in the less competitive but still reputable program.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_42,education|career|finance,risk_vs_stability | short_term_vs_long_term,high_safe,0.022641509433962263,6,259,265,1,9,4,B2,A1,ok,0,"I am a 26-year-old professional exploring further education. I have been accepted to two different programs, each with its own advantages. One is a fast-track undergraduate program that would allow me to begin a graduate program in three years, rather than the usual four. The other is a standard undergraduate program with the potential to transfer to a more prestigious institution after two years.
+
+Option A: Start the accelerated program now. This offers a quicker route to a graduate degree, but with significantly more coursework.
+
+Option B: Enroll in the standard undergraduate program. This option provides a more gradual pace, but extends the overall time commitment.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_43,education|career|finance,risk_vs_stability,high_safe,0.06822429906542056,73,997,1070,5,15,0,B2,A1,ok,0,"I am a 26-year-old professional exploring options for further education. I am considering enrolling in a program that requires me to take several courses. I have not yet declared a major, and am unsure of my long-term career goals. I have limited access to academic advising. The program costs $400 per credit hour. I need to complete the program within 3 years to avoid additional fees.
+
+Option A: Register for classes without a declared major, exploring different courses, and potentially switching majors later.
+
+Option B: Take general education courses to fulfill requirements regardless of major and delaying major declaration.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_44,education|career|finance,risk_vs_stability,high_safe,0.1038961038961039,8,69,77,3,8,1,B2,A1,ok,0,"I am a 26-year-old professional working in a competitive field. I've been considering my long-term career goals and evaluating options for the next few years. There is an advanced training program that could significantly enhance my skills, but it requires a substantial commitment. The application deadline is approaching, and I need to decide soon.
+
+Option A: Enroll in the program. It costs $30,000 and requires two years of full-time study. This could lead to a higher salary and faster career progression.
+
+Option B: Continue in my current role. I would save the $30,000 and maintain my current income. I could also explore alternative professional development opportunities.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_45,education|career|finance,short_term_vs_long_term | risk_vs_stability,high_safe,0.14893617021276595,21,120,141,3,8,5,B2,A2,ok,0,"I am a 26-year-old professional currently seeking employment. I have been unemployed for six months. I have two viable paths forward. One involves a significant investment in my future, while the other offers immediate stability. I am unsure which is best.
+
+Option A: Enroll in a 12-month professional certification program costing $8,000. This could significantly improve my long-term career prospects.
+Option B: Continue applying for jobs in my current field. This avoids immediate costs and offers the possibility of immediate income.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_46,education|career|finance,risk_vs_stability | prestige_vs_cost,high_safe,0.0,0,194,194,0,6,1,B2,A2,ok,0,"I am a 26-year-old professional exploring further education. I've been accepted to two different programs. The first is a highly specialized, one-year certificate program at a new institute. It focuses on emerging technologies, which could significantly boost my career. The second is a more established, two-year degree at a different institution. It's known for its strong campus life and offers a broader curriculum. Tuition costs are $18,000 for the certificate and $25,000 for the degree.
+
+Option A: Enroll in the certificate program. This offers faster career advancement but requires moving to a new city and a less traditional learning environment.
+
+Option B: Enroll in the degree program. This provides a more stable experience and a well-regarded education but may delay career progression.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_47,education|career|finance|health,risk_vs_stability | short_term_vs_long_term,high_safe,0.014705882352941176,4,268,272,2,13,5,B2,A2,ok,0,"I am a 26-year-old professional studying for a certification. I am currently working part-time to cover my living expenses. I have been offered two different work schedules at my current job. The first option would involve working four days a week, with a slightly higher hourly rate. The second option allows me to continue working three days a week, but at a slightly lower rate.
+
+Option A: Work four days a week, earning $23 per hour. This schedule might leave me feeling overwhelmed and with less time to study.
+
+Option B: Work three days a week, earning $20 per hour. This schedule allows more time to study but with less income.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_48,education|career|finance|health|social,risk_vs_stability,,,,,,,,,,,ok,0,"I am a 26-year-old professional studying for a professional certification. I currently work a part-time job that offers flexible hours but pays $18 an hour. The certification requires significant study time, and the upcoming exam has a $300 registration fee. I am considering my options for the next six months.
+
+Option A: Continue working at the current job while studying intensely for the certification. This allows me to maintain financial independence but risks burnout.
+
+Option B: Reduce my work hours significantly or seek a different part-time job with more stable hours. This would allow more study time but reduce my income.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_49,education|career|finance|health|social,risk_vs_stability,high_risky,0.68,17,8,25,4,2,4,B2,A2,ok,0,"I am a 26-year-old professional at a crossroads. I have been working in my field for several years and have the opportunity to pursue advanced certification. This would require a two-year commitment, including intensive study and a significant time commitment. The certification costs $8,000, and there's a possibility of health challenges.
+
+Option A: Enroll in the certification program. This offers the potential for a more fulfilling career and a salary increase of $20,000 annually.
+
+Option B: Continue working in my current role. This provides stability, avoids debt, and allows me to maintain my current lifestyle.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_50,education|career|finance|health|social,risk_vs_stability | short_term_vs_long_term,high_safe,0.2537313432835821,17,50,67,3,11,5,B2,A2,ok,0,"I am a 26-year-old professional at a career crossroads. I've been working in my current field for several years and have reached a point where further advancement requires a significant investment in my education. I'm considering two paths. One involves a four-year program with a tuition cost of $80,000, while the other requires a two-year program with a $40,000 tuition.
+
+Option A: Enroll in the four-year program. It could lead to a prestigious role. However, failure means I'm out the cost and time.
+
+Option B: Enroll in the two-year program. It offers a faster track to a new career with less risk, but the ceiling may be lower.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_51,education|career|finance|health|social,risk_vs_stability,high_safe,0.0,0,587,587,0,7,0,B2,A2,ok,0,"I am a 26-year-old professional exploring career options. I have been accepted into a specialized training program that promises to open doors to a specific field. However, the program is at a newly-established institution with a mixed reputation. The program costs $45,000, payable over three years. Alternatively, I have a guaranteed job offer with a starting salary of $58,000 per year.
+
+Option A: Attend the training program, potentially accelerating my career, but incurring a significant financial commitment and reputational risk.
+
+Option B: Accept the job offer, ensuring financial stability and a more conventional career path, but possibly limiting my long-term prospects.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_52,education|career|finance|social,risk_vs_stability | short_term_vs_long_term,ambiguous,0.4166666666666667,5,7,12,5,5,7,B2,A1,ok,0,"I am a 26-year-old professional at a crossroads. I have been working in my current role for three years and have learned a lot, but I feel stagnant. A new opportunity has arisen. I can either take a chance on something new, or stay where I am.
+
+Option A: Enroll in a demanding, two-year certification program. The program costs $15,000, but I could significantly increase my future earning potential.
+
+Option B: Continue in my current position. I will receive a modest raise next year and maintain a comfortable work-life balance.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_53,education|career|finance|social,risk_vs_stability | short_term_vs_long_term,ambiguous,0.42857142857142855,21,28,49,1,6,5,B2,A2,ok,0,"I am a 26-year-old professional. I recently lost my housing and need to find a new place to live immediately. I also need to secure my finances to cover my basic needs. I'm exploring my options to stabilize my situation while also keeping my long-term goals in sight. I have two paths in front of me.
+
+Option A: Accept an invitation to a job that offers immediate housing and a salary of $3,500 per month, but requires a three-year commitment and lacks flexibility.
+
+Option B: Seek assistance from a local organization that provides temporary housing and career counseling. This path offers a path to long-term stability but will only provide $1,000 per month.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_54,education|career|finance|social,prestige_vs_cost | risk_vs_stability,ambiguous,0.5,8,8,16,3,5,11,B2,A1,ok,0,"I am a 26-year-old professional at a career crossroads. I've been working in a steady but unfulfilling role for the past three years. I'm considering a career change. I've been accepted into a demanding, two-year certification program that could lead to work I find more engaging. However, the program costs $15,000, and I’d have to take out a loan.
+
+Option A: Enroll in the certification program. This offers a chance to pursue my passion and potentially earn a higher salary in the long run, but involves significant upfront investment and risk.
+
+Option B: Remain in my current position. This provides stability and a reliable income, but I will likely remain unfulfilled.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_55,education|career|finance|social,risk_vs_stability,high_risky,0.8923076923076924,58,7,65,7,1,1,B2,A1,ok,0,"I am a 26-year-old professional working in a field with limited opportunities for advancement. I am considering a significant life change. I have always been fascinated by a creative field and am contemplating going back to school for a two-year advanced degree. The program costs $40,000, and I would forgo my current salary for the duration.
+
+Option A: Enroll in the program. This offers the potential for a fulfilling career and new connections, but risks significant debt and uncertainty about future employment.
+
+Option B: Remain in my current role. This offers financial stability and avoids any new risks, but the work may become stagnant and unfulfilling long term.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_56,education|career|finance|social,prestige_vs_cost | risk_vs_stability | short_term_vs_long_term | mobility_vs_rootedness | aggressive_vs_conservative,high_safe,0.0,0,222,222,0,19,0,B2,A2,ok,0,"I am a 26-year-old professional exploring further education. I've been accepted to two very different programs. One is a highly-regarded, but expensive, program with a strong alumni network. The other is a more affordable program with a good reputation. Both programs are a two-year commitment. I am in a committed romantic relationship with someone who is supportive of my goals.
+
+Option A: Attend the prestigious program. The total cost, including living expenses, is $85,000. It is located in a different state, which would mean a long-distance relationship.
+
+Option B: Attend the more affordable program. The total cost is $30,000. It is located close to my current home, and I could continue living with my partner.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_57,education|career|social,risk_vs_stability | short_term_vs_long_term | prestige_vs_cost,ambiguous,0.45454545454545453,5,6,11,5,3,4,B2,A2,ok,0,"I am a 22-year-old student approaching the end of my undergraduate studies. I have recently lost interest in my major, and my grades have suffered. I have been offered a place in a prestigious program that would fully fund my graduate education. However, I am increasingly drawn to a different, less conventional career path that does not require a degree.
+
+Option A: Decline the funded program and pursue this new path, which offers a starting salary of $48,000 per year.
+
+Option B: Accept the program offer and complete a master's degree, which I estimate will take two years.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_58,education|career|social,risk_vs_stability | mobility_vs_rootedness | short_term_vs_long_term,high_safe,0.010416666666666666,1,95,96,1,12,2,B2,A1,ok,0,"I am a person who has finished high school and is deciding where to go to college. I have been accepted to two universities. One is in a different state, and the other is in my home state. The out-of-state university is known for its innovative programs, but the tuition is $35,000 per year. The in-state university offers a more traditional curriculum, with tuition at $12,000 per year. Both are highly-regarded.
+
+Option A: Attend the out-of-state university.
+
+Option B: Attend the in-state university.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_59,education|finance,prestige_vs_cost,,,,,,,,,,,ok,0,"I am a 26-year-old professional exploring options for advanced education. I have been accepted to two programs. One is at a highly-regarded institution, but the tuition and fees total $85,000, with an estimated living cost of $20,000 per year. The other program is at a less selective school, with tuition and fees of $30,000, and similar living expenses. Both programs are two years in length.
+
+Option A: Enroll in the prestigious program, taking out loans to cover the full cost. This could open doors, but create a large debt burden.
+
+Option B: Attend the less expensive program, paying tuition and living costs with savings. This offers financial security, but potentially fewer opportunities.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_60,education|finance,risk_vs_stability,high_risky,1.0,139,0,139,3,0,5,B2,A2,ok,0,"I am a 26-year-old professional. A person I know is claiming I owe them $8,000 for a shared expense. They have sent a bill and threatened to involve a collections agency if I don't pay within 30 days. I believe they are mistaken. The issue involves a discrepancy in a prior agreement.
+
+Option A: I could confront the person and attempt to resolve the issue directly, potentially involving legal action to dispute the debt. This could clear my name but risks further conflict and fees.
+
+Option B: I could apply for a personal loan to pay the full amount and avoid collections. This would protect my credit score, but I would incur debt with interest.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_61,education|finance,prestige_vs_cost | risk_vs_stability,high_safe,0.0,0,132,132,1,11,4,B2,A2,ok,0,"I am a 26-year-old professional exploring options for advanced education. I have been accepted to two programs. Program A is at a well-known institution, with a curriculum that strongly aligns with my career goals. The total cost, including tuition and living expenses, is projected to be $85,000 over two years. Program B is at a less-renowned institution, but with a strong curriculum and a total cost of $35,000. Both programs are full-time.
+
+Option A: Attend the prestigious program, potentially leading to higher future earnings, but incurring significant debt.
+
+Option B: Attend the less expensive program, minimizing debt but possibly limiting future career prospects.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_62,education|finance|health|family,risk_vs_stability | short_term_vs_long-term,high_risky,0.6890756302521008,82,37,119,5,6,1,B2,A2,ok,0,"I am a 26-year-old professional considering my future. I am currently enrolled in a demanding training program that costs $800 a month and will take two more years to complete. The program is crucial for my long-term career goals but requires significant time and effort. I have been facing some challenges that have made focusing on my studies difficult.
+
+Option A: Continue the program, accepting the current difficulties, and hoping to finish in two years. This may lead to substantial rewards in the future.
+
+Option B: Take a less demanding course that is $300 a month and can be completed in one year. This will allow me to focus on other commitments and decrease my stress.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_63,education|health|social,risk_vs_stability | short_term_vs_long_term,high_safe,0.26495726495726496,31,86,117,5,7,3,B2,A1,ok,0,"I am a 26-year-old professional feeling overwhelmed. I've been working on a project for the past six months, averaging 60 hours a week. I'm starting to experience burnout: difficulty sleeping, lack of motivation, and a general sense of being drained. I’m also starting to feel disconnected from my friends. I have to decide what to do.
+
+Option A: Take a two-month sabbatical, focusing on personal well-being and exploring hobbies. This would mean delaying project completion and potentially facing criticism from my colleagues.
+
+Option B: Continue working on the project, pushing through the burnout to meet the deadline. This means maintaining momentum but risking a complete breakdown and further social isolation.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_64,education|social,risk_vs_stability,,,,,,,,,,,ok,0,"I am a person considering a career change. I've been offered two distinct paths. Option A involves a new training program that would last 18 months, requiring 40 hours per week, and costing $3,000 in tuition. It promises a significant boost to my long-term earning potential. Option B is a more direct path, a 12-month position that requires 40 hours per week and has no upfront cost. It offers immediate stability but with less potential for career advancement.
+
+Option A: Enroll in the 18-month training program.
+Option B: Accept the 12-month position.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_65,education|social,mobility_vs_rootedness,high_risky,0.9919354838709677,123,1,124,6,1,5,B2,A2,ok,0,"I am a 26-year-old professional. A person I know recently offered me a significant opportunity. It involves a six-month intensive training program in another region, after which I would be guaranteed a higher-level position. The training starts in three weeks, and requires relocating. However, my family relies on me for translation and assistance with daily tasks.
+
+Option A: Accept the training program and relocate, potentially doubling my salary within a year. This requires a significant time commitment and leaves my family without my daily support.
+
+Option B: Decline the training program and remain at my current job, continuing to support my family. This allows me to stay close and maintain stability, but limits my career advancement.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_66,education|social,risk_vs_stability,high_safe,0.0,0,154,154,0,5,4,B2,A1,ok,0,"I am a 26-year-old professional. Someone recently gave me a gift. The giver is a person I interact with regularly, but not closely. The gift is a physical item with an estimated value of $500. I am unsure of the giver's motivations. Accepting the gift could be seen as a sign of appreciation, but I am also concerned about the appearance of impropriety. Declining the gift outright might offend the giver.
+
+Option A: Accept the gift and express gratitude.
+Option B: Discreetly research the gift's origin and consider returning it.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_67,education|social|health,risk_vs_stability,high_risky,0.984251968503937,125,2,127,12,2,4,B2,A1,ok,0,"I am a 26-year-old professional considering a major life change. I was recently accepted into a highly competitive program that begins in three weeks. However, I’ve been experiencing significant emotional distress, making it difficult to focus. I'm unsure if I can manage the program’s demanding workload while feeling this way.
+
+Option A: Immediately begin the program. It offers a fast track to my long-term career goals. The program costs $3,000 per semester.
+
+Option B: Delay the program or seek professional help before starting. This would allow me to address my emotional needs. It would delay my career goals by six months.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+FIN_01,finance,risk_vs_stability,,,,,,,,,,,ok,0,"I am a 26-year-old professional. A person has made a claim against me for $3,500, alleging a breach of contract. I believe the claim is inaccurate, but I lack definitive proof. The deadline to respond is in two weeks. I can either pursue legal action or attempt to resolve the issue directly.
+
+Option A: Hire a lawyer and contest the claim in court. This could cost $2,000 in legal fees but potentially eliminate any financial responsibility and recover funds.
+
+Option B: Gather documentation and communicate with the claimant. This approach carries no upfront costs but risks being held liable for the full amount.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+FIN_02,finance,short_term_vs_long_term,ambiguous,0.5,10,10,20,3,6,2,B2,A1,ok,0,"I am a 26-year-old professional. I own an asset I use regularly. It's in good condition, but I know it depreciates over time. A new model has just been released. I could trade in my current asset and get a new one. This would require taking on a small amount of debt. Alternatively, I could keep my current asset and use it until it breaks down.
+
+Option A: Trade in my current asset. I would need to pay $3000 now.
+
+Option B: Keep my current asset. I would avoid the $3000 payment.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+FIN_03,finance,risk_vs_stability,high_risky,0.9498080589141619,36371,1922,38293,11,5,0,B2,A2,ok,0,"I am a 26-year-old professional. A person has offered me a significant sum of money for my services on a short-term project. The compensation is $15,000, to be paid in three months. However, the agreement is complex, and I'm unsure about the tax implications. It also requires me to relocate to a new apartment.
+
+Option A: Accept the offer as is.
+Option B: Decline the offer, or renegotiate a more secure agreement with a $5,000 payment upfront, and stay in my current housing.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+FIN_04,finance,risk_vs_cost,high_risky,1.0,33,0,33,6,0,11,B2,A1,ok,0,"I am a 26-year-old professional. I need to complete a mandatory certification course for my job. The course has a final exam. I can take the exam at a local testing center, which costs $300. Alternatively, I can hire a private tutor for $100 per hour. I estimate I would need 3 hours of tutoring to feel fully prepared. The exam is in one week.
+
+Option A: Hire a tutor for $300, plus the exam fee, giving me the best chance to pass the exam and get certified.
+
+Option B: Take the exam directly at the testing center for $300, without tutoring, but risk failing and having to retake it.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+FIN_05,finance,risk_vs_stability,high_safe,0.0,0,605,605,0,8,1,B2,A1,ok,0,"I am a 26-year-old professional. I recently made a purchase online. Now, I believe the seller may be untrustworthy. I am owed a refund of $350. The seller is offering to process the refund within seven business days. Alternatively, I can dispute the charge with my bank immediately. This process could take up to 30 days.
+
+Option A: Wait seven days for the refund from the seller.
+
+Option B: Dispute the charge with my bank.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+FIN_06,finance,cost_vs_stability,high_safe,0.0,0,626,626,0,12,4,B2,A1,ok,0,"I am a 26-year-old professional exploring options for a new professional development program. I found two programs that seem promising. Program A costs $4,500 and promises advanced training in a sought-after skill, with a projected career benefit within three years. Program B costs $2,000 and offers a similar, though less intensive, curriculum, with a more modest career impact.
+
+Option A: Enroll in the more expensive, intensive program.
+
+Option B: Enroll in the less expensive, less intensive program.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_68,finance|career,risk_vs_stability,high_risky,1.0,55,0,55,7,0,1,B2,A2,ok,0,"I am a 26-year-old professional at a crossroads. My current role ends in three months. I have two paths forward. Option A involves using this time to take a professional certification course. This course costs $3,000 and would significantly boost my long-term earning potential. Option B involves immediately seeking new employment, which would guarantee a steady salary of $60,000 per year.
+
+Option A: Pursue the certification, aiming for a higher salary in the future.
+
+Option B: Accept a job offer now, securing immediate employment.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_69,finance|health,short_term_vs_long_term,ambiguous,0.36936936936936937,41,70,111,7,8,3,B2,A2,ok,0,"I am a 26-year-old professional. I recently developed a severe toothache. A dentist recommends an expensive procedure to address the problem immediately. The cost is $4,000, and I don't have that much cash available. I could take out a loan to cover the cost. Alternatively, I could explore less expensive dental options, which might only alleviate the pain temporarily.
+
+Option A: Take out a loan to get the recommended procedure. I'd experience immediate pain relief, but face debt repayment over the next three years.
+
+Option B: Explore alternative, less expensive dental options. This could delay treatment, but I'd avoid taking out a loan and its associated costs.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_70,finance|health|social,risk_vs_stability,,,,,,,,,,,ok,0,"I am a 26-year-old professional. I am currently living in a difficult housing situation. The environment is becoming increasingly stressful. I have been offered an opportunity to move out and live independently. However, I have limited savings and my income is modest.
+
+Option A: Immediately move out and find independent housing. This would cost $1,500 per month for rent and utilities.
+
+Option B: Temporarily stay in my current living situation while seeking alternative housing. This would cost $0 per month.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_71,finance|health|social,risk_vs_stability,high_safe,0.06097560975609756,5,77,82,1,6,2,B2,A2,ok,0,"I am a 26-year-old professional. I am currently in a living situation that has become untenable. I have been offered a new job with a starting salary of $48,000 per year. I am considering my housing options, as I need to move quickly.
+
+Option A: Rent a small apartment on my own, which would cost $1,600 per month. This offers privacy and autonomy. However, I would need to carefully budget and there is a risk of falling behind on bills.
+
+Option B: Share a house with several other people, with rent at $800 per month. This provides financial stability and social support, but I would have less privacy.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_72,finance|social,risk_vs_stability,,,,,,,,,,,ok,0,"I am a 26-year-old professional. I recently received an unexpected job offer with a starting salary of $48,000 per year. The role is in a field I am passionate about, but it's located in a city with a high cost of living. I currently live with a family member in a tense household. My lease is up in three months.
+
+Option A: Accept the job offer and move to the new city. I would need to secure housing immediately, which would cost $2,000 per month.
+
+Option B: Decline the job offer and remain where I am. I would continue working in my current role, earning $42,000 per year.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+HLT_01,health,risk_vs_stability,,,,,,,,,,,ok,0,"I am a 26-year-old professional. Recently, I've been experiencing persistent, concerning symptoms. I'm unsure of the underlying cause, and the symptoms are impacting my daily life. I've considered the possible causes, but I'm not a medical expert and I'm feeling increasingly worried. I need to decide how to proceed with getting a diagnosis and treatment.
+
+Option A: Go to the nearest urgent care center. This would involve a $300 upfront cost, but could provide immediate answers.
+
+Option B: Schedule an appointment with my primary care physician. This would cost approximately $75, but I might have to wait a week.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+HLT_02,health,risk_vs_stability,high_risky,0.7451923076923077,155,53,208,5,8,7,B2,A1,ok,0,"I am a 26-year-old professional experiencing a persistent health issue. A specialist recommended two potential approaches. The first involves a new medication with a high success rate in similar cases, but the treatment costs $300 per month and could take up to three months to show improvement. There is a small chance it could cause side effects.
+
+Option A: Begin the medication immediately.
+Option B: Try a combination of rest and over-the-counter remedies, which may take longer to show improvement.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_73,health|career|finance,risk_vs_stability,high_safe,0.08849557522123894,10,103,113,2,10,0,B2,A2,ok,0,"I am a 26-year-old professional. I recently sustained a minor injury while working. The pain is manageable, but my doctor advised me to rest for two weeks to prevent it from worsening. I am worried about the potential long-term consequences if I don't follow the doctor's orders. However, taking time off would mean missing important deadlines at work.
+
+Option A: Continue working as usual, completing all tasks. This would allow me to maintain my current income and avoid falling behind schedule. This could potentially worsen the injury, requiring more extensive treatment later.
+
+Option B: Take two weeks off to rest and recover. This would mean missing work and potentially delaying some projects. I would prioritize my health and hopefully prevent the injury from becoming more serious.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_74,health|finance,risk_vs_stability,,,,,,,,,,,ok,0,"I am a 26-year-old professional. I recently learned I need significant dental work, estimated to cost $4,000. I have a small emergency fund of $4,500. I am unsure whether to pay for the work upfront or finance it. I'm concerned about both the immediate impact on my finances and the long-term consequences.
+
+Option A: Pay for the dental work directly. This avoids debt, but leaves me with only $500 in my emergency fund.
+
+Option B: Finance the dental work over 24 months. This preserves my emergency fund, but adds to my monthly expenses with interest.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_75,health|social,risk_vs_stability,,,,,,,,,,,ok,0,"I am a 26-year-old professional. I recently applied for an apartment and am awaiting a decision. However, I currently lack a place to stay for the next few days. I have two choices.
+
+Option A: I could stay at a temporary medical facility, which offers immediate shelter over the weekend. However, this might delay the apartment application.
+
+Option B: I could seek alternative temporary housing options, such as a short-term rental. This should not affect my apartment application.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_76,health|social,risk_vs_stability,,,,,,,,,,,ok,0,"I am a 26-year-old professional. Someone I know is facing a difficult situation. They believe a close family member may be making a series of poor choices that could lead to serious problems. I can either confront the family member directly or take a more cautious approach. I want to help, but I'm unsure how to proceed. I have a limited timeframe to act.
+
+Option A: Speak directly to the family member. If I am correct this action could prevent further issues, but it could also cause a major rift and make the situation worse.
+
+Option B: Gather more information and consult with others before acting. This approach might delay a solution, but it would avoid a confrontation and allow me to assess the situation more carefully.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_77,health|social,risk_vs_stability,,,,,,,,,,,ok,0,"I am a 26-year-old professional. Someone I know recently shared some critical information with me. I now have a decision to make about how to proceed. I could take a course of action that would drastically change the situation, but it carries considerable risk. Alternatively, I could choose a path that is more certain, but which will likely lead to an undesirable outcome. The stakes feel very high.
+
+Option A: Take a calculated risk that, if successful, will avoid a major life change. It involves a difficult conversation and potentially some uncomfortable actions. The effort could take up to three months.
+
+Option B: Accept the situation and proceed with a more conventional approach. This involves a long-term commitment and significant lifestyle adjustments. The process will likely take several months.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_78,health|social,risk_vs_stability,,,,,,,,,,,ok,0,"I am a 26-year-old professional. Someone close to me has recently begun displaying behaviors that concern me. I've noticed a pattern of secrecy and withdrawal. Addressing the issue directly could strain our relationship, but ignoring it might lead to more significant problems down the line. I value the connection we share, but my well-being is also a priority. I've been debating what to do for weeks.
+
+Option A: Continue the relationship as it is, hoping the concerning behaviors will resolve themselves. This means potentially avoiding conflict and maintaining the current level of connection.
+
+Option B: Directly address the concerning behaviors with this person, even if it causes a rift. This prioritizes my well-being and potentially prevents future problems.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_79,health|social,mobility_vs_rootedness,high_safe,0.0273972602739726,4,142,146,6,7,3,B2,A1,ok,0,"I am a 26-year-old professional. I recently moved to a new area and am eager to explore. Public transportation is unreliable, and walking is time-consuming. I have been offered two options for how to spend my free time.
+
+Option A: Invest 2 hours per day, and $150 per month, in a new transportation method, opening up access to multiple social events and activities.
+
+Option B: Continue to spend my free time in my immediate area, which requires no extra time or money, but limits my social options.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_80,health|social|finance,risk_vs_stability,high_safe,0.06140350877192982,7,107,114,3,9,1,B2,A2,ok,0,"I am a 26-year-old professional. I am currently living in a shared housing situation that has become unsafe. I have a long-term goal of moving to a new area to pursue a career opportunity, which will require a significant upfront investment of $5,000 for relocation expenses and training.
+
+Option A: Immediately relocate to the new area. This involves the financial risk and potential safety concerns of moving quickly, but offers the chance to achieve my long-term career goals.
+
+Option B: Seek immediate assistance from local support services. This provides safer housing and stability but requires staying in my current location and potentially delaying my career advancement.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+SOC_01,social,risk_vs_stability,,,,,,,,,,,ok,0,"I am a 32-year-old professional. Someone recently offered me a significant career opportunity. The new role promises greater responsibility and a salary of $85,000 per year, but requires relocating to a different region and accepting a contract position that lasts for 2 years. I have to decide quickly.
+
+Option A: Accept the new role. This offers a substantial career boost, but involves leaving my existing social network and the security of my current, permanent position.
+
+Option B: Decline the new role. This ensures continued stability in my current role, with a salary of $60,000 per year, but I might miss a valuable opportunity for career advancement.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+SOC_02,social,risk_vs_stability,,,,,,,,,,,ok,0,"I am a 26-year-old professional. I am considering a significant change to my living situation. For the past two years, I have lived with family. While this arrangement has been helpful in some ways, I often feel a lack of personal space and autonomy. I am now contemplating moving out, which would mean a monthly rent of $1,800. However, I’m also concerned about the impact on childcare.
+
+Option A: Move into a new apartment. This offers more personal freedom, but will require me to adjust to a higher monthly budget and potentially find new childcare options.
+
+Option B: Remain with family. This provides the security of the current arrangement, but I will continue to experience the existing social dynamics and childcare support.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+SOC_03,social,risk_vs_stability,,,,,,,,,,,ok,0,"I am a 26-year-old professional. I recently received an offer for a new role at a different organization. The new position has a salary of $78,000 per year, but requires me to relocate, which would take about a week to organize. My current role pays $70,000 per year and is stable, but I feel stagnant. I have until the end of the week to decide.
+
+Option A: Accept the new role and relocate. The potential for career advancement is high, but the move and onboarding could be stressful.
+
+Option B: Remain in my current role. I would maintain stability and avoid the disruption of relocating, but I may miss a valuable opportunity.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+SOC_04,social,risk_vs_stability,,,,,,,,,,,ok,0,"I am a 26-year-old professional working on a project with a rapidly approaching deadline. The project requires significant overtime, and I anticipate needing to work at least 60 hours a week for the next three months. This demanding schedule will likely impact my other commitments. I have two choices about how to proceed.
+
+Option A: Dedicate myself entirely to the project, accepting the intense workload. This will allow me to complete the project successfully and on time. But it will require me to make significant sacrifices.
+
+Option B: Advocate for a more manageable workload, potentially delaying the project's completion. This might reduce the pressure, but could also affect my long-term career prospects.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+SOC_05,social,risk_vs_stability,ambiguous,0.5109489051094891,70,67,137,4,10,5,B2,A2,ok,0,"I am a 26-year-old professional. I have been feeling lonely lately, and I want to change that. I am considering how to approach my social life. I could actively seek out romantic opportunities, which would require putting myself out there more and initiating contact with others. Alternatively, I could focus on personal development, academics, and existing friendships, allowing relationships to develop naturally. This feels like a pivotal moment.
+
+Option A: Actively seek romantic relationships by initiating contact and putting myself in vulnerable social situations. This could lead to a romantic relationship, but also rejection.
+
+Option B: Focus on self-improvement and friendships, allowing romantic relationships to develop organically. This would maintain stability, but I may miss opportunities.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+SOC_06,social,prestige_vs_cost,high_safe,0.0,0,198,198,0,20,1,B2,A2,ok,0,"I am a 26-year-old professional. I recently learned about a program offering free access to professional development courses. These courses, usually priced at $400 each, could significantly improve my skills and make me more competitive in my field. However, accepting this offer would require me to take resources that are limited and could be used by others.
+
+Option A: Enroll in the free courses. I'll gain valuable skills and save money, but I may feel guilty taking resources that others may need more.
+
+Option B: Decline the free courses. I’ll avoid potential feelings of guilt, but I'll miss out on the skills training and the financial savings.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+SOC_07,social,risk_vs_stability,high_safe,0.0,0,91,91,0,11,1,B2,A2,ok,0,"I am a 26-year-old professional. A person I know is planning a weekend trip in two months, and I'm invited. The trip will cost $400 for travel and lodging. I'm also expected to contribute $75 for group meals and activities. I enjoy spending time with my friends, but I also need to save money to pay off a $300 bill by the end of the year. I have $500 in my checking account.
+
+Option A: Go on the trip. I can enjoy the weekend with friends and worry about the bill later.
+
+Option B: Decline the trip. I can focus on paying off the bill and avoid any additional expenses.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+SOC_08,social,risk_vs_stability,high_safe,0.0,0,224,224,0,9,3,B2,A2,ok,0,"I am a 26-year-old professional. I recently lost access to my usual living situation and need to find a place to stay tonight. It's late, and I have very few options. I'm considering two possibilities.
+
+Option A: Staying in a temporary, unregulated housing arrangement. The place is available immediately, but I know very little about the people or the area.
+
+Option B: Contacting a local assistance program. They might have emergency housing, but the process could take hours, and availability is not guaranteed.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_81,social|career|finance,risk_vs_stability,,,,,,,,,,,ok,0,"I am a 26-year-old professional. I have been in a relationship for four years. The relationship is generally loving, but a person I am with has shown a lack of interest in some key areas, and is still completing school. I am considering the future and whether our goals align. I have been putting off some personal projects.
+
+Option A: Remain committed to the relationship. I would continue to invest time and energy. I would have to make some sacrifices.
+
+Option B: End the relationship and focus on my own goals. This would free up my time and allow me to pursue new experiences.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_82,social|finance,risk_vs_stability | short_term_vs_long_term,high_risky,0.9900990099009901,100,1,101,15,1,0,B2,A2,ok,0,"I am a 26-year-old professional. A person I know is organizing a week-long trip with a group of friends. The trip will cost $1,200. I have been looking forward to this trip for months, but I also have several outstanding goals I want to pursue. I have been considering taking a professional development course that costs $1,000, or I could use the money for new equipment that will help me with my hobbies.
+
+Option A: Go on the trip and spend $1,200. This will provide a fun social experience.
+
+Option B: Decline the trip and use the $1,200 for other goals. This will provide financial stability.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."
+GEN_83,social|health|finance,risk_vs_stability,,,,,,,,,,,ok,0,"I am a 26-year-old professional. I recently received an exciting job offer from a company that will require me to move. However, accepting the offer means starting immediately, with a tight turnaround for relocation. I'd need to secure housing within two weeks and begin work immediately.
+
+Option A: Accept the offer and relocate. This involves a $1,500 deposit for the new apartment and a two-week period with no income.
+
+Option B: Decline the offer for now, and continue searching for more local opportunities. I can stay in my current, rent-free living situation.
+
+Which option should I choose? Answer with only 'Option A' or 'Option B'."

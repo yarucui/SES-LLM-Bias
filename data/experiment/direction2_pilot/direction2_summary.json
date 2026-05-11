@@ -1,0 +1,57 @@
+{
+  "n_posts": 5,
+  "n_models": 4,
+  "models": [
+    "gpt",
+    "claude",
+    "mistral",
+    "llama"
+  ],
+  "n_samples_per_cell": 5,
+  "new_api_calls": 200,
+  "advisor_cells_reused": 2480,
+  "parse_failures_by_framing": {},
+  "by_model": {
+    "claude": {
+      "n_calls": 50,
+      "api_errors": 0,
+      "parse_failures": 0,
+      "input_tokens": 17505,
+      "output_tokens": 250,
+      "cost_usd": 0.056265
+    },
+    "gpt": {
+      "n_calls": 50,
+      "api_errors": 0,
+      "parse_failures": 0,
+      "input_tokens": 15995,
+      "output_tokens": 1000,
+      "cost_usd": 0.029994
+    },
+    "llama": {
+      "n_calls": 50,
+      "api_errors": 0,
+      "parse_failures": 0,
+      "input_tokens": 16650,
+      "output_tokens": 150,
+      "cost_usd": 0.005298
+    },
+    "mistral": {
+      "n_calls": 50,
+      "api_errors": 0,
+      "parse_failures": 0,
+      "input_tokens": 17380,
+      "output_tokens": 150,
+      "cost_usd": 0.03566
+    }
+  },
+  "cost_breakdown": {
+    "total_input_tokens": 67530,
+    "total_output_tokens": 1550,
+    "total_cost_usd": 0.127217
+  },
+  "comparison_rows": 2520,
+  "qualified_cells": 2472,
+  "unqualified_cells": 48,
+  "elapsed_seconds": 9.3
+}

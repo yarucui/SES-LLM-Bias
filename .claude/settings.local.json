@@ -17,7 +17,19 @@
       "Bash(tasklist)",
       "Bash(grep -E \"\\\\.py$\")",
       "Bash(grep:*)",
-      "Bash(xxd src/pipeline/step6_experiment.py)"
+      "Bash(xxd src/pipeline/step6_experiment.py)",
+      "Bash(python -c \"import ast; ast.parse\\(open\\('src/pipeline/step2_score.py', encoding='utf-8'\\).read\\(\\)\\); print\\('parse OK'\\)\")",
+      "Bash(python src/pipeline/step2_score.py --help)",
+      "Bash(git *)",
+      "Bash(python -m py_compile d:/A_my_project/ses-llm-bias/src/pipeline/step5_experiment.py)",
+      "Bash(python -m py_compile d:/A_my_project/ses-llm-bias/_llm.py d:/A_my_project/ses-llm-bias/config.py)",
+      "Bash(awk END{print NR} *)",
+      "Bash(python -m py_compile d:/A_my_project/ses-llm-bias/src/pipeline/step5_experiment.py d:/A_my_project/ses-llm-bias/config.py d:/A_my_project/ses-llm-bias/_llm.py)",
+      "Bash(python -m py_compile d:/A_my_project/ses-llm-bias/config.py)",
+      "Bash(python -m py_compile d:/A_my_project/ses-llm-bias/_llm.py d:/A_my_project/ses-llm-bias/src/pipeline/step5_experiment.py)",
+      "Bash(powershell *)",
+      "Bash(python -c \"import json,sys; d=json.loads\\(sys.stdin.read\\(\\)\\); print\\(json.dumps\\(list\\(d.keys\\(\\)\\), indent=2\\)\\)\")",
+      "Bash(python *)"
     ]
   }
 }
